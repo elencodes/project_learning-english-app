@@ -1,7 +1,11 @@
+import { Navigation } from "../Navigation/Navigation";
+import { SettingsBar } from "../SettingsBar/SettingsBar";
+
 export function Header() {
 	return (
 		<>
-			<div></div>
+			<Navigation />
+			<SettingsBar />
 		</>
 	);
 }
