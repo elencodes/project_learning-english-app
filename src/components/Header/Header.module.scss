@@ -8,16 +8,11 @@
 	border-bottom: .0625rem solid #CCD2E3;
 }
 
-.container {
-	max-width: 80.125rem;
-	margin: 0 auto;
-}
-
 .header__inner {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	height: 5rem;
+	height: 3.75rem;
 	font-size: .875rem;
 	font-weight: 500;
 }
@@ -40,7 +35,7 @@
 		height: .0625rem;
 		width: 0;
 		left: 0;
-		bottom: -2.0625rem;
+		bottom: -1.4375rem;
 		transition: 0.3s;
 	}
 
@@ -54,18 +49,18 @@
 	}
 }
 
-.settings {
+.settings__container {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	width: 5.9375rem;
 }
 
-.icon {
+.settings__icon {
 	width: 1.5rem;
 	height: 1.5rem;
 }
 
-.text {
+.settings__text {
 	color: $disable-color;
 }

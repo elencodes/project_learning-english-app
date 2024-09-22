@@ -5,7 +5,7 @@ export function Header() {
 	return (
 		<>
 			<header className={styles.header}>
-				<div className={styles.container}>
+				<div className="container">
 					<div className={styles.header__inner}>
 						<nav className={styles.nav}>
 							<a
@@ -21,9 +21,13 @@ export function Header() {
 								Game
 							</a>
 						</nav>
-						<div className={styles.settings}>
-							<img className={styles.icon} src={gearIcon} alt="gear" />
-							<p className={styles.text}>Settings</p>
+						<div className={styles.settings__container}>
+							<img
+								className={styles.settings__icon}
+								src={gearIcon}
+								alt="gear"
+							/>
+							<p className={styles.settings__text}>Settings</p>
 						</div>
 					</div>
 				</div>

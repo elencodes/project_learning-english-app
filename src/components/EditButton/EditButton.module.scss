@@ -1,0 +1,36 @@
+@import "../../styles/normalize.scss";
+@import "../../styles/fonts.scss";
+@import "../../styles/variables.scss";
+@import "../../styles/main.scss";
+
+.edit__button {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 4.5rem;
+	height: 1.5625rem;
+	margin-right: 1rem;
+	padding: 0 1rem;
+	background-color: $edit-color;
+	border-radius: .625rem;
+
+	&:hover {
+		cursor: pointer;
+		background-color: #BBB2FF;
+		transition: background-color .2s linear;
+	}
+
+	&:active {
+		background-color: $edit-color;
+		transition: background-color .2s linear;
+	}
+}
+
+.edit__icon {
+	width: .75rem;
+	height: .75rem;
+}
+
+.edit__text {
+	color: $accent-color;
+}

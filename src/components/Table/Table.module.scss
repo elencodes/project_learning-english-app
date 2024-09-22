@@ -1,0 +1,70 @@
+@import "../../styles/normalize.scss";
+@import "../../styles/fonts.scss";
+@import "../../styles/variables.scss";
+@import "../../styles/main.scss";
+
+.title {
+	margin-top: 1.875rem;
+	text-align: center;
+	font-size: 1.875rem;
+	font-weight: 700;
+}
+
+.subtitle {
+	margin-top: 5rem;
+	font-size: 1.125rem;
+	font-weight: 700;
+}
+
+.table {
+	width: 80rem;
+	margin-top: 2.0625rem;
+	text-align: center;
+	border: .0625rem solid rgba(60, 33, 247, 0.5);
+	border-radius: 1.5rem;
+	box-shadow: .625rem .625rem 5rem rgba(63, 39, 102, 0.1);
+	overflow: hidden;
+}
+
+.table__header {
+	background-color: $table-color;
+}
+
+tr {
+	border-bottom: 1px solid $accent-color;
+}
+
+th {
+	height: 2.8125rem;
+	border: .0625rem solid $edit-color;
+	border-bottom: 1px solid #988AFA;
+}
+
+.table__body {
+	font-size: .875rem;
+	font-weight: 400;
+}
+
+td {
+	height: 2.5rem;
+	border: .0625rem solid $edit-color;
+}
+
+.table__body tr:hover {
+	cursor: pointer;
+	background-color: $table-color;
+	transition: background-color .1s linear;
+}
+
+.table__actions {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.button__container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 15.9375rem;
+}

@@ -1,5 +1,5 @@
 import { Header } from "./components/Header/Header";
-import { GamePage } from "./components/GamePage/GamePage";
+import { Table } from "./components/Table/Table";
 import "./App.scss";
 
 function App() {
@@ -7,7 +7,7 @@ function App() {
 		<>
 			<div className="app">
 				<Header />
-				<GamePage />
+				<Table />
 			</div>
 		</>
 	);
