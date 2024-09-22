@@ -1,0 +1,71 @@
+@import "../../styles/normalize.scss";
+@import "../../styles/fonts.scss";
+@import "../../styles/variables.scss";
+@import "../../styles/main.scss";
+
+.header {
+	background-color: #FFFFFF;
+	border-bottom: .0625rem solid #CCD2E3;
+}
+
+.container {
+	max-width: 80.125rem;
+	margin: 0 auto;
+}
+
+.header__inner {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 5rem;
+	font-size: .875rem;
+	font-weight: 500;
+}
+
+.nav {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 11rem;
+}
+
+.nav__link {
+	position: relative;
+	color: $disable-color;
+
+	&:after {
+		content: "";
+		position: absolute;
+		background-color: $accent-color;
+		height: .0625rem;
+		width: 0;
+		left: 0;
+		bottom: -2.0625rem;
+		transition: 0.3s;
+	}
+
+	&:hover {
+		color: $accent-color;
+		transition: color .3s linear;
+	}
+
+	&:hover:after {
+		width: 100%;
+	}
+}
+
+.settings {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 5.9375rem;
+}
+
+.icon {
+	width: 1.5rem;
+	height: 1.5rem;
+}
+
+.text {
+	color: $disable-color;
+}

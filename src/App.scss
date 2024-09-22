@@ -1,0 +1,14 @@
+@import "/src/styles/normalize.scss";
+@import "/src/styles/fonts.scss";
+@import "/src/styles/variables.scss";
+@import "/src/styles/main.scss";
+
+.app {
+	max-width: 87.5rem;
+	margin: 0 auto;
+	height: 40.625rem;
+	border-radius: 1.5rem;
+	background-color: $app-color;
+	box-shadow: 0 .625rem 6.25rem rgba(63, 39, 102, 0.15);
+	overflow: hidden;
+}
