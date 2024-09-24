@@ -42,8 +42,8 @@ export function Table() {
 
 					<tbody className={styles.table__body}>
 						{data.map((word) => (
-							<tr>
-								<td key={word.id}>{word.id}</td>
+							<tr key={word.id}>
+								<td>{word.id}</td>
 								<td>{word.theme}</td>
 								<td>{word.word}</td>
 								<td>{word.transcription}</td>
