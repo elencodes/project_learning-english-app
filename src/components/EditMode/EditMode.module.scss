@@ -1,0 +1,61 @@
+@import "../../styles/variables.scss";
+
+
+.cancel__button {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 2rem;
+	height: 1.75rem;
+	background-color: #FFDBE6;
+	border-radius: .3125rem;
+
+	&:hover {
+		cursor: pointer;
+		background-color: #FFB7CD;
+		transition: background-color .2s linear;
+	}
+
+	&:active {
+		background-color: #FFDBE6;
+		transition: background-color .2s linear;
+	}
+}
+
+.cancel__icon {
+	margin: 0 auto;
+	width: 1.25rem;
+	height: 1.25rem;
+}
+
+.save__button {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 4.5rem;
+	height: 1.5625rem;
+	padding: 0 .75rem;
+	background-color: $active-color;
+	border-radius: .625rem;
+	font-size: .8125rem;
+
+	&:hover {
+		cursor: pointer;
+		background-color: #43A3A9;
+		transition: background-color .2s linear;
+	}
+
+	&:active {
+		background-color: $active-color;
+		transition: background-color .2s linear;
+	}
+}
+
+.save__icon {
+	width: .75rem;
+	height: .75rem;
+}
+
+.save__text {
+	color: #FFFFFF;
+}

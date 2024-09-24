@@ -1,7 +1,4 @@
-@import "../../styles/normalize.scss";
-@import "../../styles/fonts.scss";
 @import "../../styles/variables.scss";
-@import "../../styles/main.scss";
 
 .title {
 	margin-top: 1.875rem;
@@ -21,7 +18,7 @@
 	margin-top: 2.0625rem;
 	text-align: center;
 	border: .0625rem solid rgba(60, 33, 247, 0.5);
-	border-radius: 1.5rem;
+	border-radius: 1.25rem;
 	box-shadow: .625rem .625rem 5rem rgba(63, 39, 102, 0.1);
 	overflow: hidden;
 }
@@ -64,7 +61,7 @@ td {
 
 .button__container {
 	display: flex;
-	justify-content: center;
+	justify-content: space-between;
 	align-items: center;
-	width: 15.9375rem;
+	width: 7.5rem;
 }

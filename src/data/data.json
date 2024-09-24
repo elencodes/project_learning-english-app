@@ -1,0 +1,58 @@
+[
+	{
+		"id": "1",
+		"theme": "weather",
+		"word": "thunderstorm",
+		"transcription": "[ ˈθʌndərstɔːrm ]",
+		"translation": "гроза"
+	},
+	{
+		"id": "2",
+		"theme": "weather",
+		"word": "fog",
+		"transcription": "[ ˈfɑːɡ ]",
+		"translation": "туман"
+	},
+	{
+		"id": "3",
+		"theme": "weather",
+		"word": "rain",
+		"transcription": "[ reɪn ]",
+		"translation": "дождь"
+	},
+	{
+		"id": "4",
+		"theme": "emotions",
+		"word": "curious",
+		"transcription": "[ ˈkjʊrɪəs ]",
+		"translation": "любопытный"
+	},
+	{
+		"id": "5",
+		"theme": "emotions",
+		"word": "excited",
+		"transcription": "[ ɪkˈsaɪtɪd ]",
+		"translation": "взволнованный"
+	},
+	{
+		"id": "6",
+		"theme": "emotions",
+		"word": "grateful",
+		"transcription": "[ ɡreɪtfl ]",
+		"translation": "благодарный"
+	},
+	{
+		"id": "7",
+		"theme": "travel",
+		"word": "island",
+		"transcription": "[ ˈaɪlənd ]",
+		"translation": "остров"
+	},
+	{
+		"id": "8",
+		"theme": "travel",
+		"word": "showplace",
+		"transcription": "[ ˈʃəʊpleɪs ]",
+		"translation": "достопримечательность"
+	}
+]

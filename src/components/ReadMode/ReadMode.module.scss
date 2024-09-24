@@ -1,0 +1,61 @@
+@import "../../styles/variables.scss";
+
+.edit__button {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 4.5rem;
+	height: 1.5625rem;
+	padding: 0 .9375rem;
+	background-color: $edit-color;
+	border-radius: .625rem;
+	font-size: .8125rem;
+
+	&:hover {
+		cursor: pointer;
+		background-color: #BBB2FF;
+		transition: background-color .2s linear;
+	}
+
+	&:active {
+		background-color: $edit-color;
+		transition: background-color .2s linear;
+	}
+}
+
+.edit__icon {
+	width: 1rem;
+	height: .75rem;
+}
+
+.edit__text {
+	color: $accent-color;
+}
+
+.delete__button {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 2rem;
+	height: 1.75rem;
+	background-color: #FFB7CD;
+	border-radius: .3125rem;
+
+	&:hover {
+		cursor: pointer;
+		background-color: #FF84A9;
+		transition: background-color .2s linear;
+	}
+
+	&:active {
+		background-color: #FFB7CD;
+		transition: background-color .2s linear;
+	}
+}
+
+
+.delete__icon {
+	margin: 0 auto;
+	width: 1.25rem;
+	height: 1.25rem;
+}

@@ -1,66 +1,27 @@
-import { EditButton } from "../EditButton/EditButton";
-import { DeleteButton } from "../DeleteButton/DeleteButton";
+import { useState } from "react";
+import { EditMode } from "../EditMode/EditMode";
+import { ReadMode } from "../ReadMode/ReadMode";
+import data from "../../data/data.json";
 import styles from "./Table.module.scss";
 
 export function Table() {
-	const data = [
-		{
-			id: 1,
-			theme: "weather",
-			word: "thunderstorm",
-			transcription: "[ ˈθʌndərstɔːrm ]",
-			translation: "гроза",
-		},
-		{
-			id: 2,
-			theme: "weather",
-			word: "fog",
-			transcription: "[ ˈfɑːɡ ]",
-			translation: "туман",
-		},
-		{
-			id: 3,
-			theme: "weather",
-			word: "rain",
-			transcription: "[ reɪn ]",
-			translation: "дождь",
-		},
-		{
-			id: 4,
-			theme: "emotions",
-			word: "curious",
-			transcription: "[ ˈkjʊrɪəs ]",
-			translation: "любопытный",
-		},
-		{
-			id: 5,
-			theme: "emotions",
-			word: "excited",
-			transcription: "[ ɪkˈsaɪtɪd ]",
-			translation: "взволнованный",
-		},
-		{
-			id: 6,
-			theme: "emotions",
-			word: "grateful",
-			transcription: "[ ɡreɪtfl ]",
-			translation: "благодарный",
-		},
-		{
-			id: 7,
-			theme: "travel",
-			word: "island",
-			transcription: "[ ˈaɪlənd]",
-			translation: "остров",
-		},
-		{
-			id: 8,
-			theme: "travel",
-			word: "showplace",
-			transcription: "[ ˈʃəʊpleɪs ]",
-			translation: "достопримечательность",
-		},
-	];
+	//управление состояниями ReadMode и EditMode
+	const [isEditing, setIsEditing] = useState(false);
+
+	//функция для перехода в режим редактирования
+	const handleEditClick = () => {
+		setIsEditing(true);
+	};
+
+	//функция для отмены режима редактирования
+	const handleCancelClick = () => {
+		setIsEditing(false);
+	};
+
+	//функция для сохранения данных
+	const handleSaveClick = () => {
+		setIsEditing(false); // После сохранения возвращаемся в режим чтения
+	};
 
 	return (
 		<>
@@ -82,14 +43,21 @@ export function Table() {
 					<tbody className={styles.table__body}>
 						{data.map((word) => (
 							<tr>
-								<td>{word.id}</td>
+								<td key={word.id}>{word.id}</td>
 								<td>{word.theme}</td>
 								<td>{word.word}</td>
 								<td>{word.transcription}</td>
 								<td>{word.translation}</td>
 								<td className={styles.table__actions}>
 									<div className={styles.button__container}>
-										<EditButton /> <DeleteButton />
+										{isEditing ? (
+											<EditMode
+												onCancel={handleCancelClick}
+												onSave={handleSaveClick}
+											/>
+										) : (
+											<ReadMode onEdit={handleEditClick} />
+										)}
 									</div>
 								</td>
 							</tr>
