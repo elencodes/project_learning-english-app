@@ -52,16 +52,3 @@ td {
 	background-color: $table-color;
 	transition: background-color .1s linear;
 }
-
-.table__actions {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.button__container {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	width: 7.5rem;
-}

@@ -1,0 +1,14 @@
+@import "../../styles/variables.scss";
+
+.table__actions {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.button__container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 7.5rem;
+}
