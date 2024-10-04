@@ -1,0 +1,14 @@
+@import "../../styles/variables.scss";
+
+.title {
+	margin-top: 1.875rem;
+	text-align: center;
+	font-size: 1.875rem;
+	font-weight: 700;
+}
+
+.card__list {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}

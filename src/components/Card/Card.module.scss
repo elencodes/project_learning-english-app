@@ -1,0 +1,57 @@
+@import "../../styles/variables.scss";
+
+.card {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	width: 17.5rem;
+	height: 20.625rem;
+	margin: 6.25rem auto 0 auto;
+	padding: 3.125rem;
+	background-color: rgba(255, 255, 255, 0.3);
+	border-radius: 1.25rem;
+	box-shadow: 0 .625rem 6.25rem rgba(63, 39, 102, 0.15);
+}
+
+.card__title {
+	font-size: 1.625rem;
+}
+
+.card__subtitle {
+	font-weight: 400;
+	font-size: 1.25rem;
+}
+
+.card__button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 9.375rem;
+	height: 2.25rem;
+	background-color: $accent-color;
+	border-radius: .625rem;
+
+	&:hover {
+		cursor: pointer;
+		background-color: #BBB2FF;
+		transition: background-color .2s linear;
+	}
+
+	&:active {
+		background-color: $accent-color;
+		transition: background-color .2s linear;
+	}
+}
+
+.button__text {
+	font-size: .875rem;
+	font-weight: 500;
+	color: #FFFFFF;
+}
+
+
+.card__text {
+	font-size: 1.5rem;
+	color: $active-color;
+}

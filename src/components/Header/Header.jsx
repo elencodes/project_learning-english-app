@@ -1,7 +1,7 @@
 import gearIcon from "../../assets/icons/header/gear-header.svg";
 import styles from "./Header.module.scss";
 
-export function Header() {
+export function Header({ onVocabulary, onGame }) {
 	return (
 		<>
 			<header className={styles.header}>
@@ -10,13 +10,15 @@ export function Header() {
 						<nav className={styles.nav}>
 							<a
 								className={styles.nav__link}
-								href="../../../public/index"
+								href={onVocabulary}
+								onClick={onVocabulary}
 							>
 								Vocabulary
 							</a>
 							<a
 								className={styles.nav__link}
-								href="../../../public/index"
+								href={onGame}
+								onClick={onGame}
 							>
 								Game
 							</a>

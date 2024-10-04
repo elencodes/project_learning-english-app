@@ -24,6 +24,7 @@
 .nav__link {
 	position: relative;
 	color: $disable-color;
+	cursor: pointer;
 
 	&:after {
 		content: "";

@@ -1,8 +1,8 @@
 import { TableRow } from "../TableRow/TableRow";
 import data from "../../data/data.json";
-import styles from "./Table.module.scss";
+import styles from "./VocabularyPage.module.scss";
 
-export function Table() {
+export function VocabularyPage() {
 	return (
 		<>
 			<div className="container">
