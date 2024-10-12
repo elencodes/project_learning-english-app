@@ -8,20 +8,15 @@ export function Header({ onVocabulary, onGame }) {
 				<div className="container">
 					<div className={styles.header__inner}>
 						<nav className={styles.nav}>
-							<a
+							<button
 								className={styles.nav__link}
-								href={onVocabulary}
 								onClick={onVocabulary}
 							>
 								Vocabulary
-							</a>
-							<a
-								className={styles.nav__link}
-								href={onGame}
-								onClick={onGame}
-							>
+							</button>
+							<button className={styles.nav__link} onClick={onGame}>
 								Game
-							</a>
+							</button>
 						</nav>
 						<div className={styles.settings__container}>
 							<img

@@ -1,5 +1,13 @@
 @import "../../styles/variables.scss";
 
+.section {
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
 .title {
 	margin-top: 1.875rem;
 	text-align: center;
@@ -7,8 +15,119 @@
 	font-weight: 700;
 }
 
-.card__list {
+.subtitle {
+	margin-top: 3.75rem;
+}
+
+.counter__text {
+	font-size: 1.375rem;
+	color: $disable-color;
+}
+
+.message,
+.translate__counter {
+	color: $error-color;
+}
+
+.translate__counter {
+	margin-left: 0.5rem;
+}
+
+.active {
+	color: $active-color;
+}
+
+.message {
+	text-align: center;
+	font-size: 3.125rem;
+}
+
+.section__card_container {
+	position: relative;
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
 	align-items: center;
+	max-width: 34.375rem;
+	width: 34.375rem;
+	height: 25rem;
+	margin: 2rem auto 0 auto;
+}
+
+.card {
+	position: absolute;
+	transition: all 0.5s ease;
+	opacity: 0;
+	transform: translateX(100%);
+}
+
+.activeSlide {
+	opacity: 1;
+	transform: translateX(0);
+	z-index: 1;
+}
+
+.lastSlide {
+	opacity: 0;
+	transform: translateX(-100%);
+	z-index: 0;
+}
+
+.nextSlide {
+	opacity: 0;
+	transform: translateX(100%);
+	z-index: 0;
+}
+
+.prev,
+.next {
+	position: absolute;
+	width: 3.125rem;
+	height: 3.125rem;
+	background-color: rgba(226, 222, 255, 0.6);
+	border-radius: 3.125rem;
+	border: .0625rem solid $edit-color;
+	font-size: 1.25rem;
+	color: $font-color;
+
+	&:hover {
+		background-color: $edit-color;
+		transition: background-color .2s linear;
+	}
+
+	&:active {
+		background-color: rgba(226, 222, 255, 0.6);
+		transition: background-color .2s linear;
+	}
+
+}
+
+.prev {
+	left: 0;
+}
+
+.next {
+	right: 0;
+}
+
+.disabled {
+	color: $disable-color;
+	background-color: #EAEDF2;
+	pointer-events: none; // Отключает все события на кнопке
+
+	&:hover,
+	&:active {
+		background-color: $edit-color;
+		color: $disable-color;
+		cursor: not-allowed; // Курсор для отключенной кнопки
+		transition: none; // Отключаем анимацию
+	}
+}
+
+.counter__container {
+	margin-top: 1rem;
+}
+
+.counter__card_text {
+	font-size: 1.125rem;
+	color: $disable-color;
 }

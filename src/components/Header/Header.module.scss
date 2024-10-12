@@ -25,6 +25,7 @@
 	position: relative;
 	color: $disable-color;
 	cursor: pointer;
+	background-color: transparent;
 
 	&:after {
 		content: "";

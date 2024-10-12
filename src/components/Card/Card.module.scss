@@ -5,10 +5,9 @@
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: center;
-	width: 17.5rem;
-	height: 20.625rem;
-	margin: 6.25rem auto 0 auto;
-	padding: 3.125rem;
+	width: 21.25rem;
+	height: 21.5rem;
+	padding: 2.5rem;
 	background-color: rgba(255, 255, 255, 0.3);
 	border-radius: 1.25rem;
 	box-shadow: 0 .625rem 6.25rem rgba(63, 39, 102, 0.15);
@@ -50,8 +49,8 @@
 	color: #FFFFFF;
 }
 
-
 .card__text {
-	font-size: 1.5rem;
+	font-size: 1.25rem;
 	color: $active-color;
+	margin-bottom: 0.875rem;
 }
