@@ -4,10 +4,10 @@ import { ReadMode } from "../ReadMode/ReadMode";
 import styles from "./TableRow.module.scss";
 
 export function TableRow(props) {
-	//управление состояниями ReadMode и EditMode
+	// Управление состоянием режима редактирования
 	const [isEditing, setIsEditing] = useState(false);
 
-	//управление состояниями полей ввода
+	// Состояния для управления значениями полей ввода
 	const [statusTheme, setStatusTheme] = useState(props.theme);
 	const [statusWord, setStatusWord] = useState(props.word);
 	const [statusTranscription, setStatusTranscription] = useState(
@@ -17,26 +17,40 @@ export function TableRow(props) {
 		props.translation
 	);
 
-	//функция для перехода в режим редактирования
+	// Состояния для хранения сохраненных значений (после нажатия на кнопку Save)
+	const [savedTheme, setSavedTheme] = useState(props.theme);
+	const [savedWord, setSavedWord] = useState(props.word);
+	const [savedTranscription, setSavedTranscription] = useState(
+		props.transcription
+	);
+	const [savedTranslation, setSavedTranslation] = useState(props.translation);
+
+	// Функция для перехода в режим редактирования
 	const handleEditClick = () => {
 		setIsEditing(true);
 	};
 
-	//функция для отмены режима редактирования
+	// Функция для отмены режима редактирования
 	const handleCancelClick = () => {
 		setIsEditing(false);
-		// Сбрасываем состояния к исходным значениям, переданным через props
-		setStatusTheme(props.theme);
-		setStatusWord(props.word);
-		setStatusTranscription(props.transcription);
-		setStatusTranslation(props.translation);
+		// Сбрасываем текущие значения полей к последним сохраненным данным
+		setStatusTheme(savedTheme);
+		setStatusWord(savedWord);
+		setStatusTranscription(savedTranscription);
+		setStatusTranslation(savedTranslation);
 	};
 
-	//функция для сохранения данных
+	// Функция для сохранения данных
 	const handleSaveClick = () => {
 		setIsEditing(false); // После сохранения возвращаемся в режим чтения
+		// Сохраняем новые значения в строки таблицы из полей ввода
+		setSavedTheme(statusTheme);
+		setSavedWord(statusWord);
+		setSavedTranscription(statusTranscription);
+		setSavedTranslation(statusTranslation);
 	};
 
+	// Функции для обработки изменений в полях ввода
 	const onStatusChangeTheme = (e) => {
 		setStatusTheme(e.currentTarget.value);
 	};
@@ -59,7 +73,7 @@ export function TableRow(props) {
 						<input
 							className={styles.input__item}
 							type="text"
-							value={statusTheme || props.theme}
+							value={statusTheme}
 							onChange={onStatusChangeTheme}
 						/>
 					</td>
@@ -67,7 +81,7 @@ export function TableRow(props) {
 						<input
 							className={styles.input__item}
 							type="text"
-							value={statusWord || props.word}
+							value={statusWord}
 							onChange={onStatusChangeWord}
 						/>
 					</td>
@@ -75,7 +89,7 @@ export function TableRow(props) {
 						<input
 							className={styles.input__item}
 							type="text"
-							value={statusTranscription || props.transcription}
+							value={statusTranscription}
 							onChange={onStatusChangeTranscription}
 						/>
 					</td>
@@ -83,7 +97,7 @@ export function TableRow(props) {
 						<input
 							className={styles.input__item}
 							type="text"
-							value={statusTranslation || props.translation}
+							value={statusTranslation}
 							onChange={onStatusChangeTranslation}
 						/>
 					</td>
@@ -98,10 +112,10 @@ export function TableRow(props) {
 				</>
 			) : (
 				<>
-					<td>{props.theme}</td>
-					<td>{props.word}</td>
-					<td>{props.transcription}</td>
-					<td>{props.translation}</td>
+					<td>{statusTheme}</td>
+					<td>{statusWord}</td>
+					<td>{statusTranscription}</td>
+					<td>{statusTranslation}</td>
 					<td className={styles.table__actions}>
 						<div className={styles.button__container}>
 							<ReadMode onEdit={handleEditClick} />
