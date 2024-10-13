@@ -131,3 +131,52 @@
 	font-size: 1.125rem;
 	color: $disable-color;
 }
+
+.notification {
+	background-color: $table-color;
+	border: 1px solid $edit-color;
+	padding: 6.25rem;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 1000;
+	box-shadow: 0 .625rem 6.25rem rgba(63, 39, 102, 0.15);
+	border-radius: 1.25rem;
+}
+
+.notification__text {
+	font-size: 1.875rem;
+	text-align: center;
+}
+
+.text__alert {
+	margin-bottom: 2rem;
+	color: $accent-color;
+	text-transform: uppercase;
+}
+
+.text__complete {
+	color: $active-color;
+}
+
+.closeButton {
+	background: none;
+	border: none;
+	font-size: 1.875rem;
+	position: absolute;
+	top: 10px;
+	right: 15px;
+	color: $disable-color;
+	cursor: pointer;
+
+	&:hover {
+		color: $error-color;
+		transition: color .2s linear;
+	}
+
+	&:active {
+		color: #FFB7CD;
+		transition: color .1s linear;
+	}
+}

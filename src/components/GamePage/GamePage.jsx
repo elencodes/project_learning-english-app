@@ -15,6 +15,9 @@ export function GamePage({ initialIndex = 0, words = data }) {
 	// Отслеживаем изменение состояния эффекта конфетти
 	const [uiProps, SetUiProps] = useState({ showConfetti: false });
 
+	// Управление состоянием всплывающего уведомления
+	const [showNotification, setShowNotification] = useState(false);
+
 	// Переменные для первой и последней карточки из массива слов
 	const firstCard = currentIndex === 0;
 	const lastCard = currentIndex === words.length - 1;
@@ -45,7 +48,12 @@ export function GamePage({ initialIndex = 0, words = data }) {
 	// Проверка, завершена ли игра
 	useEffect(() => {
 		if (translationCount === words.length) {
+			// Показываем конфетти
 			SetUiProps({ showConfetti: true });
+			// Показываем уведомление об успешном прохождении через 1 секунду
+			setTimeout(() => {
+				setShowNotification(true);
+			}, 1000);
 		}
 	}, [translationCount, words.length]);
 
@@ -56,6 +64,11 @@ export function GamePage({ initialIndex = 0, words = data }) {
 				SetUiProps({ ...uiProps, showConfetti: false });
 			}, 7000);
 	}, [uiProps]);
+
+	// Функция для закрытия уведомления
+	const closeNotification = () => {
+		setShowNotification(false);
+	};
 
 	// Если массив слов пустой, показываем сообщение
 	if (!words || words.length === 0) {
@@ -138,6 +151,27 @@ export function GamePage({ initialIndex = 0, words = data }) {
 						</p>
 					</div>
 				</section>
+
+				{showNotification && (
+					<div className={styles.notification}>
+						<p
+							className={`${styles.notification__text} ${styles.text__alert}`}
+						>
+							Congratulations!
+						</p>
+						<p className={styles.notification__text}>
+							You have{" "}
+							<span className={styles.text__complete}>completed</span>{" "}
+							the game!
+						</p>
+						<button
+							className={styles.closeButton}
+							onClick={closeNotification}
+						>
+							&times;
+						</button>
+					</div>
+				)}
 			</div>
 		</>
 	);
