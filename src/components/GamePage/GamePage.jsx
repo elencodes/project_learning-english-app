@@ -1,7 +1,9 @@
+import { useEffect } from "react";
 import { useState } from "react";
 import { Card } from "../Card/Card";
 import data from "../../data/data.json";
 import styles from "./GamePage.module.scss";
+import Confetti from "react-confetti";
 
 export function GamePage({ initialIndex = 0, words = data }) {
 	// Отслеживаем изменение индекса текущей карточки
@@ -10,6 +12,10 @@ export function GamePage({ initialIndex = 0, words = data }) {
 	// Отслеживаем изменение счетчика переводов
 	const [translationCount, setTranslationCount] = useState(0);
 
+	// Отслеживаем изменение состояния эффекта конфетти
+	const [uiProps, SetUiProps] = useState({ showConfetti: false });
+
+	// Переменные для первой и последней карточки из массива слов
 	const firstCard = currentIndex === 0;
 	const lastCard = currentIndex === words.length - 1;
 
@@ -36,6 +42,21 @@ export function GamePage({ initialIndex = 0, words = data }) {
 		setTranslationCount((prevCount) => prevCount + 1);
 	};
 
+	// Проверка, завершена ли игра
+	useEffect(() => {
+		if (translationCount === words.length) {
+			SetUiProps({ showConfetti: true });
+		}
+	}, [translationCount, words.length]);
+
+	// Остановка эффекта конфетти через 7 секунд
+	useEffect(() => {
+		uiProps.showConfetti &&
+			setTimeout(() => {
+				SetUiProps({ ...uiProps, showConfetti: false });
+			}, 7000);
+	}, [uiProps]);
+
 	// Если массив слов пустой, показываем сообщение
 	if (!words || words.length === 0) {
 		return <p className={styles.message}>No words available</p>;
@@ -44,6 +65,7 @@ export function GamePage({ initialIndex = 0, words = data }) {
 	return (
 		<>
 			<div className="container">
+				{uiProps.showConfetti && <Confetti />}
 				<section className={styles.section}>
 					<h1 className={styles.title}>Game</h1>
 					<div className={styles.subtitle}>
