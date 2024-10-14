@@ -53,7 +53,7 @@ export function GamePage({ initialIndex = 0, words = data }) {
 			// Показываем уведомление об успешном прохождении через 1 секунду
 			setTimeout(() => {
 				setShowNotification(true);
-			}, 1000);
+			}, 800);
 		}
 	}, [translationCount, words.length]);
 
