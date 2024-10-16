@@ -1,23 +1,39 @@
+import { Link } from "react-router-dom";
 import gearIcon from "../../assets/icons/header/gear-header.svg";
+import logo from "../../assets/icons/header/logo.svg";
 import styles from "./Header.module.scss";
 
-export function Header({ onVocabulary, onGame }) {
+export function Header() {
 	return (
 		<>
 			<header className={styles.header}>
 				<div className="container">
 					<div className={styles.header__inner}>
-						<nav className={styles.nav}>
-							<button
-								className={styles.nav__link}
-								onClick={onVocabulary}
-							>
-								Vocabulary
-							</button>
-							<button className={styles.nav__link} onClick={onGame}>
-								Game
-							</button>
-						</nav>
+						<div className={styles.header__navigation_box}>
+							<div className={styles.header__navigation_logo}>
+								<Link to="/">
+									<div className={styles.header__image_box}>
+										<img
+											className={styles.header__logo}
+											src={logo}
+											alt="logo"
+										/>
+									</div>
+								</Link>
+								<div className={styles.header__logoname_box}>
+									<p className={styles.header__logoname}>Learning</p>
+									<p className={styles.header__logoname}>Languages</p>
+								</div>
+							</div>
+							<nav className={styles.nav}>
+								<Link className={styles.nav__link} to="/">
+									Vocabulary
+								</Link>
+								<Link className={styles.nav__link} to="/game">
+									Game
+								</Link>
+							</nav>
+						</div>
 						<div className={styles.settings__container}>
 							<img
 								className={styles.settings__icon}

@@ -77,7 +77,7 @@ export function GamePage({ initialIndex = 0, words = data }) {
 
 	return (
 		<>
-			<div className="container">
+			<main className="container">
 				{uiProps.showConfetti && <Confetti />}
 				<section className={styles.section}>
 					<h1 className={styles.title}>Game</h1>
@@ -172,7 +172,7 @@ export function GamePage({ initialIndex = 0, words = data }) {
 						</button>
 					</div>
 				)}
-			</div>
+			</main>
 		</>
 	);
 }

@@ -14,6 +14,41 @@
 	font-weight: 500;
 }
 
+.header__navigation_box {
+	display: flex;
+	justify-content: space-between;
+	width: 29.375rem;
+}
+
+.header__navigation_logo {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 8.5rem;
+}
+
+.header__image_box {
+	width: 3.25rem;
+}
+
+.header__logo {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.header__logoname_box {
+	display: flex;
+	flex-direction: column;
+	width: 4.6875rem;
+}
+
+.header__logoname {
+	font-size: .75rem;
+	font-weight: 700;
+	color: $accent-color;
+}
+
 .nav {
 	display: flex;
 	justify-content: space-between;

@@ -5,7 +5,7 @@ import styles from "./VocabularyPage.module.scss";
 export function VocabularyPage() {
 	return (
 		<>
-			<div className="container">
+			<main className="container">
 				<h1 className={styles.title}>Vocabulary</h1>
 				<h2 className={styles.subtitle}>Words List</h2>
 				<table className={styles.table} cellSpacing="0">
@@ -33,7 +33,7 @@ export function VocabularyPage() {
 						))}
 					</tbody>
 				</table>
-			</div>
+			</main>
 		</>
 	);
 }
