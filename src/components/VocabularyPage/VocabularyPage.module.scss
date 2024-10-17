@@ -52,3 +52,76 @@ td {
 	background-color: $table-color;
 	transition: background-color .1s linear;
 }
+
+.table__footer {
+	background-color: $table-color;
+
+	th {
+		border-top: 1px solid #988AFA;
+		border-bottom: none;
+		border-right: none;
+		border-left: none;
+	}
+}
+
+.table__footer_text {
+	font-size: .875rem;
+	color: $disable-color;
+}
+
+.table__footer_counter {
+	color: $accent-color;
+}
+
+.pagination {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-weight: 500;
+}
+
+.paginationButton {
+	cursor: pointer;
+	margin: 0 .625rem;
+	width: 1.75rem;
+	height: 1.75rem;
+	color: $font-color;
+	background-color: rgba(226, 222, 255, 0.6);
+	border-radius: 1.25rem;
+
+	&:hover {
+		color: $active-color;
+		transition: color .1s linear;
+	}
+
+	&:active {
+		color: $active-color;
+		transition: color .1s linear;
+	}
+
+}
+
+.paginationButton:disabled {
+	color: $disable-color;
+	pointer-events: none; // Отключает все события на кнопке
+	background-color: #EAEDF2;
+
+	&:hover,
+	&:active {
+		background-color: #EAEDF2;
+		color: $disable-color;
+		cursor: not-allowed; // Курсор для отключенной кнопки
+		transition: none; // Отключаем анимацию
+	}
+}
+
+.pageInfo {
+	font-size: .875rem;
+	margin: 0 .3125rem;
+	color: $disable-color;
+}
+
+.pageInfo_currentPage {
+	color: $accent-color;
+	text-decoration: underline;
+}

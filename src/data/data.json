@@ -54,5 +54,54 @@
 		"word": "showplace",
 		"transcription": "[ ˈʃəʊpleɪs ]",
 		"translation": "достопримечательность"
+	},
+	{
+		"id": "9",
+		"theme": "halloween",
+		"word": "witch",
+		"transcription": "[ wɪtʃ ]",
+		"translation": "ведьма"
+	},
+	{
+		"id": "10",
+		"theme": "halloween",
+		"word": "pumpkin",
+		"transcription": "[ ˈpʌmpkɪn ]",
+		"translation": "тыква"
+	},
+	{
+		"id": "11",
+		"theme": "halloween",
+		"word": "treat",
+		"transcription": "[ triːt ]",
+		"translation": "угощение"
+	},
+	{
+		"id": "12",
+		"theme": "halloween",
+		"word": "prank",
+		"transcription": "[ præŋk ]",
+		"translation": "выходка"
+	},
+	{
+		"id": "13",
+		"theme": "hobby",
+		"word": "reading",
+		"transcription": "[ ˈriːdɪŋ ]",
+		"translation": "чтение"
+	},
+	{
+		"id": "14",
+		"theme": "hobby",
+		"word": "drawing",
+		"transcription": "[ drɔː ]",
+		"translation": "рисование"
+	},
+	{
+		"id": "15",
+		"theme": "hobby",
+		"word": "yoga",
+		"transcription": "[ ˈjəʊɡə ]",
+		"translation": "йога"
 	}
 ]
