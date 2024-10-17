@@ -10,21 +10,19 @@ export function Header() {
 				<div className="container">
 					<div className={styles.header__inner}>
 						<div className={styles.header__navigation_box}>
-							<div className={styles.header__navigation_logo}>
-								<Link to="/">
-									<div className={styles.header__image_box}>
-										<img
-											className={styles.header__logo}
-											src={logo}
-											alt="logo"
-										/>
-									</div>
-								</Link>
+							<Link to="/" className={styles.header__navigation_logo}>
+								<div className={styles.header__image_box}>
+									<img
+										className={styles.header__logo}
+										src={logo}
+										alt="logo"
+									/>
+								</div>
 								<div className={styles.header__logoname_box}>
 									<p className={styles.header__logoname}>Learning</p>
 									<p className={styles.header__logoname}>Languages</p>
 								</div>
-							</div>
+							</Link>
 							<nav className={styles.nav}>
 								<Link className={styles.nav__link} to="/">
 									Vocabulary
