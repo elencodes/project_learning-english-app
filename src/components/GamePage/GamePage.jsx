@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Card } from "../Card/Card";
 import data from "../../data/data.json";
 import styles from "./GamePage.module.scss";
@@ -8,13 +7,10 @@ import Confetti from "react-confetti";
 export function GamePage({ initialIndex = 0, words = data }) {
 	// Отслеживаем изменение индекса текущей карточки
 	const [currentIndex, setCurrentIndex] = useState(initialIndex);
-
 	// Отслеживаем изменение счетчика переводов
 	const [translationCount, setTranslationCount] = useState(0);
-
 	// Отслеживаем изменение состояния эффекта конфетти
 	const [uiProps, SetUiProps] = useState({ showConfetti: false });
-
 	// Управление состоянием всплывающего уведомления
 	const [showNotification, setShowNotification] = useState(false);
 
@@ -22,23 +18,33 @@ export function GamePage({ initialIndex = 0, words = data }) {
 	const firstCard = currentIndex === 0;
 	const lastCard = currentIndex === words.length - 1;
 
+	// Референс на кнопку перевода
+	const translateButtonRef = useRef(null);
+
+	// Устанавливаем фокус при каждом изменении `currentIndex`
+	useEffect(() => {
+		if (translateButtonRef.current) {
+			translateButtonRef.current.focus(); // Устанавливаем фокус при рендере
+		}
+	}, [currentIndex]); // Используем `currentIndex` как зависимость
+
 	// Обработчик для перехода к следующей карточке
 	// Проверяем, не достигли ли мы конца массива (currentIndex < words.length - 1).
 	// Если да, то увеличиваем индекс на 1.
-	const handleClickNext = () => {
+	const handleClickNext = useCallback(() => {
 		if (currentIndex < words.length - 1) {
 			setCurrentIndex((prevIndex) => prevIndex + 1);
 		}
-	};
+	}, [currentIndex, words.length]);
 
 	// Обработчик для перехода к предыдущей карточке
 	// Проверяем, не находимся ли мы в начале массива (currentIndex > 0).
 	// Если да, то уменьшаем индекс на 1.
-	const handleClickPrev = () => {
+	const handleClickPrev = useCallback(() => {
 		if (currentIndex > 0) {
 			setCurrentIndex((prevIndex) => prevIndex - 1);
 		}
-	};
+	}, [currentIndex]);
 
 	// Функция для увеличения счетчика переводов
 	const incrementTranslationCount = () => {
@@ -50,7 +56,7 @@ export function GamePage({ initialIndex = 0, words = data }) {
 		if (translationCount === words.length) {
 			// Показываем конфетти
 			SetUiProps({ showConfetti: true });
-			// Показываем уведомление об успешном прохождении через 1 секунду
+			// Показываем уведомление об успешном прохождении через 0.8 секунды
 			setTimeout(() => {
 				setShowNotification(true);
 			}, 800);
@@ -64,6 +70,23 @@ export function GamePage({ initialIndex = 0, words = data }) {
 				SetUiProps({ ...uiProps, showConfetti: false });
 			}, 7000);
 	}, [uiProps]);
+
+	// Меняем карточку по нажатию на клавиши стрелки "Влево" / "Вправо"
+	useEffect(() => {
+		const handleKeyDown = (event) => {
+			if (event.key === "ArrowLeft") {
+				handleClickPrev();
+			} else if (event.key === "ArrowRight") {
+				handleClickNext();
+			}
+		};
+
+		document.addEventListener("keydown", handleKeyDown);
+
+		return () => {
+			document.removeEventListener("keydown", handleKeyDown);
+		};
+	}, [handleClickPrev, handleClickNext]);
 
 	// Функция для закрытия уведомления
 	const closeNotification = () => {
@@ -117,6 +140,11 @@ export function GamePage({ initialIndex = 0, words = data }) {
 									transcription={props.transcription}
 									translation={props.translation}
 									onShowTranslation={incrementTranslationCount} // передаем функцию
+									translateButtonRef={
+										cardIndex === currentIndex
+											? translateButtonRef
+											: null
+									}
 								/>
 							);
 						})}

@@ -30,6 +30,7 @@
 	height: 2.25rem;
 	background-color: $accent-color;
 	border-radius: .625rem;
+	outline: none;
 
 	&:hover {
 		cursor: pointer;
@@ -40,6 +41,13 @@
 	&:active {
 		background-color: $accent-color;
 		transition: background-color .2s linear;
+	}
+
+	&:focus {
+		outline: 2px solid #BBBBFF;
+		/* Обводка фокуса */
+		box-shadow: 0 0 0 4px rgba(187, 178, 255, 0.8);
+		/* Дополнительная тень */
 	}
 }
 

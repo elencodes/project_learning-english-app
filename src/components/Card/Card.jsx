@@ -7,12 +7,14 @@ export function Card({
 	transcription,
 	translation,
 	onShowTranslation,
+	translateButtonRef,
 }) {
 	const [isClicked, setIsClicked] = useState(false);
 
 	// Функция для показа перевода
-	const handleClick = () => {
-		if (!isClicked) {
+	const handleClick = (event) => {
+		// Проверка на нажатие клавиши Enter или на клик мышью
+		if (!isClicked && (event.type === "click" || event.key === "Enter")) {
 			setIsClicked(true);
 			onShowTranslation(); // Увеличиваем счетчик переводов
 		}
@@ -26,7 +28,14 @@ export function Card({
 				{isClicked ? (
 					<p className={styles.card__text}>{translation}</p>
 				) : (
-					<button className={styles.card__button} onClick={handleClick}>
+					<button
+						ref={translateButtonRef}
+						className={styles.card__button}
+						onClick={handleClick}
+						onKeyDown={(event) => {
+							if (event.key === "Enter") handleClick(event);
+						}}
+					>
 						<p className={styles.button__text}>Translate</p>
 					</button>
 				)}
