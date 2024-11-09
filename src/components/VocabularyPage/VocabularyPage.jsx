@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { TableRow } from "../TableRow/TableRow";
+import { Form } from "../Form/Form";
 import data from "../../data/data.json";
 import styles from "./VocabularyPage.module.scss";
 
-export function VocabularyPage() {
+export function VocabularyPage(props) {
 	// Управление состоянием текущей страницы и определяем количество строк на странице
 	const [currentPage, setCurrentPage] = useState(1);
 	const rowsPerPage = 5;
@@ -34,6 +35,9 @@ export function VocabularyPage() {
 		<>
 			<main className="container">
 				<h1 className={styles.title}>Vocabulary</h1>
+				<Form
+				// addNewItems={addNewItem}
+				/>
 				<h2 className={styles.subtitle}>Words List</h2>
 				<table className={styles.table} cellSpacing="0">
 					<thead className={styles.table__header}>

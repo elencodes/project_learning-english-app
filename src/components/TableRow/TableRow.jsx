@@ -7,61 +7,45 @@ export function TableRow(props) {
 	// Управление состоянием режима редактирования
 	const [isEditing, setIsEditing] = useState(false);
 
-	// Состояния для управления значениями полей ввода
-	const [statusTheme, setStatusTheme] = useState(props.theme);
-	const [statusWord, setStatusWord] = useState(props.word);
-	const [statusTranscription, setStatusTranscription] = useState(
-		props.transcription
-	);
-	const [statusTranslation, setStatusTranslation] = useState(
-		props.translation
-	);
+	// Управление состоянием полей в одном объекте
+	const [fields, setFields] = useState({
+		theme: props.theme,
+		word: props.word,
+		transcription: props.transcription,
+		translation: props.translation,
+	});
 
-	// Состояния для хранения сохраненных значений (после нажатия на кнопку Save)
-	const [savedTheme, setSavedTheme] = useState(props.theme);
-	const [savedWord, setSavedWord] = useState(props.word);
-	const [savedTranscription, setSavedTranscription] = useState(
-		props.transcription
-	);
-	const [savedTranslation, setSavedTranslation] = useState(props.translation);
+	// Управление состоянием для сохраненных значений полей ввода
+	const [savedFields, setSavedFields] = useState(fields);
 
 	// Функция для перехода в режим редактирования
 	const handleEditClick = () => {
 		setIsEditing(true);
 	};
 
-	// Функция для отмены режима редактирования
+	// Функция для отмены режима редактирования с восстановлением сохранённых данных
 	const handleCancelClick = () => {
 		setIsEditing(false);
-		// Сбрасываем текущие значения полей к последним сохраненным данным
-		setStatusTheme(savedTheme);
-		setStatusWord(savedWord);
-		setStatusTranscription(savedTranscription);
-		setStatusTranslation(savedTranslation);
+		setFields(savedFields);
 	};
 
-	// Функция для сохранения данных
+	// Функция для сохранения данных и выхода из режима редактирования
 	const handleSaveClick = () => {
-		setIsEditing(false); // После сохранения возвращаемся в режим чтения
-		// Сохраняем новые значения в строки таблицы из полей ввода
-		setSavedTheme(statusTheme);
-		setSavedWord(statusWord);
-		setSavedTranscription(statusTranscription);
-		setSavedTranslation(statusTranslation);
+		setIsEditing(false);
+		setSavedFields(fields);
 	};
 
-	// Функции для обработки изменений в полях ввода
-	const onStatusChangeTheme = (e) => {
-		setStatusTheme(e.currentTarget.value);
-	};
-	const onStatusChangeWord = (e) => {
-		setStatusWord(e.currentTarget.value);
-	};
-	const onStatusChangeTranscription = (e) => {
-		setStatusTranscription(e.currentTarget.value);
-	};
-	const onStatusChangeTranslation = (e) => {
-		setStatusTranslation(e.currentTarget.value);
+	// Обработчик изменений всех полей ввода
+	const handleChange = (e) => {
+		const { name, value } = e.target;
+		//Используется функция обратного вызова (callback) для setFields,
+		//которая принимает предыдущее состояние (prevFields) и возвращает обновлённое состояние
+		setFields((prevFields) => ({
+			...prevFields,
+			//Переменная name подставляет ключ для обновляемого поля (например, theme),
+			//а value устанавливает его новое значение.
+			[name]: value,
+		}));
 	};
 
 	return (
@@ -73,32 +57,36 @@ export function TableRow(props) {
 						<input
 							className={styles.input__item}
 							type="text"
-							value={statusTheme}
-							onChange={onStatusChangeTheme}
+							name="theme"
+							value={fields.theme}
+							onChange={handleChange}
 						/>
 					</td>
 					<td>
 						<input
 							className={styles.input__item}
 							type="text"
-							value={statusWord}
-							onChange={onStatusChangeWord}
+							name="word"
+							value={fields.theme}
+							onChange={handleChange}
 						/>
 					</td>
 					<td>
 						<input
 							className={styles.input__item}
 							type="text"
-							value={statusTranscription}
-							onChange={onStatusChangeTranscription}
+							name="transcription"
+							value={fields.transcription}
+							onChange={handleChange}
 						/>
 					</td>
 					<td>
 						<input
 							className={styles.input__item}
 							type="text"
-							value={statusTranslation}
-							onChange={onStatusChangeTranslation}
+							name="translation"
+							value={fields.translation}
+							onChange={handleChange}
 						/>
 					</td>
 					<td className={styles.table__actions}>
@@ -112,10 +100,10 @@ export function TableRow(props) {
 				</>
 			) : (
 				<>
-					<td>{statusTheme}</td>
-					<td>{statusWord}</td>
-					<td>{statusTranscription}</td>
-					<td>{statusTranslation}</td>
+					<td>{savedFields.theme}</td>
+					<td>{savedFields.word}</td>
+					<td>{savedFields.transcription}</td>
+					<td>{savedFields.translation}</td>
 					<td className={styles.table__actions}>
 						<div className={styles.button__container}>
 							<ReadMode onEdit={handleEditClick} />

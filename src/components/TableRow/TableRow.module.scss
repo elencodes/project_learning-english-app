@@ -19,8 +19,8 @@
 	border: 2px solid $edit-color;
 	border-radius: .625rem;
 	text-align: center;
-}
 
-.input__item:focus {
-	border: 1px solid $accent-color;
+	&:focus {
+		border: 1px solid $accent-color;
+	}
 }
