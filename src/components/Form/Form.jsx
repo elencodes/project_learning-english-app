@@ -91,6 +91,9 @@ export function Form({ handleAdd }) {
 			translation: formValue.translation,
 		};
 
+		// Выводим параметры формы в консоль перед добавлением
+		console.log("Form Values:", newRow);
+
 		// Передаём новую строку в родительский компонент
 		handleAdd(newRow);
 

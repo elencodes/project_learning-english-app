@@ -115,6 +115,9 @@ export function TableRow(props) {
 			return;
 		}
 
+		// Выводим в консоль параметры формы перед сохранением
+		console.log("Saved Fields:", fields);
+
 		// Если все поля заполнены, сохраняем изменения
 		setIsEditing(false);
 		setSavedFields(fields);
