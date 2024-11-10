@@ -2,8 +2,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Header } from "./components/Header/Header";
 import { VocabularyPage } from "./components/VocabularyPage/VocabularyPage";
 import { GamePage } from "./components/GamePage/GamePage";
-import { MissingPage } from "./components/MissingPage/MissingPage";
+// import { MissingPage } from "./components/MissingPage/MissingPage";
 import "./App.scss";
+import { TextField } from "./components/TextField/TextField";
 
 function App() {
 	return (
@@ -14,7 +15,7 @@ function App() {
 					<Routes>
 						<Route path="/" element={<VocabularyPage />} />
 						<Route path="/game" element={<GamePage />} />
-						<Route path="*" element={<MissingPage />} />
+						<Route path="*" element={<TextField />} />
 					</Routes>
 				</div>
 			</Router>
