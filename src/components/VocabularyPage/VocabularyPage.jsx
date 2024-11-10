@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { TableRow } from "../TableRow/TableRow";
 import { Form } from "../Form/Form";
 import initialData from "../../data/data.json";
@@ -14,6 +14,9 @@ export function VocabularyPage() {
 
 	// Общее количество страниц
 	const totalPages = Math.ceil(tableData.length / rowsPerPage);
+	if (currentPage > totalPages && currentPage > 1) {
+		setCurrentPage(currentPage - 1);
+	}
 
 	// Расчет индексов для отображаемых строк
 	const startIndex = (currentPage - 1) * rowsPerPage;
@@ -36,9 +39,13 @@ export function VocabularyPage() {
 
 	// Обработчик добавления новой строки
 	const handleAdd = (newRow) => {
-		// Присваиваем новой строке id равный длине массива + 1
-		const id = tableData.length ? tableData[tableData.length - 1].id + 1 : 1;
-		const updatedRow = { ...newRow, id };
+		// Находим максимальный id в текущем массиве данных
+		const maxId = tableData.length
+			? Math.max(...tableData.map((item) => item.id))
+			: 0;
+		const newId = maxId + 1; // Увеличиваем максимальный id на 1
+
+		const updatedRow = { ...newRow, id: newId };
 
 		// Обновляем состояние данных с добавлением новой строки
 		const updatedData = [...tableData, updatedRow];
@@ -47,6 +54,21 @@ export function VocabularyPage() {
 		// Если новая строка выходит за пределы текущей страницы, переключаемся на последнюю страницу
 		if (Math.ceil(updatedData.length / rowsPerPage) > totalPages) {
 			setCurrentPage(totalPages + 1);
+		}
+	};
+
+	const handleDelete = (id) => {
+		// Удаляем строку по id
+		const updatedData = tableData.filter((row) => row.id !== id);
+
+		if (updatedData.length !== tableData.length) {
+			// Только обновляем состояние, если изменилось количество элементов
+			setTableData(updatedData); // Обновляем состояние данных
+		}
+
+		// Если на последней странице и строк больше нет, переключаемся на предыдущую страницу
+		if (currentPage > Math.ceil(updatedData.length / rowsPerPage)) {
+			setCurrentPage(currentPage - 1); // Переход на предыдущую страницу
 		}
 	};
 
@@ -72,11 +94,12 @@ export function VocabularyPage() {
 						{currentRows.map((props, index) => (
 							<TableRow
 								key={props.id}
-								id={startIndex + index + 1} // Отображаем номер строки с учетом страницы
+								id={props.id} // Отображаем номер строки с учетом страницы
 								theme={props.theme}
 								word={props.word}
 								transcription={props.transcription}
 								translation={props.translation}
+								onDelete={handleDelete}
 							/>
 						))}
 					</tbody>

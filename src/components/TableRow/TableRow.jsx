@@ -120,6 +120,11 @@ export function TableRow(props) {
 		setSavedFields(fields);
 	};
 
+	// Обработчик для удаления строки
+	const handleDeleteClick = () => {
+		props.onDelete(props.id); // Вызываем функцию удаления, переданную через props
+	};
+
 	return (
 		<tr>
 			<td>{props.id}</td>
@@ -203,7 +208,10 @@ export function TableRow(props) {
 					<td>{savedFields.translation}</td>
 					<td className={styles.table__actions}>
 						<div className={styles.button__container}>
-							<ReadMode onEdit={handleEditClick} />
+							<ReadMode
+								onEdit={handleEditClick}
+								onDelete={handleDeleteClick}
+							/>
 						</div>
 					</td>
 				</>

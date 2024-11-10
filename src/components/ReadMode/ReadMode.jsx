@@ -10,7 +10,7 @@ export function ReadMode({ onEdit, onDelete }) {
 				<img className={styles.edit__icon} src={editIcon} alt="edit" />
 				<p className={styles.edit__text}>Edit</p>
 			</button>
-			<button className={styles.delete__button} inclick={onDelete}>
+			<button className={styles.delete__button} onClick={onDelete}>
 				<img
 					className={styles.delete__icon}
 					src={deleteIcon}
