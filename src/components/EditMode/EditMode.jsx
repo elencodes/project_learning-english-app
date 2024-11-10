@@ -3,7 +3,7 @@ import saveIcon from "../../assets/icons/buttons/checkmark.svg";
 import styles from "./EditMode.module.scss";
 
 // Компонент режима редактирования (EditMode)
-export function EditMode({ onCancel, onSave }) {
+export function EditMode({ onCancel, onSave, isDisabled }) {
 	return (
 		<>
 			<button className={styles.cancel__button} onClick={onCancel}>
@@ -13,7 +13,11 @@ export function EditMode({ onCancel, onSave }) {
 					alt="cancel"
 				/>
 			</button>
-			<button className={styles.save__button} onClick={onSave}>
+			<button
+				className={styles.save__button}
+				onClick={onSave}
+				disabled={isDisabled}
+			>
 				<img className={styles.save__icon} src={saveIcon} alt="save" />
 				<p className={styles.save__text}>Save</p>
 			</button>

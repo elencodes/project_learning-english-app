@@ -1,21 +1,24 @@
 import { useState } from "react";
 import { TableRow } from "../TableRow/TableRow";
 import { Form } from "../Form/Form";
-import data from "../../data/data.json";
+import initialData from "../../data/data.json";
 import styles from "./VocabularyPage.module.scss";
 
-export function VocabularyPage(props) {
-	// Управление состоянием текущей страницы и определяем количество строк на странице
+export function VocabularyPage() {
+	// Состояние для данных таблицы, инициализированное из JSON
+	const [tableData, setTableData] = useState(initialData);
+
+	// Состояние для текущей страницы и количество строк на странице
 	const [currentPage, setCurrentPage] = useState(1);
 	const rowsPerPage = 5;
 
-	// Определение общего количества страниц
-	const totalPages = Math.ceil(data.length / rowsPerPage);
+	// Общее количество страниц
+	const totalPages = Math.ceil(tableData.length / rowsPerPage);
 
 	// Расчет индексов для отображаемых строк
 	const startIndex = (currentPage - 1) * rowsPerPage;
 	const endIndex = startIndex + rowsPerPage;
-	const currentRows = data.slice(startIndex, endIndex);
+	const currentRows = tableData.slice(startIndex, endIndex);
 
 	// Обработчик для перехода на следующую страницу
 	const handleNextPage = () => {
@@ -31,13 +34,27 @@ export function VocabularyPage(props) {
 		}
 	};
 
+	// Обработчик добавления новой строки
+	const handleAdd = (newRow) => {
+		// Присваиваем новой строке id равный длине массива + 1
+		const id = tableData.length ? tableData[tableData.length - 1].id + 1 : 1;
+		const updatedRow = { ...newRow, id };
+
+		// Обновляем состояние данных с добавлением новой строки
+		const updatedData = [...tableData, updatedRow];
+		setTableData(updatedData);
+
+		// Если новая строка выходит за пределы текущей страницы, переключаемся на последнюю страницу
+		if (Math.ceil(updatedData.length / rowsPerPage) > totalPages) {
+			setCurrentPage(totalPages + 1);
+		}
+	};
+
 	return (
 		<>
 			<main className="container">
 				<h1 className={styles.title}>Vocabulary</h1>
-				<Form
-				// addNewItems={addNewItem}
-				/>
+				<Form handleAdd={handleAdd} />
 				<h2 className={styles.subtitle}>Words List</h2>
 				<table className={styles.table} cellSpacing="0">
 					<thead className={styles.table__header}>
@@ -68,7 +85,7 @@ export function VocabularyPage(props) {
 							<th className={styles.table__footer_text}>
 								Total items:{" "}
 								<span className={styles.table__footer_counter}>
-									{data.length}
+									{tableData.length}
 								</span>
 							</th>
 							<th></th>

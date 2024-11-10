@@ -48,6 +48,13 @@
 		background-color: $active-color;
 		transition: background-color .2s linear;
 	}
+
+	// Стиль для состояния disabled
+	&:disabled {
+		background-color: $disable-color; // Серый цвет для неактивного состояния
+		cursor: not-allowed;
+		opacity: 0.3; // Прозрачность для визуального эффекта заблокированной кнопки
+	}
 }
 
 .save__icon {

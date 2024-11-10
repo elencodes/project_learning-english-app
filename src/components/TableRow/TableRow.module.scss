@@ -24,3 +24,17 @@
 		border: 1px solid $accent-color;
 	}
 }
+
+.error {
+	color: #FF84A9;
+	font-size: .875rem;
+}
+
+.invalid {
+	border: 1px solid #FF84A9;
+
+	&:focus {
+		border: 1px solid #FF84A9;
+		background-color: #FFFFFF;
+	}
+}
