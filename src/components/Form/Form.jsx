@@ -97,7 +97,7 @@ export function Form({ handleAdd }) {
 		// Передаём новую строку в родительский компонент
 		handleAdd(newRow);
 
-		// Очищаем форм упосле успешного добавления
+		// Очищаем форму после успешного добавления
 		setFormValue({ theme: "", word: "", transcription: "", translation: "" });
 
 		// Блокируем кнопку после добавления
