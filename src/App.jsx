@@ -13,15 +13,15 @@ function App() {
 					<Header />
 					<Routes>
 						<Route
-							path="project_learning-english-app/"
+							path="/project_learning-english-app/"
 							element={<VocabularyPage />}
 						/>
 						<Route
-							path="project_learning-english-app/game"
+							path="/project_learning-english-app/game"
 							element={<GamePage />}
 						/>
 						<Route
-							path="project_learning-english-app/*"
+							path="/project_learning-english-app/*"
 							element={<MissingPage />}
 						/>
 					</Routes>
