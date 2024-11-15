@@ -12,18 +12,9 @@ function App() {
 				<div className="app">
 					<Header />
 					<Routes>
-						<Route
-							path="/project_learning-english-app/"
-							element={<VocabularyPage />}
-						/>
-						<Route
-							path="/project_learning-english-app/game"
-							element={<GamePage />}
-						/>
-						<Route
-							path="/project_learning-english-app/*"
-							element={<MissingPage />}
-						/>
+						<Route path="/" element={<VocabularyPage />} />
+						<Route path="/game" element={<GamePage />} />
+						<Route path="*" element={<MissingPage />} />
 					</Routes>
 				</div>
 			</Router>
