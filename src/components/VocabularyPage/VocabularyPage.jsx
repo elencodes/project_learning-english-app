@@ -2,11 +2,13 @@ import { useContext, useState, useEffect } from "react";
 import { TableRow } from "../TableRow/TableRow";
 import { Form } from "../Form/Form";
 import { WordsContext } from "../WordsContext/WordsContext";
+import { Loader } from "../Loader/Loader";
 import styles from "./VocabularyPage.module.scss";
 
 export function VocabularyPage() {
 	// Доступ к данным и функциям из контекста
-	const { loadData, words, setWords, addWord } = useContext(WordsContext);
+	const { loadData, words, setWords, addWord, isLoading, error } =
+		useContext(WordsContext);
 
 	// Состояние для текущей страницы и количество строк на странице
 	const [currentPage, setCurrentPage] = useState(1);
@@ -111,76 +113,78 @@ export function VocabularyPage() {
 
 	return (
 		<>
-			<main className="container">
-				<h1 className={styles.title}>Vocabulary</h1>
-				<Form handleAdd={handleAdd} />
-				<h2 className={styles.subtitle}>Words List</h2>
-				<table className={styles.table} cellSpacing="0">
-					<thead className={styles.table__header}>
-						<tr>
-							<th>№</th>
-							<th>Theme</th>
-							<th>Word</th>
-							<th>Transcription</th>
-							<th>Translation</th>
-							<th>Actions</th>
-						</tr>
-					</thead>
+			<Loader isLoading={isLoading} error={error}>
+				<main className="container">
+					<h1 className={styles.title}>Vocabulary</h1>
+					<Form handleAdd={handleAdd} />
+					<h2 className={styles.subtitle}>Words List</h2>
+					<table className={styles.table} cellSpacing="0">
+						<thead className={styles.table__header}>
+							<tr>
+								<th>№</th>
+								<th>Theme</th>
+								<th>Word</th>
+								<th>Transcription</th>
+								<th>Translation</th>
+								<th>Actions</th>
+							</tr>
+						</thead>
 
-					<tbody className={styles.table__body}>
-						{currentRows.map((props, index) => (
-							<TableRow
-								key={props.id}
-								id={props.id} // Отображаем номер строки с учетом страницы
-								tags={props.tags}
-								english={props.english}
-								transcription={props.transcription}
-								russian={props.russian}
-								onDelete={handleDelete}
-							/>
-						))}
-					</tbody>
-					<tfoot className={styles.table__footer}>
-						<tr>
-							<th className={styles.table__footer_text}>
-								Total items:{" "}
-								<span className={styles.table__footer_counter}>
-									{words.length}
-								</span>
-							</th>
-							<th></th>
-							<th></th>
-							<th></th>
-							<th></th>
-							<th>
-								<div className={styles.pagination}>
-									<button
-										className={styles.paginationButton}
-										onClick={handlePrevPage}
-										disabled={currentPage === 1}
-									>
-										⮜
-									</button>
-									<span className={styles.pageInfo}>
-										{" "}
-										<span className={styles.pageInfo_currentPage}>
-											{currentPage}
-										</span>{" "}
-										of {totalPages}
+						<tbody className={styles.table__body}>
+							{currentRows.map((props, index) => (
+								<TableRow
+									key={props.id}
+									id={props.id} // Отображаем номер строки с учетом страницы
+									tags={props.tags}
+									english={props.english}
+									transcription={props.transcription}
+									russian={props.russian}
+									onDelete={handleDelete}
+								/>
+							))}
+						</tbody>
+						<tfoot className={styles.table__footer}>
+							<tr>
+								<th className={styles.table__footer_text}>
+									Total items:{" "}
+									<span className={styles.table__footer_counter}>
+										{words.length}
 									</span>
-									<button
-										className={styles.paginationButton}
-										onClick={handleNextPage}
-										disabled={currentPage === totalPages}
-									>
-										⮞
-									</button>
-								</div>
-							</th>
-						</tr>
-					</tfoot>
-				</table>
-			</main>
+								</th>
+								<th></th>
+								<th></th>
+								<th></th>
+								<th></th>
+								<th>
+									<div className={styles.pagination}>
+										<button
+											className={styles.paginationButton}
+											onClick={handlePrevPage}
+											disabled={currentPage === 1}
+										>
+											⮜
+										</button>
+										<span className={styles.pageInfo}>
+											{" "}
+											<span className={styles.pageInfo_currentPage}>
+												{currentPage}
+											</span>{" "}
+											of {totalPages}
+										</span>
+										<button
+											className={styles.paginationButton}
+											onClick={handleNextPage}
+											disabled={currentPage === totalPages}
+										>
+											⮞
+										</button>
+									</div>
+								</th>
+							</tr>
+						</tfoot>
+					</table>
+				</main>
+			</Loader>
 		</>
 	);
 }

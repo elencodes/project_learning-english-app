@@ -9,6 +9,8 @@ const WordsProvider = ({ children }) => {
 	const [words, setWords] = useState([]);
 	//Состояние для хранения ошибок при отправке запросов на сервер
 	const [error, setError] = useState(null);
+	//Состояние для показа загрузки данных
+	const [isLoading, setIsLoading] = useState(false);
 
 	//Функция добавления нового слова
 	const addWord = (newWord) => {
@@ -41,6 +43,7 @@ const WordsProvider = ({ children }) => {
 			const data = await response.json();
 			//Инициализация состояния words через контекст
 			setWords(data);
+			setIsLoading(false);
 		} catch (error) {
 			console.log("Error fetching words:", setError(error));
 		}
@@ -48,6 +51,7 @@ const WordsProvider = ({ children }) => {
 
 	// Загружаем данные при монтировании компонента
 	useEffect(() => {
+		setIsLoading(true);
 		loadData();
 	}, []);
 
@@ -61,6 +65,7 @@ const WordsProvider = ({ children }) => {
 				updateWord,
 				deleteWord,
 				error,
+				isLoading,
 			}}
 		>
 			{children}
