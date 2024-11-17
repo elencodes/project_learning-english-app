@@ -1,10 +1,18 @@
 import useValidation from "../../hooks/useValidation";
-import { useState, useEffect } from "react";
+import { useContext, useState, useEffect } from "react";
 import { EditMode } from "../EditMode/EditMode";
 import { ReadMode } from "../ReadMode/ReadMode";
+import { WordsContext } from "../WordsContext/WordsContext";
 import styles from "./TableRow.module.scss";
 
-export function TableRow(props) {
+export function TableRow({
+	id,
+	tags,
+	english,
+	transcription,
+	russian,
+	onDelete,
+}) {
 	const {
 		formErrors,
 		setFormErrors,
@@ -15,29 +23,29 @@ export function TableRow(props) {
 		validateField,
 	} = useValidation();
 
+	// Используем из контекста (для обновления существующего слова)
+	const { updateWord } = useContext(WordsContext);
+
 	// Управление состоянием режима редактирования
 	const [isEditing, setIsEditing] = useState(false);
 
 	// Управление состоянием полей в одном объекте
 	const [fields, setFields] = useState({
-		id: props.id,
-		theme: props.theme,
-		word: props.word,
-		transcription: props.transcription,
-		translation: props.translation,
+		id,
+		tags,
+		english,
+		transcription,
+		russian,
 	});
-
-	// Управление состоянием для сохраненных значений полей ввода
-	const [savedFields, setSavedFields] = useState(fields);
 
 	// Cледим за изменениями в formValid и блокируем кнопку при ошибках валидации
 	useEffect(() => {
 		// Если хотя бы одно поле невалидно, кнопка должна быть заблокирована
 		if (
-			formValid.theme ||
-			formValid.word ||
+			formValid.tags ||
+			formValid.english ||
 			formValid.transcription ||
-			formValid.translation
+			formValid.russian
 		) {
 			setIsDisabled(true); // Блокируем кнопку
 		} else {
@@ -67,27 +75,27 @@ export function TableRow(props) {
 	};
 
 	// Функция для отмены режима редактирования с восстановлением сохранённых данных
-	const handleCancelClick = () => {
+	const handleCancelClick = async () => {
 		setIsEditing(false);
-		setFields(savedFields); // Восстанавливаем сохранённые значения полей
+		setFields({ id, tags, english, transcription, russian }); // Восстанавливаем сохранённые значения полей
 
 		// Сбрасываем ошибки и валидность
 		setFormErrors({
-			theme: "",
-			word: "",
+			tags: "",
+			english: "",
 			transcription: "",
-			translation: "",
+			russian: "",
 		});
 		setFormValid({
-			theme: false,
-			word: false,
+			tags: false,
+			english: false,
 			transcription: false,
-			translation: false,
+			russian: false,
 		});
 	};
 
 	// Функция для сохранения данных и выхода из режима редактирования
-	const handleSaveClick = () => {
+	const handleSaveClick = async () => {
 		let hasEmptyFields = false;
 		const updatedFormErrors = { ...formErrors };
 		const updatedFormValid = { ...formValid };
@@ -115,50 +123,61 @@ export function TableRow(props) {
 			return;
 		}
 
+		try {
+			const response = await fetch(`/api/words/${id}/update`, {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify(fields),
+			});
+			if (!response.ok)
+				throw new Error(`HTTP error! Status: ${response.status}`);
+			updateWord(fields); // Обновляем контекст
+		} catch (error) {
+			console.error("Error updating word:", error);
+		}
+
 		// Выводим в консоль параметры формы перед сохранением
 		console.log("Saved Fields:", fields);
 
 		// Если все поля заполнены, сохраняем изменения
 		setIsEditing(false);
-		setSavedFields(fields);
 	};
 
-	// Обработчик для удаления строки
 	const handleDeleteClick = () => {
-		props.onDelete(props.id); // Вызываем функцию удаления, переданную через props
+		onDelete(id); // Вызов функции из родительского компонента
 	};
 
 	return (
 		<tr>
-			<td>{props.id}</td>
+			<td>{id}</td>
 			{isEditing ? (
 				<>
 					<td>
 						<input
 							className={`${styles.input__item} ${
-								formErrors.theme ? styles.invalid : ""
+								formErrors.tags ? styles.invalid : ""
 							}`}
 							type="text"
-							name="theme"
-							value={fields.theme}
+							name="tags"
+							value={fields.tags}
 							onChange={handleChange}
 						/>
-						{formValid.theme && formErrors.theme && (
-							<div className={styles.error}>{formErrors.theme}</div>
+						{formValid.tags && formErrors.tags && (
+							<div className={styles.error}>{formErrors.tags}</div>
 						)}
 					</td>
 					<td>
 						<input
 							className={`${styles.input__item} ${
-								formErrors.word ? styles.invalid : ""
+								formErrors.english ? styles.invalid : ""
 							}`}
 							type="text"
-							name="word"
-							value={fields.word}
+							name="english"
+							value={fields.english}
 							onChange={handleChange}
 						/>
-						{formValid.word && formErrors.word && (
-							<div className={styles.error}>{formErrors.word}</div>
+						{formValid.english && formErrors.english && (
+							<div className={styles.error}>{formErrors.english}</div>
 						)}
 					</td>
 					<td>
@@ -180,17 +199,15 @@ export function TableRow(props) {
 					<td>
 						<input
 							className={`${styles.input__item} ${
-								formErrors.translation ? styles.invalid : ""
+								formErrors.russian ? styles.invalid : ""
 							}`}
 							type="text"
-							name="translation"
-							value={fields.translation}
+							name="russian"
+							value={fields.russian}
 							onChange={handleChange}
 						/>
-						{formValid.translation && formErrors.translation && (
-							<div className={styles.error}>
-								{formErrors.translation}
-							</div>
+						{formValid.russian && formErrors.russian && (
+							<div className={styles.error}>{formErrors.russian}</div>
 						)}
 					</td>
 					<td className={styles.table__actions}>
@@ -205,10 +222,10 @@ export function TableRow(props) {
 				</>
 			) : (
 				<>
-					<td>{savedFields.theme}</td>
-					<td>{savedFields.word}</td>
-					<td>{savedFields.transcription}</td>
-					<td>{savedFields.translation}</td>
+					<td>{tags}</td>
+					<td>{english}</td>
+					<td>{transcription}</td>
+					<td>{russian}</td>
 					<td className={styles.table__actions}>
 						<div className={styles.button__container}>
 							<ReadMode

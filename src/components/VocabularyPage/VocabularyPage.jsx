@@ -1,19 +1,19 @@
-import { useState, useEffect } from "react";
+import { useContext, useState, useEffect } from "react";
 import { TableRow } from "../TableRow/TableRow";
 import { Form } from "../Form/Form";
-import initialData from "../../data/data.json";
+import { WordsContext } from "../WordsContext/WordsContext";
 import styles from "./VocabularyPage.module.scss";
 
 export function VocabularyPage() {
-	// Состояние для данных таблицы, инициализированное из JSON
-	const [tableData, setTableData] = useState(initialData);
+	// Доступ к данным и функциям из контекста
+	const { loadData, words, setWords, addWord } = useContext(WordsContext);
 
 	// Состояние для текущей страницы и количество строк на странице
 	const [currentPage, setCurrentPage] = useState(1);
 	const rowsPerPage = 5;
 
 	// Общее количество страниц
-	const totalPages = Math.ceil(tableData.length / rowsPerPage);
+	const totalPages = Math.ceil(words.length / rowsPerPage);
 	if (currentPage > totalPages && currentPage > 1) {
 		setCurrentPage(currentPage - 1);
 	}
@@ -21,7 +21,7 @@ export function VocabularyPage() {
 	// Расчет индексов для отображаемых строк
 	const startIndex = (currentPage - 1) * rowsPerPage;
 	const endIndex = startIndex + rowsPerPage;
-	const currentRows = tableData.slice(startIndex, endIndex);
+	const currentRows = words.slice(startIndex, endIndex);
 
 	// Обработчик для перехода на следующую страницу
 	const handleNextPage = () => {
@@ -39,38 +39,75 @@ export function VocabularyPage() {
 
 	// Обработчик добавления новой строки
 	const handleAdd = (newRow) => {
-		// Находим максимальный id в текущем массиве данных
-		const maxId = tableData.length
-			? Math.max(...tableData.map((item) => item.id))
+		// Проверка, что новое слово не дублируется
+		const isDuplicate = words.some(
+			(word) =>
+				word.english === newRow.english && word.russian === newRow.russian
+		);
+
+		if (isDuplicate) {
+			console.log("Duplicate word, not adding it.");
+			return; // Если слово уже существует, не добавляем
+		}
+
+		const maxId = words.length
+			? Math.max(...words.map((item) => item.id))
 			: 0;
 		const newId = maxId + 1; // Увеличиваем максимальный id на 1
 
-		const updatedRow = { ...newRow, id: newId };
-
+		const updatedRow = {
+			id: newId,
+			tags: newRow.tags || "",
+			english: newRow.english || "",
+			transcription: newRow.transcription || "",
+			russian: newRow.russian || "",
+		};
 		// Обновляем состояние данных с добавлением новой строки
-		const updatedData = [...tableData, updatedRow];
-		setTableData(updatedData);
+		addWord(updatedRow);
 
-		// Если новая строка выходит за пределы текущей страницы, переключаемся на последнюю страницу
-		if (Math.ceil(updatedData.length / rowsPerPage) > totalPages) {
-			setCurrentPage(totalPages + 1);
+		// После добавления проверим, нужно ли переключиться на последнюю страницу
+		const newTotalPages = Math.ceil((words.length + 1) / rowsPerPage);
+		if (currentPage !== totalPages) {
+			setCurrentPage(newTotalPages); // Переход на последнюю страницу
 		}
 	};
 
-	const handleDelete = (id) => {
-		// Удаляем строку по id
-		const updatedData = tableData.filter((row) => row.id !== id);
+	// Обработчик удаления строки
+	const handleDelete = async (id) => {
+		try {
+			// Удаляем строку из API
+			const response = await fetch(`/api/words/${id}/delete`, {
+				method: "POST",
+			});
 
-		if (updatedData.length !== tableData.length) {
-			// Только обновляем состояние, если изменилось количество элементов
-			setTableData(updatedData); // Обновляем состояние данных
-		}
+			if (!response.ok) {
+				throw new Error(`HTTP error! Status: ${response.status}`);
+			}
 
-		// Если на последней странице и строк больше нет, переключаемся на предыдущую страницу
-		if (currentPage > Math.ceil(updatedData.length / rowsPerPage)) {
-			setCurrentPage(currentPage - 1); // Переход на предыдущую страницу
+			// Удаляем строку из состояния
+			const updatedData = words.filter((row) => row.id !== id);
+			setWords(updatedData); // Обновляем состояние в контексте
+			loadData(); // Обновляем состояние в контексте
+
+			// Если на последней странице больше нет строк, переключаемся на предыдущую страницу
+			if (currentPage > Math.ceil(updatedData.length / rowsPerPage)) {
+				setCurrentPage(currentPage - 1);
+			}
+		} catch (error) {
+			console.error("Error deleting word:", error);
 		}
 	};
+
+	useEffect(() => {
+		// Если новое слово добавляется, нужно переключить на последнюю страницу
+		if (
+			words.length > 0 &&
+			currentPage === totalPages &&
+			words.length % rowsPerPage === 1
+		) {
+			setCurrentPage(totalPages + 1); // Переход на последнюю страницу
+		}
+	}, [words, totalPages, currentPage]);
 
 	return (
 		<>
@@ -95,10 +132,10 @@ export function VocabularyPage() {
 							<TableRow
 								key={props.id}
 								id={props.id} // Отображаем номер строки с учетом страницы
-								theme={props.theme}
-								word={props.word}
+								tags={props.tags}
+								english={props.english}
 								transcription={props.transcription}
-								translation={props.translation}
+								russian={props.russian}
 								onDelete={handleDelete}
 							/>
 						))}
@@ -108,7 +145,7 @@ export function VocabularyPage() {
 							<th className={styles.table__footer_text}>
 								Total items:{" "}
 								<span className={styles.table__footer_counter}>
-									{tableData.length}
+									{words.length}
 								</span>
 							</th>
 							<th></th>

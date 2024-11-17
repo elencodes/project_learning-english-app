@@ -1,10 +1,13 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useContext, useState, useEffect, useRef, useCallback } from "react";
+// import data from "../../data/data.json";
 import { Card } from "../Card/Card";
-import data from "../../data/data.json";
+import { WordsContext } from "../WordsContext/WordsContext";
 import styles from "./GamePage.module.scss";
 import Confetti from "react-confetti";
 
-export function GamePage({ initialIndex = 0, words = data }) {
+export function GamePage({ initialIndex = 0 }) {
+	const { words, error } = useContext(WordsContext);
+
 	// Отслеживаем изменение индекса текущей карточки
 	const [currentIndex, setCurrentIndex] = useState(initialIndex);
 	// Отслеживаем изменение счетчика переводов
@@ -136,9 +139,9 @@ export function GamePage({ initialIndex = 0, words = data }) {
 								<Card
 									className={`${styles.card} ${position}`}
 									key={props.id}
-									word={props.word}
+									english={props.english}
 									transcription={props.transcription}
-									translation={props.translation}
+									russian={props.russian}
 									onShowTranslation={incrementTranslationCount} // передаем функцию
 									translateButtonRef={
 										cardIndex === currentIndex

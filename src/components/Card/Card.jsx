@@ -3,9 +3,9 @@ import styles from "./Card.module.scss";
 
 export function Card({
 	className,
-	word,
+	english,
 	transcription,
-	translation,
+	russian,
 	onShowTranslation,
 	translateButtonRef,
 }) {
@@ -23,10 +23,10 @@ export function Card({
 	return (
 		<>
 			<article className={`${styles.card} ${className}`}>
-				<p className={styles.card__title}>{word}</p>
+				<p className={styles.card__title}>{english}</p>
 				<p className={styles.card__subtitle}>{transcription}</p>
 				{isClicked ? (
-					<p className={styles.card__text}>{translation}</p>
+					<p className={styles.card__text}>{russian}</p>
 				) : (
 					<button
 						ref={translateButtonRef}
