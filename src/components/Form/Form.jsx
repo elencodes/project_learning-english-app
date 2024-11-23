@@ -1,8 +1,10 @@
+import { observer } from "mobx-react-lite";
+import { useStore } from "../WordsStoreContext/WordsStoreContext";
 import useValidation from "../../hooks/useValidation";
 import { useState, useEffect } from "react";
 import styles from "./Form.module.scss";
 
-export function Form({ handleAdd }) {
+const Form = observer(() => {
 	// Деструктуризация пропсов
 	const {
 		formErrors,
@@ -14,28 +16,31 @@ export function Form({ handleAdd }) {
 		validateField,
 	} = useValidation();
 
+	// Доступ к MobX-стору через контекст
+	const { wordsStore } = useStore();
+
 	// Состояние для значений формы
 	const [formValue, setFormValue] = useState({
-		theme: "",
-		word: "",
+		tags: "",
+		english: "",
 		transcription: "",
-		translation: "",
+		russian: "",
 	});
 
 	// Cледим за изменениями в formValid и блокируем кнопку при ошибках валидации
 	useEffect(() => {
 		// Если хотя бы одно поле невалидно, кнопка должна быть заблокирована
 		if (
-			formValid.theme ||
-			formValid.word ||
+			formValid.tags ||
+			formValid.english ||
 			formValid.transcription ||
-			formValid.translation
+			formValid.russian
 		) {
 			setIsDisabled(true); // Блокируем кнопку
 		} else {
 			setIsDisabled(false); // Разблокируем кнопку, если все поля валидны
 		}
-	});
+	}, [formValid, setIsDisabled]);
 
 	// Обработчик изменения значений полей
 	const handleChange = (e) => {
@@ -44,10 +49,7 @@ export function Form({ handleAdd }) {
 		// Валидация поля
 		validateField(name, value); // Проверка поля на корректность
 		// Обновляем состояние value с новым значением поля
-		setFormValue({
-			...formValue,
-			[name]: value,
-		});
+		setFormValue((prevState) => ({ ...prevState, [name]: value }));
 	};
 
 	// Проверка полей на пустые значения при нажатии на "+Add"
@@ -83,25 +85,34 @@ export function Form({ handleAdd }) {
 		// Если есть пустые поля, выходим из функции
 		if (validateFormBeforeAdd()) return;
 
-		// Создаём новую строку данных
-		const newRow = {
-			theme: formValue.theme,
-			word: formValue.word,
+		wordsStore.handleAdd({
+			tags: formValue.tags,
+			english: formValue.english,
 			transcription: formValue.transcription,
-			translation: formValue.translation,
-		};
+			russian: formValue.russian,
+		});
+
+		setIsDisabled(true); // Блокируем кнопку после добавления
 
 		// Выводим параметры формы в консоль перед добавлением
-		console.log("Form Values:", newRow);
 
-		// Передаём новую строку в родительский компонент
-		handleAdd(newRow);
+		console.log("Form Values:", wordsStore);
 
-		// Очищаем форму после успешного добавления
-		setFormValue({ theme: "", word: "", transcription: "", translation: "" });
+		setFormValue({
+			tags: "",
+			english: "",
+			transcription: "",
+			russian: "",
+		});
 
-		// Блокируем кнопку после добавления
-		setIsDisabled(true);
+		// Ожидаем, что состояние очищается, прежде чем обновлять валидацию
+		setTimeout(() => {
+			// Убираем ошибки, если поля пустые
+			validateField("tags", "");
+			validateField("english", "");
+			validateField("transcription", "");
+			validateField("russian", "");
+		}, 1500);
 	};
 
 	return (
@@ -111,30 +122,30 @@ export function Form({ handleAdd }) {
 					<label>Theme</label>
 					<input
 						className={`${styles.input__item} ${
-							formErrors.theme ? styles.invalid : ""
+							formErrors.tags ? styles.invalid : ""
 						}`}
 						type="text"
-						name="theme"
-						value={formValue.theme}
+						name="tags"
+						value={formValue.tags}
 						onChange={handleChange}
 					/>
-					{formValid.theme && formErrors.theme && (
-						<div className={styles.error}>{formErrors.theme}</div>
+					{formValid.tags && formErrors.tags && (
+						<div className={styles.error}>{formErrors.tags}</div>
 					)}
 				</div>
 				<div className={styles.input__container}>
 					<label>Word</label>
 					<input
 						className={`${styles.input__item} ${
-							formErrors.word ? styles.invalid : ""
+							formErrors.english ? styles.invalid : ""
 						}`}
 						type="text"
-						name="word"
-						value={formValue.word}
+						name="english"
+						value={formValue.english}
 						onChange={handleChange}
 					/>
-					{formValid.word && formErrors.word && (
-						<div className={styles.error}>{formErrors.word}</div>
+					{formValid.english && formErrors.english && (
+						<div className={styles.error}>{formErrors.english}</div>
 					)}
 				</div>
 				<div className={styles.input__container}>
@@ -156,15 +167,15 @@ export function Form({ handleAdd }) {
 					<label>Translation</label>
 					<input
 						className={`${styles.input__item} ${
-							formErrors.translation ? styles.invalid : ""
+							formErrors.russian ? styles.invalid : ""
 						}`}
 						type="text"
-						name="translation"
-						value={formValue.translation}
+						name="russian"
+						value={formValue.russian}
 						onChange={handleChange}
 					/>
-					{formValid.translation && formErrors.translation && (
-						<div className={styles.error}>{formErrors.translation}</div>
+					{formValid.russian && formErrors.russian && (
+						<div className={styles.error}>{formErrors.russian}</div>
 					)}
 				</div>
 				<button
@@ -178,4 +189,6 @@ export function Form({ handleAdd }) {
 			</form>
 		</>
 	);
-}
+});
+
+export default Form;

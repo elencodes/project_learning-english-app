@@ -4,18 +4,18 @@ import { useState, useEffect } from "react";
 const useValidation = () => {
 	// Состояние для хранения сообщений об ошибках валидации
 	const [formErrors, setFormErrors] = useState({
-		theme: "",
-		word: "",
+		tags: "",
+		english: "",
 		transcription: "",
-		translation: "",
+		russian: "",
 	});
 
 	// Состояние для отслеживания, является ли поле валидным
 	const [formValid, setFormValid] = useState({
-		theme: false,
-		word: false,
+		tags: false,
+		english: false,
 		transcription: false,
-		translation: false,
+		russian: false,
 	});
 
 	// Состояние для контроля активности кнопки (например, для кнопки "Save")
@@ -37,27 +37,27 @@ const useValidation = () => {
 		} else {
 			// Переходим к проверке конкретного поля в зависимости от его имени
 			switch (name) {
-				// Валидация для поля "theme"
-				case "theme":
+				// Валидация для поля "tags"
+				case "tags":
 					// Проверка на соответствие латинским символам и чтобы строка не состояла только из пробелов
 					if (/^(?!\s*$)[A-Za-z ']+$/i.test(value)) {
-						setFormValid({ ...formValid, theme: false }); // Поле валидно
-						setFormErrors({ ...formErrors, theme: "" }); // Ошибки нет
+						setFormValid({ ...formValid, tags: false }); // Поле валидно
+						setFormErrors({ ...formErrors, tags: "" }); // Ошибки нет
 					} else {
-						setFormValid({ ...formValid, theme: true }); // Поле невалидно
-						setFormErrors({ ...formErrors, theme: "Just latin!" }); // Сообщение об ошибке
+						setFormValid({ ...formValid, tags: true }); // Поле невалидно
+						setFormErrors({ ...formErrors, tags: "Just latin!" }); // Сообщение об ошибке
 					}
 					break;
 
-				// Валидация для поля "word"
-				case "word":
+				// Валидация для поля "english"
+				case "english":
 					// Проверка на соответствие латинским символам и чтобы строка не состояла только из пробелов
 					if (/^(?!\s*$)[A-Za-z ']+$/i.test(value)) {
-						setFormValid({ ...formValid, word: false }); // Поле валидно
-						setFormErrors({ ...formErrors, word: "" }); // Ошибки нет
+						setFormValid({ ...formValid, english: false }); // Поле валидно
+						setFormErrors({ ...formErrors, english: "" }); // Ошибки нет
 					} else {
-						setFormValid({ ...formValid, word: true }); // Поле невалидно
-						setFormErrors({ ...formErrors, word: "Just latin!" }); // Сообщение об ошибке
+						setFormValid({ ...formValid, english: true }); // Поле невалидно
+						setFormErrors({ ...formErrors, english: "Just latin!" }); // Сообщение об ошибке
 					}
 					break;
 
@@ -81,16 +81,16 @@ const useValidation = () => {
 					break;
 
 				// Валидация для поля "translation"
-				case "translation":
+				case "russian":
 					// Проверка на соответствие кириллическим символам и чтобы строка не состояла только из пробелов
 					if (/^(?!\s*$)[а-яё -]+$/i.test(value)) {
-						setFormValid({ ...formValid, translation: false }); // Поле валидно
-						setFormErrors({ ...formErrors, translation: "" }); // Ошибки нет
+						setFormValid({ ...formValid, russian: false }); // Поле валидно
+						setFormErrors({ ...formErrors, russian: "" }); // Ошибки нет
 					} else {
-						setFormValid({ ...formValid, translation: true }); // Поле невалидно
+						setFormValid({ ...formValid, russian: true }); // Поле невалидно
 						setFormErrors({
 							...formErrors,
-							translation: "Just cyrillic!",
+							russian: "Just cyrillic!",
 						}); // Сообщение об ошибке
 					}
 					break;
@@ -102,7 +102,7 @@ const useValidation = () => {
 		}
 	}
 
-	// useEffect для управления состоянием isDisabled в зависимости от formValid
+	// Управления состоянием isDisabled в зависимости от formValid
 	useEffect(() => {
 		const hasErrors = Object.values(formValid).some((field) => field); // Проверка на наличие ошибок
 		setIsDisabled(hasErrors); // Блокируем кнопку, если есть ошибки
