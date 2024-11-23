@@ -1,9 +1,10 @@
+import { observer } from "mobx-react-lite";
+import { useStore } from "../WordsStoreContext/WordsStoreContext";
 import useValidation from "../../hooks/useValidation";
-import { useContext, useState, useEffect } from "react";
-import { WordsContext } from "../WordsContext/WordsContext";
+import { useState, useEffect } from "react";
 import styles from "./Form.module.scss";
 
-export function Form({ handleAdd }) {
+const Form = observer(() => {
 	// Деструктуризация пропсов
 	const {
 		formErrors,
@@ -15,7 +16,8 @@ export function Form({ handleAdd }) {
 		validateField,
 	} = useValidation();
 
-	const { loadData } = useContext(WordsContext);
+	// Доступ к MobX-стору через контекст
+	const { wordsStore } = useStore();
 
 	// Состояние для значений формы
 	const [formValue, setFormValue] = useState({
@@ -77,48 +79,40 @@ export function Form({ handleAdd }) {
 	};
 
 	// Обработчик добавления нового слова
-	const addNewWord = async (e) => {
+	const addNewWord = (e) => {
 		e.preventDefault(); // Предотвращаем перезагрузку страницы
 
 		// Если есть пустые поля, выходим из функции
 		if (validateFormBeforeAdd()) return;
 
-		// Создаём новую строку данных
-		const newRow = {
+		wordsStore.handleAdd({
 			tags: formValue.tags,
 			english: formValue.english,
 			transcription: formValue.transcription,
 			russian: formValue.russian,
-		};
+		});
 
-		try {
-			const response = await fetch(`/api/words/add`, {
-				method: "POST",
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify(newRow),
-			});
-			if (!response.ok)
-				throw new Error(`HTTP error! Status: ${response.status}`);
-
-			const data = await response.json();
-			handleAdd(data); // Обновляем список в родительском компоненте
-			// Загружаем обновленные данные с сервера
-			loadData(); // Это гарантирует, что список будет актуален после добавления
-			setIsDisabled(true); // Блокируем кнопку после добавления
-		} catch (error) {
-			console.error("Error adding word:", error);
-		}
+		setIsDisabled(true); // Блокируем кнопку после добавления
 
 		// Выводим параметры формы в консоль перед добавлением
-		console.log("Form Values:", newRow);
 
-		// Очищаем форму после успешного добавления
+		console.log("Form Values:", wordsStore);
+
 		setFormValue({
 			tags: "",
 			english: "",
 			transcription: "",
 			russian: "",
 		});
+
+		// Ожидаем, что состояние очищается, прежде чем обновлять валидацию
+		setTimeout(() => {
+			// Убираем ошибки, если поля пустые
+			validateField("tags", "");
+			validateField("english", "");
+			validateField("transcription", "");
+			validateField("russian", "");
+		}, 1500);
 	};
 
 	return (
@@ -195,4 +189,6 @@ export function Form({ handleAdd }) {
 			</form>
 		</>
 	);
-}
+});
+
+export default Form;

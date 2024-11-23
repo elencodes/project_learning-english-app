@@ -1,13 +1,14 @@
-import { useContext, useState, useEffect, useRef, useCallback } from "react";
-// import data from "../../data/data.json";
+import { observer } from "mobx-react-lite";
+import { useStore } from "../WordsStoreContext/WordsStoreContext";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Card } from "../Card/Card";
-import { WordsContext } from "../WordsContext/WordsContext";
 import { Loader } from "../Loader/Loader";
 import styles from "./GamePage.module.scss";
 import Confetti from "react-confetti";
 
-export function GamePage({ initialIndex = 0 }) {
-	const { words, error, isLoading } = useContext(WordsContext);
+const GamePage = observer(({ initialIndex = 0 }) => {
+	// Доступ к MobX-стору через контекст
+	const { wordsStore } = useStore();
 
 	// Отслеживаем изменение индекса текущей карточки
 	const [currentIndex, setCurrentIndex] = useState(initialIndex);
@@ -20,7 +21,7 @@ export function GamePage({ initialIndex = 0 }) {
 
 	// Переменные для первой и последней карточки из массива слов
 	const firstCard = currentIndex === 0;
-	const lastCard = currentIndex === words.length - 1;
+	const lastCard = currentIndex === wordsStore.words.length - 1;
 
 	// Референс на кнопку перевода
 	const translateButtonRef = useRef(null);
@@ -36,10 +37,10 @@ export function GamePage({ initialIndex = 0 }) {
 	// Проверяем, не достигли ли мы конца массива (currentIndex < words.length - 1).
 	// Если да, то увеличиваем индекс на 1.
 	const handleClickNext = useCallback(() => {
-		if (currentIndex < words.length - 1) {
+		if (currentIndex < wordsStore.words.length - 1) {
 			setCurrentIndex((prevIndex) => prevIndex + 1);
 		}
-	}, [currentIndex, words.length]);
+	}, [currentIndex, wordsStore.words.length]);
 
 	// Обработчик для перехода к предыдущей карточке
 	// Проверяем, не находимся ли мы в начале массива (currentIndex > 0).
@@ -57,7 +58,7 @@ export function GamePage({ initialIndex = 0 }) {
 
 	// Проверка, завершена ли игра
 	useEffect(() => {
-		if (translationCount === words.length) {
+		if (translationCount === wordsStore.words.length) {
 			// Показываем конфетти
 			SetUiProps({ showConfetti: true });
 			// Показываем уведомление об успешном прохождении через 0.8 секунды
@@ -65,7 +66,7 @@ export function GamePage({ initialIndex = 0 }) {
 				setShowNotification(true);
 			}, 800);
 		}
-	}, [translationCount, words.length]);
+	}, [translationCount, wordsStore.words.length]);
 
 	// Остановка эффекта конфетти через 7 секунд
 	useEffect(() => {
@@ -97,14 +98,12 @@ export function GamePage({ initialIndex = 0 }) {
 		setShowNotification(false);
 	};
 
-	// Если массив слов пустой, показываем сообщение
-	if (!words || words.length === 0) {
-		return <p className={styles.message}>{error}</p>;
-	}
-
 	return (
 		<>
-			<Loader isLoading={isLoading} error={error}>
+			<Loader isLoading={wordsStore.isLoading} error={wordsStore.error}>
+				{wordsStore.error && (
+					<p className={styles.error__text}>{wordsStore.error}</p>
+				)}
 				<main className="container">
 					{uiProps.showConfetti && <Confetti />}
 					<section className={styles.section}>
@@ -125,7 +124,7 @@ export function GamePage({ initialIndex = 0 }) {
 						</div>
 
 						<div className={styles.section__card_container}>
-							{words.map((props, cardIndex) => {
+							{wordsStore.words.map((props, cardIndex) => {
 								let position = styles.nextSlide;
 
 								if (cardIndex === currentIndex) {
@@ -133,7 +132,7 @@ export function GamePage({ initialIndex = 0 }) {
 								} else if (
 									cardIndex === currentIndex - 1 ||
 									(currentIndex === 0 &&
-										cardIndex === words.length - 1)
+										cardIndex === wordsStore.words.length - 1)
 								) {
 									position = styles.lastSlide;
 								}
@@ -181,7 +180,7 @@ export function GamePage({ initialIndex = 0 }) {
 
 						<div className={styles.counter__container}>
 							<p className={styles.counter__card_text}>
-								{currentIndex + 1} / {words.length}
+								{currentIndex + 1} / {wordsStore.words.length}
 							</p>
 						</div>
 					</section>
@@ -210,4 +209,6 @@ export function GamePage({ initialIndex = 0 }) {
 			</Loader>
 		</>
 	);
-}
+});
+
+export default GamePage;
