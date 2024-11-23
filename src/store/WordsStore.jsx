@@ -28,7 +28,7 @@ class WordsStore {
 		this.error = null;
 		try {
 			const response = await fetch(
-				"http://itgirlschool.justmakeit.ru/api/words"
+				"https://itgirlschool.justmakeit.ru/api/words"
 			);
 			//Если код ответа не 200 (не успешный), то выводим ошибку
 			if (!response.ok) {
