@@ -28,7 +28,7 @@ class WordsStore {
 		this.error = null;
 		try {
 			const response = await fetch(
-				"http://itgirlschool.justmakeit.ru/api/words"
+				"https://itgirlschool.justmakeit.ru/api/words"
 			);
 			//Если код ответа не 200 (не успешный), то выводим ошибку
 			if (!response.ok) {
@@ -73,7 +73,7 @@ class WordsStore {
 			});
 
 			const response = await fetch(
-				`http://itgirlschool.justmakeit.ru/api/words/add`,
+				`https://itgirlschool.justmakeit.ru/api/words/add`,
 				{
 					method: "POST",
 					headers: { "Content-Type": "application/json" },
@@ -106,7 +106,7 @@ class WordsStore {
 		try {
 			// Отправляем запрос на удаление через API
 			const response = await fetch(
-				`http://itgirlschool.justmakeit.ru/api/words/${id}/delete`,
+				`https://itgirlschool.justmakeit.ru/api/words/${id}/delete`,
 				{
 					method: "POST",
 				}
@@ -133,7 +133,7 @@ class WordsStore {
 	handleSave = action(async (fields) => {
 		try {
 			const response = await fetch(
-				`http://itgirlschool.justmakeit.ru/api/words/${fields.id}/update`,
+				`https://itgirlschool.justmakeit.ru/api/words/${fields.id}/update`,
 				{
 					method: "POST",
 					headers: { "Content-Type": "application/json" },
