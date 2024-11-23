@@ -102,7 +102,7 @@ const GamePage = observer(({ initialIndex = 0 }) => {
 		<>
 			<Loader isLoading={wordsStore.isLoading} error={wordsStore.error}>
 				{wordsStore.error && (
-					<p className={styles.error__text}>{wordsStore.error}</p>
+					<p className="error__text">{wordsStore.error}</p>
 				)}
 				<main className="container">
 					{uiProps.showConfetti && <Confetti />}

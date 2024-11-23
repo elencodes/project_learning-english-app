@@ -2,7 +2,7 @@ import styles from "./Loader.module.scss";
 
 export function Loader({ isLoading, error, children }) {
 	if (error) {
-		return <p className={styles.error}>{error}</p>;
+		return <p className="error__text">{error}</p>;
 	}
 	if (isLoading) {
 		return (

@@ -100,7 +100,7 @@ const VocabularyPage = observer(() => {
 		<>
 			<Loader isLoading={wordsStore.isLoading} error={wordsStore.error}>
 				{wordsStore.error && (
-					<p className={styles.error__text}>{wordsStore.error}</p>
+					<p className="error__text">{wordsStore.error}</p>
 				)}
 				<main className="container">
 					<h1 className={styles.title}>Vocabulary</h1>
