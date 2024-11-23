@@ -8,7 +8,7 @@ import "./App.scss";
 function App() {
 	return (
 		<>
-			<Router>
+			<Router basename="/project_learning-english-app">
 				<div className="app">
 					<Header />
 					<Routes>

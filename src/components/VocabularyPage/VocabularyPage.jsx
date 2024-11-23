@@ -136,7 +136,7 @@ const VocabularyPage = observer(() => {
 								<th className={styles.table__footer_text}>
 									Total items:{" "}
 									<span className={styles.table__footer_counter}>
-										{wordsStore.length}
+										{wordsStore.words.length}
 									</span>
 								</th>
 								<th></th>
