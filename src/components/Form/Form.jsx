@@ -94,9 +94,9 @@ const Form = observer(() => {
 
 		setIsDisabled(true); // Блокируем кнопку после добавления
 
-		// Выводим параметры формы в консоль перед добавлением
+		// Выводим параметры формы в консоль при добавлении
 
-		console.log("Form Values:", wordsStore);
+		console.log("Form Values:", formValue);
 
 		setFormValue({
 			tags: "",
