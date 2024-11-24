@@ -85,8 +85,6 @@ class WordsStore {
 				throw new Error(
 					` Internal Server Error! Status: ${response.status}`
 				);
-			const result = await response.json(); // Убедитесь, что сервер возвращает JSON
-			console.log("Response from server:", result);
 
 			// Обновляем данные из сервера для синхронизации
 			await this.loadData();
