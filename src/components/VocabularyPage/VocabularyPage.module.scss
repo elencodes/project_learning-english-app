@@ -8,9 +8,15 @@
 }
 
 .subtitle {
-	margin-top: 5rem;
 	font-size: 1.125rem;
 	font-weight: 700;
+}
+
+.search__container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 5rem;
 }
 
 .table {

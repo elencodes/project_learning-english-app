@@ -1,0 +1,43 @@
+@import "../../styles/variables.scss";
+
+.search__container {
+	width: 15rem;
+	padding: 0.375rem 0.875rem;
+	display: flex;
+	align-items: center;
+	border: 2px solid $edit-color;
+	border-radius: 1.25rem;
+	background-color: #ffffff;
+}
+
+.input__item {
+	background: transparent;
+	flex: 1;
+	font-size: .875rem;
+	font-weight: 500;
+	color: $accent-color;
+	border: none;
+	outline: none;
+}
+
+.search__button {
+	background-color: transparent;
+	border: none;
+}
+
+.search__icon {
+	width: 1.5rem;
+	height: 1.5rem;
+	transition: transform 0.3s linear;
+	content: url("../../assets/icons/search/search.svg");
+
+	&:hover {
+		transform: scale(1.15);
+		content: url("../../assets/icons/search/search-hover.svg");
+	}
+
+	&:active {
+		transform: scale(1.1);
+		content: url("../../assets/icons/search/search.svg");
+	}
+}

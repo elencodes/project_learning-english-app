@@ -6,6 +6,7 @@ import TableRow from "../TableRow/TableRow";
 import Form from "../Form/Form";
 import { Loader } from "../Loader/Loader";
 import styles from "./VocabularyPage.module.scss";
+import { Search } from "../Search/Search";
 
 const VocabularyPage = observer(() => {
 	// Доступ к MobX-стору через контекст
@@ -26,7 +27,7 @@ const VocabularyPage = observer(() => {
 	// Расчет индексов для отображаемых строк
 	const startIndex = (currentPage - 1) * rowsPerPage;
 	const endIndex = startIndex + rowsPerPage;
-	const currentRows = wordsStore.words.slice(startIndex, endIndex);
+	const currentRows = wordsStore.filteredWords.slice(startIndex, endIndex);
 
 	// Обработчик для перехода на следующую страницу
 	const handleNextPage = () => {
@@ -75,6 +76,11 @@ const VocabularyPage = observer(() => {
 		}
 	};
 
+	// Обработчик поиска
+	const handleSearch = (query) => {
+		wordsStore.handleSearch(query); // Здесь вызывается логика поиска из wordsStore
+	};
+
 	// Загружаем данные только при монтировании компонента
 	useEffect(() => {
 		wordsStore.loadData().then(() => {
@@ -105,7 +111,10 @@ const VocabularyPage = observer(() => {
 				<main className="container">
 					<h1 className={styles.title}>Vocabulary</h1>
 					<Form handleAdd={handleAdd} />
-					<h2 className={styles.subtitle}>Words List</h2>
+					<div className={styles.search__container}>
+						<h2 className={styles.subtitle}>Words List</h2>
+						<Search onSearch={handleSearch} />
+					</div>
 					<table className={styles.table} cellSpacing="0">
 						<thead className={styles.table__header}>
 							<tr>

@@ -1,7 +1,9 @@
 import { makeAutoObservable, action, runInAction } from "mobx";
 
 class WordsStore {
-	words = [];
+	words = []; // Полный список слов
+	filteredWords = []; // Отфильтрованный список слов
+	searchQuery = ""; // Состояние для хранения поискового запроса
 	isLoading = false;
 	error = null;
 
@@ -11,6 +13,7 @@ class WordsStore {
 			handleAdd: action,
 			handleDelete: action,
 			handleSave: action,
+			handleSearch: action,
 			generateNewId: false, // Это не действие
 		});
 	}
@@ -41,6 +44,7 @@ class WordsStore {
 					...item,
 					id: item.id || index + 1, // Если id отсутствует, задаем уникальный
 				}));
+				this.filteredWords = this.words; // Изначально отображаем все слова
 			});
 		} catch (error) {
 			runInAction(() => {
@@ -154,6 +158,22 @@ class WordsStore {
 				this.error = error.message;
 			});
 			console.error("Error saving word:", error);
+		}
+	});
+
+	// Метод для поиска слов
+	handleSearch = action((query) => {
+		this.searchQuery = query.toLowerCase(); // Обновляем поисковый запрос
+		if (!this.searchQuery) {
+			// Если запрос пустой, возвращаем полный список
+			this.filteredWords = this.words;
+		} else {
+			// Фильтруем список слов
+			this.filteredWords = this.words.filter(
+				(word) =>
+					word.english.toLowerCase().includes(this.searchQuery) ||
+					word.russian.toLowerCase().includes(this.searchQuery)
+			);
 		}
 	});
 }
