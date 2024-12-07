@@ -5,12 +5,20 @@ import { useState, useEffect } from "react";
 import TableRow from "../TableRow/TableRow";
 import Form from "../Form/Form";
 import { Loader } from "../Loader/Loader";
-import styles from "./VocabularyPage.module.scss";
 import { Search } from "../Search/Search";
+import { ColumnFilter } from "../ColumnFilter/ColumnFilter";
+import filterIcon from "../../assets/icons/filter/filter.svg";
+import filterActiveIcon from "../../assets/icons/filter/filter-active.svg";
+import styles from "./VocabularyPage.module.scss";
 
 const VocabularyPage = observer(() => {
 	// Доступ к MobX-стору через контекст
 	const { wordsStore } = useStore();
+
+	// Локальное состояние для управления фильтром
+	const [isFilterOpen, setFilterOpen] = useState(false); // Открытие списка фильтра
+	// Уникальные темы для фильтрации
+	const uniqueThemes = [...new Set(wordsStore.words.map((word) => word.tags))];
 
 	// Локальное состояние для текущей страницы и количества строк на странице
 	const [currentPage, setCurrentPage] = useState(1);
@@ -81,6 +89,23 @@ const VocabularyPage = observer(() => {
 		wordsStore.handleSearch(query); // Здесь вызывается логика поиска из wordsStore
 	};
 
+	// Обработчик изменения выбранных тем фильтра
+	const handleThemeChange = (theme) => {
+		// Проверяем, есть ли уже эта тема в выбранных
+		const newSelectedThemes = wordsStore.selectedThemes.includes(theme)
+			? wordsStore.selectedThemes.filter((t) => t !== theme) // Если тема есть, убираем её
+			: [...wordsStore.selectedThemes, theme]; // Если темы нет, добавляем её
+
+		// Применяем обновлённый список выбранных тем к фильтру
+		wordsStore.applyThemeFilter(newSelectedThemes);
+	};
+
+	// Обработчик очистки фильтра
+	const clearFilter = () => {
+		// Сбрасываем выбранные темы и показываем все элементы
+		wordsStore.clearThemeFilter();
+	};
+
 	// Загружаем данные только при монтировании компонента
 	useEffect(() => {
 		wordsStore.loadData().then(() => {
@@ -119,7 +144,44 @@ const VocabularyPage = observer(() => {
 						<thead className={styles.table__header}>
 							<tr>
 								<th>№</th>
-								<th>Theme</th>
+								<th>
+									Theme{" "}
+									{isFilterOpen ? (
+										<>
+											<button
+												className={`${styles.filter__button} ${styles.active}`}
+												onClick={() => setFilterOpen(!isFilterOpen)}
+											>
+												<img
+													className={styles.filter__icon}
+													src={filterActiveIcon}
+													alt="filterActiveIcon"
+												/>
+											</button>
+										</>
+									) : (
+										<>
+											<button
+												className={styles.filter__button}
+												onClick={() => setFilterOpen(!isFilterOpen)}
+											>
+												<img
+													className={styles.filter__icon}
+													src={filterIcon}
+													alt="filterIcon"
+												/>
+											</button>
+										</>
+									)}
+									{isFilterOpen && (
+										<ColumnFilter
+											options={uniqueThemes}
+											selectedOptions={wordsStore.selectedThemes}
+											onChange={handleThemeChange}
+											onClear={clearFilter}
+										/>
+									)}
+								</th>
 								<th>Word</th>
 								<th>Transcription</th>
 								<th>Translation</th>

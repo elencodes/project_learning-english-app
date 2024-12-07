@@ -2,6 +2,7 @@ import { makeAutoObservable, action, runInAction } from "mobx";
 
 class WordsStore {
 	words = []; // Полный список слов
+	selectedThemes = []; // Выбранные темы для фильтрации
 	filteredWords = []; // Отфильтрованный список слов
 	searchQuery = ""; // Состояние для хранения поискового запроса
 	isLoading = false;
@@ -14,6 +15,8 @@ class WordsStore {
 			handleDelete: action,
 			handleSave: action,
 			handleSearch: action,
+			applyThemeFilter: action,
+			clearThemeFilter: action,
 			generateNewId: false, // Это не действие
 		});
 	}
@@ -83,9 +86,7 @@ class WordsStore {
 			});
 			//Если код ответа не 200 (не успешный), то выводим ошибку
 			if (!response.ok)
-				throw new Error(
-					` Internal Server Error! Status: ${response.status}`
-				);
+				throw new Error(` "Failed to add word! Status: ${response.status}`);
 
 			// Обновляем данные из сервера для синхронизации
 			await this.loadData();
@@ -102,6 +103,35 @@ class WordsStore {
 		}
 	});
 
+	// Метод для сохранения изменений в словах
+	handleSave = action(async (updatedWord) => {
+		const index = this.words.findIndex((word) => word.id === updatedWord.id);
+		if (index === -1) return;
+		try {
+			// Отправка изменённых данных на сервер (можно добавить логику для реального API)
+			this.words[index] = updatedWord; // Обновляем в локальном хранилище
+
+			const response = await fetch(
+				`https://itgirlschool.justmakeit.ru/api/words/${updatedWord.id}/update`,
+				{
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify(updatedWord),
+				}
+			);
+			//Если код ответа не 200 (не успешный), то выводим ошибку
+			if (!response.ok)
+				throw new Error(
+					` "Failed to save word! Status: ${response.status}`
+				);
+		} catch (error) {
+			runInAction(() => {
+				this.error = error.message;
+			});
+			console.error("Error saving word:", error);
+		}
+	});
+
 	// Метод для удаления слова по ID через API
 	handleDelete = action(async (id) => {
 		try {
@@ -115,49 +145,21 @@ class WordsStore {
 			//Если код ответа не 200 (не успешный), то выводим ошибку
 			if (!response.ok) {
 				throw new Error(
-					` Internal Server Error! Status: ${response.status}`
+					` "Failed to delete word! Status: ${response.status}`
 				);
 			}
-			// Удаляем слово из локального состояния
+			// Обновление состояния после успешного удаления с сервера
 			runInAction(() => {
-				this.words = this.words.filter((word) => word.id !== id);
+				const index = this.words.findIndex((word) => word.id === id);
+				if (index !== -1) {
+					this.words.splice(index, 1); // Удаляем слово из массива с использованием splice
+				}
 			});
 		} catch (error) {
 			runInAction(() => {
 				this.error = error.message;
 			});
 			console.error("Error adding word:", error);
-		}
-	});
-
-	// Метод для сохранения изменений в словах
-	handleSave = action(async (fields) => {
-		try {
-			const response = await fetch(
-				`https://itgirlschool.justmakeit.ru/api/words/${fields.id}/update`,
-				{
-					method: "POST",
-					headers: { "Content-Type": "application/json" },
-					body: JSON.stringify(fields),
-				}
-			);
-			//Если код ответа не 200 (не успешный), то выводим ошибку
-			if (!response.ok)
-				throw new Error(
-					` Internal Server Error! Status: ${response.status}`
-				);
-
-			// Обновляем данные локально
-			runInAction(() => {
-				this.words = this.words.map((word) =>
-					word.id === fields.id ? { ...word, ...fields } : word
-				);
-			});
-		} catch (error) {
-			runInAction(() => {
-				this.error = error.message;
-			});
-			console.error("Error saving word:", error);
 		}
 	});
 
@@ -176,6 +178,24 @@ class WordsStore {
 			);
 		}
 	});
+
+	// Метод для установки фильтра по темам
+	applyThemeFilter(selectedThemes) {
+		this.selectedThemes = selectedThemes;
+		if (selectedThemes.length > 0) {
+			this.filteredWords = this.words.filter(
+				(word) => selectedThemes.includes(word.tags) // Условие фильтрации
+			);
+		} else {
+			this.filteredWords = this.words; // Если фильтр пустой, показываем всё
+		}
+	}
+
+	// Сброс фильтра
+	clearThemeFilter() {
+		this.selectedThemes = [];
+		this.filteredWords = this.words;
+	}
 }
 
 const wordsStore = new WordsStore();

@@ -131,3 +131,28 @@ td {
 	color: $accent-color;
 	text-decoration: underline;
 }
+
+.filter__button {
+	border-radius: .3125rem;
+	background-color: $table-color;
+
+	&:hover {
+		cursor: pointer;
+		background-color: $edit-color;
+		transition: background-color .2s linear;
+	}
+
+	&:active {
+		background-color: #BBB2FF;
+		transition: background-color .2s linear;
+	}
+}
+
+.active {
+	background-color: $edit-color;
+}
+
+.filter__icon {
+	height: 1.25rem;
+	background-color: none;
+}
