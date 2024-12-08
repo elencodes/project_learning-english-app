@@ -86,7 +86,7 @@ class WordsStore {
 			});
 			//Если код ответа не 200 (не успешный), то выводим ошибку
 			if (!response.ok)
-				throw new Error(` "Failed to add word! Status: ${response.status}`);
+				throw new Error(` Failed to add word! Status: ${response.status}`);
 
 			// Обновляем данные из сервера для синхронизации
 			await this.loadData();
@@ -121,9 +121,7 @@ class WordsStore {
 			);
 			//Если код ответа не 200 (не успешный), то выводим ошибку
 			if (!response.ok)
-				throw new Error(
-					` "Failed to save word! Status: ${response.status}`
-				);
+				throw new Error(` Failed to save word! Status: ${response.status}`);
 		} catch (error) {
 			runInAction(() => {
 				this.error = error.message;
@@ -145,7 +143,7 @@ class WordsStore {
 			//Если код ответа не 200 (не успешный), то выводим ошибку
 			if (!response.ok) {
 				throw new Error(
-					` "Failed to delete word! Status: ${response.status}`
+					` Failed to delete word! Status: ${response.status}`
 				);
 			}
 			// Обновление состояния после успешного удаления с сервера
