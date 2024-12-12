@@ -17,7 +17,7 @@ export const useThemeStore = () => {
 	const context = useContext(ThemeStoreContext);
 	//проверка контекста на корректность
 	if (!context) {
-		throw new Error("useThemeStore must be used within a WordsStoreProvider");
+		throw new Error("useThemeStore must be used within a ThemeStoreProvider");
 	}
 	return context;
 };
