@@ -82,19 +82,3 @@
 		width: 100%;
 	}
 }
-
-.settings__container {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	width: 5.9375rem;
-}
-
-.settings__icon {
-	width: 1.5rem;
-	height: 1.5rem;
-}
-
-.settings__text {
-	color: $disable-color;
-}

@@ -7,9 +7,9 @@ const ThemeStoreContext = createContext(null);
 export const ThemeStoreProvider = ({ children }) => {
 	return (
 		// Экземпляр класса кладем в провайдер, чтобы каждый компонент, который лежит внутри провайдера, имел доступ к глобальному хранилищу
-		<ThemeStoreProvider.Provider value={{ themeStore }}>
+		<ThemeStoreContext.Provider value={{ themeStore }}>
 			{children}
-		</ThemeStoreProvider.Provider>
+		</ThemeStoreContext.Provider>
 	);
 };
 

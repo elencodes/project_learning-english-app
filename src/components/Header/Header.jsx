@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Settings } from "../Settings/Settings";
 import gearIcon from "../../assets/icons/header/gear-header.svg";
 import logo from "../../assets/icons/header/logo.svg";
 import styles from "./Header.module.scss";
@@ -32,14 +33,7 @@ export function Header() {
 								</Link>
 							</nav>
 						</div>
-						<div className={styles.settings__container}>
-							<img
-								className={styles.settings__icon}
-								src={gearIcon}
-								alt="gear"
-							/>
-							<p className={styles.settings__text}>Settings</p>
-						</div>
+						<Settings />
 					</div>
 				</div>
 			</header>
