@@ -1,10 +1,15 @@
 @import "../../styles/variables.scss";
 
+.settings {
+	position: relative;
+}
+
 .settings__container {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	width: 5.9375rem;
+	cursor: pointer;
 }
 
 .settings__icon {
@@ -14,4 +19,43 @@
 
 .settings__text {
 	color: $disable-color;
+}
+
+.menu {
+	position: absolute;
+	top: 2.5rem; // Расстояние от кнопки настроек
+	right: 0;
+	z-index: 1000;
+	background-color: $app-color;
+	padding: 0.75rem;
+	border: 1px solid rgba(60, 33, 247, 0.5);
+	border-radius: 0.5rem;
+	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.menu__button {
+	width: 100%;
+	margin-bottom: 0.5rem;
+	padding: 0.5rem 1rem;
+	font-size: 0.875rem;
+	color: #fff;
+	background-color: $accent-color;
+	border: none;
+	border-radius: 0.375rem;
+	cursor: pointer;
+	text-align: center;
+
+	&:last-child {
+		margin-bottom: 0; // Убираем нижний отступ у последней кнопки
+	}
+
+	&:hover {
+		background-color: lighten($accent-color, 10%);
+		transition: background-color 0.2s;
+	}
+
+	&:active {
+		background-color: darken($accent-color, 10%);
+		transition: background-color 0.2s;
+	}
 }

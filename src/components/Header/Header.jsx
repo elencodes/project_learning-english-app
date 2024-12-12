@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { Settings } from "../Settings/Settings";
-import gearIcon from "../../assets/icons/header/gear-header.svg";
 import logo from "../../assets/icons/header/logo.svg";
 import styles from "./Header.module.scss";
 
