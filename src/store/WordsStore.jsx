@@ -80,7 +80,7 @@ class WordsStore {
 			});
 
 			const response = await fetch(
-				`http://itgirlschool.justmakeit.ru/api/words/add`,
+				`https://itgirlschool.justmakeit.ru/api/words/add`,
 				{
 					method: "POST",
 					headers: { "Content-Type": "application/json" },
