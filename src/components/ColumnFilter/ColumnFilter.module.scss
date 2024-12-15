@@ -3,21 +3,33 @@
 .filter__container {
 	position: absolute;
 	z-index: 1000;
+	width: 13rem;
 	padding: .625rem;
 	margin: 0.5rem auto 0 2rem;
-	border: .0625rem solid rgba(60, 33, 247, 0.5);
+	border: .0625rem solid var(--border-table-color);
 	border-radius: 1.25rem;
-	background: $app-color;
+	background-color: var(--app-background-color);
+}
+
+ul {
+	max-height: calc(5 * 1.4rem);
+	/* Задаем высоту, соответствующую 5 строкам */
+	overflow-y: auto;
+	/* Включаем вертикальный скролл */
+	padding: 0;
+	margin: 0;
+	list-style: none;
 }
 
 .filter__item {
+	display: flex;
 	font-weight: 400;
 	margin-bottom: .3125rem;
-	display: flex;
 }
 
 .filter__label {
 	font-size: .75rem;
+	color: var(--primary-text-color);
 
 	&:hover {
 		cursor: pointer;
@@ -36,20 +48,21 @@
 	padding: .3125rem .625rem;
 	font-size: .75rem;
 	border: none;
-	background-color: $accent-color;
+	background-color: var(--accent-color);
 	border-radius: .375rem;
 
 	&:hover {
-		background-color: #BBB2FF;
-		transition: background-color .2s linear;
+		color: var(--secondary-text-color);
+		background-color: var(--active-edit-color);
+		transition: background-color .2s linear, color .2s linear;
 	}
 
 	&:active {
-		background-color: $accent-color;
+		background-color: var(--accent-color);
 		transition: background-color .2s linear;
 	}
 }
 
 .button__text {
-	color: #FFFFFF;
+	color: var(--secondary-text-color);
 }

@@ -23,24 +23,24 @@
 	width: 80rem;
 	margin-top: 2.0625rem;
 	text-align: center;
-	border: .0625rem solid rgba(60, 33, 247, 0.5);
+	border: .0625rem solid var(--border-table-color);
 	border-radius: 1.25rem;
-	box-shadow: .625rem .625rem 5rem rgba(63, 39, 102, 0.1);
+	box-shadow: .625rem .625rem 4rem var(--app-shadow-color);
 	overflow: hidden;
 }
 
 .table__header {
-	background-color: $table-color;
+	background-color: var(--table-color);
 }
 
 tr {
-	border-bottom: 1px solid $accent-color;
+	border-bottom: 1px solid var(--border-table-color);
 }
 
 th {
 	height: 2.8125rem;
-	border: .0625rem solid $edit-color;
-	border-bottom: 1px solid #988AFA;
+	border: .0625rem solid var(--table-th-color);
+	border-bottom: .0625rem solid var(--border-table-color);
 }
 
 .table__body {
@@ -50,20 +50,21 @@ th {
 
 td {
 	height: 2.5rem;
-	border: .0625rem solid $edit-color;
+	border: .0625rem solid var(--table-td-color);
+	color: var(--table-text-color);
 }
 
 .table__body tr:hover {
-	cursor: pointer;
-	background-color: $table-color;
+	background-color: var(--table-body-hover-color);
 	transition: background-color .1s linear;
+	cursor: pointer;
 }
 
 .table__footer {
-	background-color: $table-color;
+	background-color: var(--table-color);
 
 	th {
-		border-top: 1px solid #988AFA;
+		border-top: 1px solid var(--border-table-color);
 		border-bottom: none;
 		border-right: none;
 		border-left: none;
@@ -72,11 +73,11 @@ td {
 
 .table__footer_text {
 	font-size: .875rem;
-	color: $disable-color;
+	color: var(--disable-color);
 }
 
 .table__footer_counter {
-	color: $accent-color;
+	color: var(--accent-color);
 }
 
 .pagination {
@@ -88,34 +89,34 @@ td {
 
 .paginationButton {
 	cursor: pointer;
-	margin: 0 .625rem;
+	margin: 0.625rem;
 	width: 1.75rem;
 	height: 1.75rem;
-	color: $font-color;
-	background-color: rgba(226, 222, 255, 0.6);
+	color: var(--primary-text-color);
+	background-color: var(--pagination-background-color);
 	border-radius: 1.25rem;
 
 	&:hover {
-		color: $active-color;
+		color: var(--success-color);
 		transition: color .1s linear;
 	}
 
 	&:active {
-		color: $active-color;
+		color: var(--success-color);
 		transition: color .1s linear;
 	}
 
 }
 
 .paginationButton:disabled {
-	color: $disable-color;
+	color: var(--disable-arrow-color);
 	pointer-events: none; // Отключает все события на кнопке
-	background-color: #EAEDF2;
+	background-color: var(--disable-background-color);
 
 	&:hover,
 	&:active {
-		background-color: #EAEDF2;
-		color: $disable-color;
+		background-color: var(--disable-background-color);
+		color: var(--disable-color);
 		cursor: not-allowed; // Курсор для отключенной кнопки
 		transition: none; // Отключаем анимацию
 	}
@@ -124,32 +125,32 @@ td {
 .pageInfo {
 	font-size: .875rem;
 	margin: 0 .3125rem;
-	color: $disable-color;
+	color: var(--disable-color);
 }
 
 .pageInfo_currentPage {
-	color: $accent-color;
+	color: var(--accent-color);
 	text-decoration: underline;
 }
 
 .filter__button {
 	border-radius: .3125rem;
-	background-color: $table-color;
+	background-color: var(--table-color);
 
 	&:hover {
 		cursor: pointer;
-		background-color: $edit-color;
+		background-color: var(--edit-color);
 		transition: background-color .2s linear;
 	}
 
 	&:active {
-		background-color: #BBB2FF;
+		background-color: var(--active-edit-color);
 		transition: background-color .2s linear;
 	}
 }
 
 .active {
-	background-color: $edit-color;
+	background-color: var(--edit-color);
 }
 
 .filter__icon {

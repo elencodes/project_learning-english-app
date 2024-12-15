@@ -11,3 +11,88 @@ $active-color: #62C3C9;
 $disable-color: #959BA5;
 $error-color: #B3261E;
 $accent-color: #3C21F7;
+$dark-theme-font-color:#FFFFFF;
+
+//testing variables (background-color App)
+
+:root {
+	--body-background-color: #F9FAFE;
+	--app-background-color: #FAFBFE;
+	--app-shadow-color: #3f276626;
+	--app-border-color: #e2deff1a;
+	--header-color: #FFFFFF;
+	--primary-text-color: #242730;
+	--secondary-text-color: #FFFFFF;
+	--light-font-color: #FFFFFF;
+	--table-color: #F5F4FF;
+	--table-th-color: #E2DEFF;
+	--table-td-color: #E2DEFF;
+	--table-text-color: #242730;
+	--table-body-hover-color: #F5F4FF;
+	--filter-background-color: #F5F4FF;
+	--filter-active-color: #F5F4FF;
+	--pagination-background-color: #e2deff99;
+	--border-table-color: #3c21f780;
+	--border-color: #CCD2E3;
+	--input-background-color: #F5F4FF;
+	--input-border-color: #3C21F7;
+	--cancel-button-color: #FFDBE6;
+	--cancel-button-hover-color: #FFB7CD;
+	--save-button-color: #62C3C9;
+	--save-button-hover-color: #43A3A9;
+	--edit-button-color: #E2DEFF;
+	--edit-button-hover-color: #BBB2FF;
+	--edit-button-text-color: #3C21F7;
+	--delete-button-color: #FFB7CD;
+	--delete-button-hover-color: #FF84A9;
+	--accent-color: #3C21F7;
+	--success-color: #62C3C9;
+	--error-color: #B3261E;
+	--error-text-color: #FF84A9;
+	--edit-color: #E2DEFF;
+	--active-edit-color: #BBB2FF;
+	--disable-color: #959BA5;
+	--disable-background-color: #EAEDF2;
+	--disable-arrow-color: #959BA5;
+}
+
+.dark-theme {
+	--body-background-color: #181A20;
+	--app-background-color: #1F222A;
+	--app-shadow-color: #e2dee126;
+	--app-border-color: #35373F;
+	--header-color: #1F222A;
+	--primary-text-color: #FFFFFF;
+	--secondary-text-color: #242730;
+	--light-font-color: #FFFFFF;
+	--table-color: #491c6424;
+	--table-th-color: #453F73;
+	--table-td-color: #35373F;
+	--table-text-color: #A1A8B4;
+	--table-body-hover-color: #e2deff0f;
+	--filter-background-color: #e2deff99;
+	--filter-active-color: #e2deff99;
+	--pagination-background-color: #e2deff99;
+	--border-table-color: #988AFA;
+	--border-color: #35373F;
+	--input-background-color: #242730;
+	--input-border-color: #988AFA;
+	--cancel-button-color: #ab8893;
+	--cancel-button-hover-color: #FF91B3;
+	--save-button-color: #2f5053;
+	--save-button-hover-color: #4bb7bd;
+	--edit-button-color: #c1abff80;
+	--edit-button-hover-color: #988AFA;
+	--edit-button-text-color: #FFFFFF;
+	--delete-button-color: rgba(255, 185, 206, 0.738);
+	--delete-button-hover-color: #f6d6f9;
+	--accent-color: #2DE6FF;
+	--success-color: #62C3C9;
+	--error-color: #F75555;
+	--error-text-color: #FF84A9;
+	--edit-color: #c1abff61;
+	--active-edit-color: #BBB2FF;
+	--disable-color: #A1A8B4;
+	--disable-background-color: #242730;
+	--disable-arrow-color: #273B4A;
+}

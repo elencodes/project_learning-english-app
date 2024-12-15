@@ -16,25 +16,28 @@
 .input__item {
 	width: 95%;
 	padding: 0.375rem;
-	border: 2px solid $edit-color;
+	color: var(--accent-color);
+	border: 2px solid var(--table-th-color);
 	border-radius: .625rem;
 	text-align: center;
+	background-color: var(--secondary-text-color);
 
 	&:focus {
-		border: 1px solid $accent-color;
+		border: 1px solid var(--input-border-color);
+		background-color: var(--input-background-color);
 	}
 }
 
 .error {
-	color: #FF84A9;
+	color: var(--error-text-color);
 	font-size: .875rem;
 }
 
 .invalid {
-	border: 1px solid #FF84A9;
+	border: 1px solid var(--error-text-color);
 
 	&:focus {
-		border: 1px solid #FF84A9;
-		background-color: #FFFFFF;
+		border: 1px solid var(--error-text-color);
+		background-color: var(--secondary-text-color);
 	}
 }

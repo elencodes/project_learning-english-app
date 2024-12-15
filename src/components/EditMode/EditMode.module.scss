@@ -6,17 +6,17 @@
 	align-items: center;
 	width: 2rem;
 	height: 1.75rem;
-	background-color: #FFDBE6;
+	background-color: var(--cancel-button-color);
 	border-radius: .3125rem;
 
 	&:hover {
 		cursor: pointer;
-		background-color: #FFB7CD;
+		background-color: var(--cancel-button-hover-color);
 		transition: background-color .2s linear;
 	}
 
 	&:active {
-		background-color: #FFDBE6;
+		background-color: var(--cancel-button-color);
 		transition: background-color .2s linear;
 	}
 }
@@ -34,26 +34,26 @@
 	width: 4.5rem;
 	height: 1.5625rem;
 	padding: 0 .75rem;
-	background-color: $active-color;
+	background-color: var(--save-button-color);
 	border-radius: .625rem;
 	font-size: .8125rem;
 
 	&:hover {
 		cursor: pointer;
-		background-color: #43A3A9;
+		background-color: var(--save-button-hover-color);
 		transition: background-color .2s linear;
 	}
 
 	&:active {
-		background-color: $active-color;
+		background-color: var(--save-button-color);
 		transition: background-color .2s linear;
 	}
 
 	// Стиль для состояния disabled
 	&:disabled {
-		background-color: $disable-color; // Серый цвет для неактивного состояния
+		background-color: var(--disable-color);
 		cursor: not-allowed;
-		opacity: 0.3; // Прозрачность для визуального эффекта заблокированной кнопки
+		opacity: 0.3;
 	}
 }
 
@@ -63,5 +63,5 @@
 }
 
 .save__text {
-	color: #FFFFFF;
+	color: var(--light-font-color);
 }

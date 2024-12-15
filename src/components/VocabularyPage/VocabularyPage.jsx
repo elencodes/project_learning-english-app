@@ -1,6 +1,7 @@
 import { observer } from "mobx-react-lite";
 import { reaction } from "mobx"; // Для отслеживания изменений состояния MobX
 import { useStore } from "../WordsStoreContext/WordsStoreContext";
+import { useThemeStore } from "../ThemeStoreContext/ThemeStoreContext";
 import { useState, useEffect } from "react";
 import TableRow from "../TableRow/TableRow";
 import Form from "../Form/Form";
@@ -9,11 +10,18 @@ import { Search } from "../Search/Search";
 import { ColumnFilter } from "../ColumnFilter/ColumnFilter";
 import filterIcon from "../../assets/icons/filter/filter.svg";
 import filterActiveIcon from "../../assets/icons/filter/filter-active.svg";
+import filterIconDarkTheme from "../../assets/icons/filter/filter-dark-theme.svg";
+import filterActiveIconDarkTheme from "../../assets/icons/filter/filter-active-dark-theme.svg";
 import styles from "./VocabularyPage.module.scss";
 
 const VocabularyPage = observer(() => {
 	// Доступ к MobX-стору через контекст
 	const { wordsStore } = useStore();
+
+	// Получение ThemeStore
+	const { themeStore } = useThemeStore();
+	// Текущая тема (light или dark)
+	const currentTheme = themeStore.theme;
 
 	// Локальное состояние для управления фильтром
 	const [isFilterOpen, setFilterOpen] = useState(false); // Открытие списка фильтра
@@ -154,7 +162,11 @@ const VocabularyPage = observer(() => {
 											>
 												<img
 													className={styles.filter__icon}
-													src={filterActiveIcon}
+													src={
+														currentTheme === "dark"
+															? filterActiveIconDarkTheme
+															: filterActiveIcon
+													}
 													alt="filterActiveIcon"
 												/>
 											</button>
@@ -167,7 +179,11 @@ const VocabularyPage = observer(() => {
 											>
 												<img
 													className={styles.filter__icon}
-													src={filterIcon}
+													src={
+														currentTheme === "dark"
+															? filterIconDarkTheme
+															: filterIcon
+													}
 													alt="filterIcon"
 												/>
 											</button>

@@ -1,8 +1,8 @@
 @import "../../styles/variables.scss";
 
 .header {
-	background-color: #FFFFFF;
-	border-bottom: .0625rem solid #CCD2E3;
+	background-color: var(--header-color);
+	border-bottom: .0625rem solid var(--border-color);
 }
 
 .header__inner {
@@ -46,7 +46,7 @@
 .header__logoname {
 	font-size: .75rem;
 	font-weight: 700;
-	color: $accent-color;
+	color: var(--accent-color);
 }
 
 .nav {
@@ -58,14 +58,14 @@
 
 .nav__link {
 	position: relative;
-	color: $disable-color;
+	color: var(--disable-color);
 	cursor: pointer;
 	background-color: transparent;
 
 	&:after {
 		content: "";
 		position: absolute;
-		background-color: $accent-color;
+		background-color: var(--accent-color);
 		height: .0625rem;
 		width: 0;
 		left: 0;
@@ -74,7 +74,7 @@
 	}
 
 	&:hover {
-		color: $accent-color;
+		color: var(--accent-color);
 		transition: color .3s linear;
 	}
 

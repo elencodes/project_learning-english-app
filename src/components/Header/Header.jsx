@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Settings } from "../Settings/Settings";
+import Settings from "../Settings/Settings";
 import logo from "../../assets/icons/header/logo.svg";
 import styles from "./Header.module.scss";
 

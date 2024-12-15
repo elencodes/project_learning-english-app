@@ -7,18 +7,18 @@
 	width: 4.5rem;
 	height: 1.5625rem;
 	padding: 0 .9375rem;
-	background-color: $edit-color;
+	background-color: var(--edit-button-color);
 	border-radius: .625rem;
 	font-size: .8125rem;
 
 	&:hover {
 		cursor: pointer;
-		background-color: #BBB2FF;
+		background-color: var(--edit-button-hover-color);
 		transition: background-color .2s linear;
 	}
 
 	&:active {
-		background-color: $edit-color;
+		background-color: var(--edit-button-color);
 		transition: background-color .2s linear;
 	}
 }
@@ -29,7 +29,7 @@
 }
 
 .edit__text {
-	color: $accent-color;
+	color: var(--edit-button-text-color);
 }
 
 .delete__button {
@@ -38,17 +38,17 @@
 	align-items: center;
 	width: 2rem;
 	height: 1.75rem;
-	background-color: #FFB7CD;
+	background-color: var(--delete-button-color);
 	border-radius: .3125rem;
 
 	&:hover {
 		cursor: pointer;
-		background-color: #FF84A9;
+		background-color: var(--delete-button-hover-color);
 		transition: background-color .2s linear;
 	}
 
 	&:active {
-		background-color: #FFB7CD;
+		background-color: var(--delete-button-color);
 		transition: background-color .2s linear;
 	}
 }

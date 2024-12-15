@@ -2,7 +2,7 @@ import { observer } from "mobx-react-lite";
 import useValidation from "../../hooks/useValidation";
 import { useState, useEffect } from "react";
 import { EditMode } from "../EditMode/EditMode";
-import { ReadMode } from "../ReadMode/ReadMode";
+import ReadMode from "../ReadMode/ReadMode";
 import { useStore } from "../WordsStoreContext/WordsStoreContext";
 import styles from "./TableRow.module.scss";
 
