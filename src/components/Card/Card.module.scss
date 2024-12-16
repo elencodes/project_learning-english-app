@@ -9,9 +9,9 @@
 	width: 21.25rem;
 	height: 21.5rem;
 	padding: 2.5rem;
-	background-color: rgba(255, 255, 255, 0.3);
+	background-color: var(--card-background-color);
 	border-radius: 1.25rem;
-	box-shadow: 0 .625rem 6.25rem rgba(63, 39, 102, 0.15);
+	box-shadow: 0 .625rem 3.25rem var(--app-shadow-color);
 }
 
 .card__title {
@@ -29,37 +29,35 @@
 	align-items: center;
 	width: 9.375rem;
 	height: 2.25rem;
-	background-color: $accent-color;
+	background-color: var(--accent-color);
 	border-radius: .625rem;
 	outline: none;
 
 	&:hover {
 		cursor: pointer;
-		background-color: #BBB2FF;
+		background-color: var(--active-edit-color);
 		transition: background-color .2s linear;
 	}
 
 	&:active {
-		background-color: $accent-color;
+		background-color: var(--accent-color);
 		transition: background-color .2s linear;
 	}
 
 	&:focus {
-		outline: 2px solid #BBBBFF;
-		/* Обводка фокуса */
-		box-shadow: 0 0 0 4px rgba(187, 178, 255, 0.8);
-		/* Дополнительная тень */
+		outline: 2px solid var(--edit-color);
+		box-shadow: 0 0 8px 4px var(--card-button-focus-color);
 	}
 }
 
 .button__text {
 	font-size: .875rem;
 	font-weight: 500;
-	color: #FFFFFF;
+	color: var(--secondary-text-color);
 }
 
 .card__text {
 	font-size: 1.25rem;
-	color: $active-color;
+	color: var(--success-color);
 	margin-bottom: 0.875rem;
 }

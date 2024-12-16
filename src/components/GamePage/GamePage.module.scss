@@ -21,12 +21,12 @@
 
 .counter__text {
 	font-size: 1.375rem;
-	color: $disable-color;
+	color: var(--disable-color);
 }
 
 .message,
 .translate__counter {
-	color: $error-color;
+	color: var(--error-color);
 }
 
 .translate__counter {
@@ -34,7 +34,7 @@
 }
 
 .active {
-	color: $active-color;
+	color: var(--success-color);
 }
 
 .message {
@@ -83,20 +83,22 @@
 	position: absolute;
 	width: 3.125rem;
 	height: 3.125rem;
-	background-color: rgba(226, 222, 255, 0.6);
+	background-color: var(--card-arrow-background-color);
 	border-radius: 3.125rem;
-	border: .0625rem solid $edit-color;
+	border: .0625rem solid var(--card-arrow-border-color);
 	font-size: 1.25rem;
-	color: $font-color;
+	color: var(--card-arrow-color);
 
 	&:hover {
-		background-color: $edit-color;
-		transition: background-color .2s linear;
+		background-color: var(--card-arrow-hover-background-color);
+		color: var(--dark-font-color);
+		transition: background-color .2s linear, color .2s linear;
 	}
 
 	&:active {
-		background-color: rgba(226, 222, 255, 0.6);
-		transition: background-color .2s linear;
+		background-color: var(--card-arrow-hover-active-color);
+		color: var(--dark-font-color);
+		transition: background-color .1s linear, color .1s linear;
 	}
 
 }
@@ -110,14 +112,15 @@
 }
 
 .disabled {
-	color: $disable-color;
-	background-color: #EAEDF2;
+	color: var(--disable-arrow-color);
+	background-color: var(--disable-background-color);
 	pointer-events: none; // Отключает все события на кнопке
+	border: .0625rem solid var(--card-arrow-disable-border-color);
 
 	&:hover,
 	&:active {
-		background-color: $edit-color;
-		color: $disable-color;
+		background-color: var(--edit-color);
+		color: var(--disable-background-color);
 		cursor: not-allowed; // Курсор для отключенной кнопки
 		transition: none; // Отключаем анимацию
 	}
@@ -129,19 +132,19 @@
 
 .counter__card_text {
 	font-size: 1.125rem;
-	color: $disable-color;
+	color: var(--disable-color);
 }
 
 .notification {
-	background-color: $table-color;
-	border: 1px solid $edit-color;
+	background-color: var(--notification-background-color);
+	border: 1px solid var(--table-th-color);
 	padding: 6.25rem;
 	position: fixed;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	z-index: 1000;
-	box-shadow: 0 .625rem 6.25rem rgba(63, 39, 102, 0.15);
+	box-shadow: 0 .625rem 6.25rem var(--notification-shadow-color);
 	border-radius: 1.25rem;
 }
 
@@ -152,12 +155,12 @@
 
 .text__alert {
 	margin-bottom: 2rem;
-	color: $accent-color;
+	color: var(--accent-color);
 	text-transform: uppercase;
 }
 
 .text__complete {
-	color: $active-color;
+	color: var(--success-color);
 }
 
 .closeButton {
@@ -167,16 +170,16 @@
 	position: absolute;
 	top: 10px;
 	right: 15px;
-	color: $disable-color;
+	color: var(--disable-color);
 	cursor: pointer;
 
 	&:hover {
-		color: $error-color;
+		color: var(--error-color);
 		transition: color .2s linear;
 	}
 
 	&:active {
-		color: #FFB7CD;
+		color: var(--cancel-button-hover-color);
 		transition: color .1s linear;
 	}
 }

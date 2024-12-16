@@ -13,9 +13,7 @@
 
 ul {
 	max-height: calc(5 * 1.4rem);
-	/* Задаем высоту, соответствующую 5 строкам */
 	overflow-y: auto;
-	/* Включаем вертикальный скролл */
 	padding: 0;
 	margin: 0;
 	list-style: none;
