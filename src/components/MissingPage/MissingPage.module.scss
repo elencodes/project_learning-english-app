@@ -2,7 +2,7 @@
 
 .error__page {
 	height: 100%;
-	background-color: $edit-color;
+	background-color: var(--missing-page-background-color);
 }
 
 .error__title {
@@ -10,7 +10,7 @@
 	text-align: center;
 	font-size: 2.5rem;
 	font-weight: 700;
-	color: $error-color;
+	color: var(--error-color);
 }
 
 .error__image_box {
@@ -32,17 +32,17 @@
 	width: 9.375rem;
 	height: 2.25rem;
 	margin: 4.675rem auto 0 auto;
-	background-color: $accent-color;
+	background-color: var(--accent-color);
 	border-radius: .625rem;
 
 	&:hover {
 		cursor: pointer;
-		background-color: #BBB2FF;
+		background-color: var(--active-edit-color);
 		transition: background-color .2s linear;
 	}
 
 	&:active {
-		background-color: $accent-color;
+		background-color: var(--accent-color);
 		transition: background-color .2s linear;
 	}
 }
@@ -50,5 +50,5 @@
 .button__text {
 	font-size: .875rem;
 	font-weight: 500;
-	color: #FFFFFF;
+	color: var(--secondary-text-color);
 }
