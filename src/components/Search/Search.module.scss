@@ -18,6 +18,10 @@
 	color: var(--accent-color);
 	border: none;
 	outline: none;
+
+	&::placeholder {
+		color: var(--placeholder-color);
+	}
 }
 
 .search__button {
