@@ -223,7 +223,11 @@ const VocabularyPage = observer(() => {
 								<th className={styles.table__footer_text}>
 									Total items:{" "}
 									<span className={styles.table__footer_counter}>
-										{wordsStore.words.length}
+										{
+											wordsStore.selectedThemes.length > 0
+												? wordsStore.filteredWords.length // Если активен фильтр, показываем filteredWords
+												: wordsStore.words.length // Если фильтр неактивен, показываем общее количество
+										}
 									</span>
 								</th>
 								<th></th>
