@@ -110,7 +110,7 @@ const GamePage = observer(({ initialIndex = 0 }) => {
 						<h1 className={styles.title}>Game</h1>
 						<div className={styles.subtitle}>
 							<p className={styles.counter__text}>
-								Learned words:
+								Learned words:{" "}
 								<span
 									className={
 										translationCount > 0
@@ -118,7 +118,7 @@ const GamePage = observer(({ initialIndex = 0 }) => {
 											: `${styles.translate__counter}`
 									}
 								>
-									ㅤ{translationCount}
+									{translationCount}
 								</span>
 							</p>
 						</div>

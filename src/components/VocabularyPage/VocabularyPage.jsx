@@ -240,7 +240,6 @@ const VocabularyPage = observer(() => {
 											⮜
 										</button>
 										<span className={styles.pageInfo}>
-											{" "}
 											<span className={styles.pageInfo_currentPage}>
 												{currentPage}
 											</span>{" "}
