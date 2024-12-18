@@ -33,12 +33,12 @@ const VocabularyPage = observer(() => {
 	const rowsPerPage = 5; // Количество строк на одной странице
 
 	// Рассчитываем общее количество страниц на основе длины массива слов
-	const totalPages = Math.ceil(wordsStore.words.length / rowsPerPage);
-
-	// Убедимся, что текущая страница всегда валидна (например, при удалении последнего элемента)
-	if (currentPage > totalPages && currentPage > 1) {
-		setCurrentPage(currentPage - 1);
-	}
+	const totalPages = Math.ceil(
+		(wordsStore.selectedThemes.length > 0
+			? wordsStore.filteredWords.length // Если фильтр активен, берём длину filteredWords
+			: wordsStore.words.length) / // Если фильтр неактивен, берём длину words
+			rowsPerPage
+	);
 
 	// Расчет индексов для отображаемых строк
 	const startIndex = (currentPage - 1) * rowsPerPage;
@@ -113,6 +113,13 @@ const VocabularyPage = observer(() => {
 		// Сбрасываем выбранные темы и показываем все элементы
 		wordsStore.clearThemeFilter();
 	};
+
+	useEffect(() => {
+		// Убедимся, что currentPage не превышает totalPages
+		if (currentPage > totalPages && totalPages > 0) {
+			setCurrentPage(totalPages);
+		}
+	}, [currentPage, totalPages]);
 
 	// Загружаем данные только при монтировании компонента
 	useEffect(() => {
