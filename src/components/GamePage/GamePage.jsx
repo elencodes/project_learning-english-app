@@ -26,6 +26,13 @@ const GamePage = observer(({ initialIndex = 0 }) => {
 	// Референс на кнопку перевода
 	const translateButtonRef = useRef(null);
 
+	// Загружаем данные, если массив `words` пуст
+	useEffect(() => {
+		if (wordsStore.words.length === 0) {
+			wordsStore.loadData(); // Загружаем данные
+		}
+	}, [wordsStore]);
+
 	// Устанавливаем фокус при каждом изменении `currentIndex`
 	useEffect(() => {
 		if (translateButtonRef.current) {
@@ -56,9 +63,18 @@ const GamePage = observer(({ initialIndex = 0 }) => {
 		setTranslationCount((prevCount) => prevCount + 1);
 	};
 
+	useEffect(() => {
+		// Сбрасываем прогресс при загрузке страницы
+		setCurrentIndex(0);
+		setTranslationCount(0);
+	}, [wordsStore.words]);
+
 	// Проверка, завершена ли игра
 	useEffect(() => {
-		if (translationCount === wordsStore.words.length) {
+		if (
+			translationCount > 0 &&
+			translationCount === wordsStore.words.length
+		) {
 			// Показываем конфетти
 			SetUiProps({ showConfetti: true });
 			// Показываем уведомление об успешном прохождении через 0.8 секунды
@@ -70,10 +86,13 @@ const GamePage = observer(({ initialIndex = 0 }) => {
 
 	// Остановка эффекта конфетти через 7 секунд
 	useEffect(() => {
-		uiProps.showConfetti &&
-			setTimeout(() => {
+		if (uiProps.showConfetti) {
+			const timer = setTimeout(() => {
 				SetUiProps({ ...uiProps, showConfetti: false });
 			}, 7000);
+
+			return () => clearTimeout(timer); // Очищаем таймер при размонтировании
+		}
 	}, [uiProps]);
 
 	// Меняем карточку по нажатию на клавиши стрелки "Влево" / "Вправо"
@@ -98,115 +117,125 @@ const GamePage = observer(({ initialIndex = 0 }) => {
 		setShowNotification(false);
 	};
 
+	// Добавляем отображение состояния загрузки или ошибки
+	if (wordsStore.isLoading) {
+		return <Loader isLoading={true} />;
+	}
+
+	if (!wordsStore.isLoading && wordsStore.words.length === 0) {
+		return (
+			<Loader error={wordsStore.error} /> && (
+				<p className="error__text">{wordsStore.error}</p>
+			)
+		);
+	}
+
 	return (
 		<>
-			<Loader isLoading={wordsStore.isLoading} error={wordsStore.error}>
-				{wordsStore.error && (
-					<p className="error__text">{wordsStore.error}</p>
-				)}
-				<main className="container">
-					{uiProps.showConfetti && <Confetti />}
-					<section className={styles.section}>
-						<h1 className={styles.title}>Game</h1>
-						<div className={styles.subtitle}>
-							<p className={styles.counter__text}>
-								Learned words:{" "}
-								<span
-									className={
-										translationCount > 0
-											? `${styles.translate__counter} ${styles.active}`
-											: `${styles.translate__counter}`
+			<main className="container">
+				{uiProps.showConfetti && <Confetti />}
+				<section className={styles.section}>
+					<h1 className={styles.title}>Game</h1>
+					<div className={styles.subtitle}>
+						<p className={styles.counter__text}>
+							Learned words:{" "}
+							<span
+								className={
+									translationCount > 0
+										? `${styles.translate__counter} ${styles.active}`
+										: `${styles.translate__counter}`
+								}
+							>
+								{translationCount}
+							</span>
+						</p>
+					</div>
+
+					<div className={styles.section__card_container}>
+						{wordsStore.words.map((props, cardIndex) => {
+							let position = styles.nextSlide;
+
+							if (cardIndex === currentIndex) {
+								position = styles.activeSlide;
+							} else if (
+								cardIndex === currentIndex - 1 ||
+								(currentIndex === 0 &&
+									cardIndex === wordsStore.words.length - 1)
+							) {
+								position = styles.lastSlide;
+							}
+
+							return (
+								<Card
+									className={`${styles.card} ${position}`}
+									key={props.id}
+									english={props.english}
+									transcription={props.transcription}
+									russian={props.russian}
+									onShowTranslation={incrementTranslationCount} // передаем функцию
+									translateButtonRef={
+										cardIndex === currentIndex
+											? translateButtonRef
+											: null
 									}
-								>
-									{translationCount}
-								</span>
-							</p>
-						</div>
+								/>
+							);
+						})}
 
-						<div className={styles.section__card_container}>
-							{wordsStore.words.map((props, cardIndex) => {
-								let position = styles.nextSlide;
+						<button
+							className={
+								firstCard
+									? `${styles.prev} ${styles.disabled}`
+									: `${styles.prev}`
+							}
+							onClick={handleClickPrev}
+							disabled={firstCard}
+						>
+							←
+						</button>
+						<button
+							className={
+								lastCard
+									? `${styles.next} ${styles.disabled}`
+									: `${styles.next}`
+							}
+							onClick={handleClickNext}
+							disabled={lastCard}
+						>
+							→
+						</button>
+					</div>
 
-								if (cardIndex === currentIndex) {
-									position = styles.activeSlide;
-								} else if (
-									cardIndex === currentIndex - 1 ||
-									(currentIndex === 0 &&
-										cardIndex === wordsStore.words.length - 1)
-								) {
-									position = styles.lastSlide;
-								}
+					<div className={styles.counter__container}>
+						<p className={styles.counter__card_text}>
+							{wordsStore.words.length > 0
+								? `${currentIndex + 1} / ${wordsStore.words.length}`
+								: "0 / 0"}
+						</p>
+					</div>
+				</section>
 
-								return (
-									<Card
-										className={`${styles.card} ${position}`}
-										key={props.id}
-										english={props.english}
-										transcription={props.transcription}
-										russian={props.russian}
-										onShowTranslation={incrementTranslationCount} // передаем функцию
-										translateButtonRef={
-											cardIndex === currentIndex
-												? translateButtonRef
-												: null
-										}
-									/>
-								);
-							})}
-
-							<button
-								className={
-									firstCard
-										? `${styles.prev} ${styles.disabled}`
-										: `${styles.prev}`
-								}
-								onClick={handleClickPrev}
-								disabled={firstCard}
-							>
-								←
-							</button>
-							<button
-								className={
-									lastCard
-										? `${styles.next} ${styles.disabled}`
-										: `${styles.next}`
-								}
-								onClick={handleClickNext}
-								disabled={lastCard}
-							>
-								→
-							</button>
-						</div>
-
-						<div className={styles.counter__container}>
-							<p className={styles.counter__card_text}>
-								{currentIndex + 1} / {wordsStore.words.length}
-							</p>
-						</div>
-					</section>
-
-					{showNotification && (
-						<div className={styles.notification}>
-							<p
-								className={`${styles.notification__text} ${styles.text__alert}`}
-							>
-								Congratulations!
-							</p>
-							<p className={styles.notification__text}>
-								You have{" "}
-								<span className={styles.text__complete}>completed</span>{" "}
-								the game!
-							</p>
-							<button
-								className={styles.closeButton}
-								onClick={closeNotification}
-							>
-								&times;
-							</button>
-						</div>
-					)}
-				</main>
-			</Loader>
+				{showNotification && (
+					<div className={styles.notification}>
+						<p
+							className={`${styles.notification__text} ${styles.text__alert}`}
+						>
+							Congratulations!
+						</p>
+						<p className={styles.notification__text}>
+							You have{" "}
+							<span className={styles.text__complete}>completed</span>{" "}
+							the game!
+						</p>
+						<button
+							className={styles.closeButton}
+							onClick={closeNotification}
+						>
+							&times;
+						</button>
+					</div>
+				)}
+			</main>
 		</>
 	);
 });
