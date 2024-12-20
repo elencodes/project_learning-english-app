@@ -1,14 +1,14 @@
 import { makeAutoObservable } from "mobx";
 
 class ThemeStore {
-	theme = "light";
+	theme = "dark";
 
 	constructor() {
 		makeAutoObservable(this); //делаем стор реактивным
 	}
 
 	toggleTheme = () => {
-		this.theme = this.theme === "light" ? "dark" : "light"; //переключение темы
+		this.theme = this.theme === "dark" ? "light" : "dark"; //переключение темы
 	};
 
 	setTheme = (newTheme) => {
