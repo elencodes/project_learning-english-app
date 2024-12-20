@@ -34,9 +34,9 @@ const VocabularyPage = observer(() => {
 
 	// Рассчитываем общее количество страниц на основе длины массива слов
 	const totalPages = Math.ceil(
-		(wordsStore.selectedThemes.length > 0
-			? wordsStore.filteredWords.length // Если фильтр активен, берём длину filteredWords
-			: wordsStore.words.length) / // Если фильтр неактивен, берём длину words
+		(wordsStore.selectedThemes.length > 0 || wordsStore.searchQuery
+			? wordsStore.filteredWords.length // Если фильтр активен или у поискового запроса есть значения, берём длину filteredWords
+			: wordsStore.words.length) / // Если фильтр неактивен или запрос пустой, берём длину words
 			rowsPerPage
 	);
 
@@ -231,9 +231,10 @@ const VocabularyPage = observer(() => {
 									Total items:{" "}
 									<span className={styles.table__footer_counter}>
 										{
-											wordsStore.selectedThemes.length > 0
-												? wordsStore.filteredWords.length // Если активен фильтр, показываем filteredWords
-												: wordsStore.words.length // Если фильтр неактивен, показываем общее количество
+											wordsStore.selectedThemes.length > 0 ||
+											wordsStore.searchQuery
+												? wordsStore.filteredWords.length // Если фильтр активен или у поискового запроса есть значения, берём длину filteredWords
+												: wordsStore.words.length // Если фильтр неактивен или запрос пустой, берём длину words
 										}
 									</span>
 								</th>
