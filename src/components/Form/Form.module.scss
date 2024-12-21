@@ -112,12 +112,16 @@
 		width: 12rem;
 		margin: 0.5rem 0 0 0;
 	}
+
+	.button__desktop {
+		align-self: flex-end;
+	}
 }
 
 @media (max-width: 970px) {
 	.form__container {
 		width: 28rem;
-		margin: 3rem auto 0 auto;
+		margin: 2rem auto 0 auto;
 	}
 
 	.input__label {
@@ -132,6 +136,12 @@
 	.button__mobile {
 		display: block;
 		margin: 2rem auto 0 auto;
+	}
+}
+
+@media (max-width: 530px) {
+	.form__container {
+		margin-top: 1.5rem;
 	}
 }
 
@@ -162,7 +172,6 @@
 @media (max-width: 377px) {
 	.form__container {
 		width: 21rem;
-		margin: 2.5rem auto 0 auto;
 	}
 
 	.input__container {
@@ -180,9 +189,8 @@
 		margin: 2rem auto 0 auto;
 	}
 
-	.input__label {
-		display: inline-block;
-		margin-top: 1rem;
+	.label__mobile {
+		margin-top: 0;
 	}
 
 	.input__container {

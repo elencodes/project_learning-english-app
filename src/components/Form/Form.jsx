@@ -119,7 +119,11 @@ const Form = observer(() => {
 		<>
 			<form className={styles.form__container}>
 				<div className={styles.input__container}>
-					<label className={styles.input__label}>Theme</label>
+					<label
+						className={`${styles.input__label} ${styles.label__mobile}`}
+					>
+						Theme
+					</label>
 					<input
 						className={`${styles.input__item} ${
 							formErrors.tags ? styles.invalid : ""

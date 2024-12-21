@@ -157,3 +157,27 @@ td {
 	height: 1.25rem;
 	background-color: none;
 }
+
+@media (max-width: 970px) {
+	.search__container {
+		margin-top: 3rem;
+	}
+}
+
+@media (max-width: 667px) {
+	.title {
+		margin-top: 2.5rem;
+	}
+}
+
+@media (max-width: 362px) {
+	.title {
+		font-size: 1.75rem;
+	}
+}
+
+@media (max-width: 301px) {
+	.subtitle {
+		font-size: 1rem;
+	}
+}
