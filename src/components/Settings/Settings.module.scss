@@ -36,7 +36,6 @@
 }
 
 .menu__button {
-	width: 100%;
 	margin-bottom: 0.5rem;
 	padding: 0.5rem 1rem;
 	font-size: 0.875rem;
@@ -44,7 +43,6 @@
 	background-color: var(--accent-color);
 	border: none;
 	border-radius: 0.375rem;
-	cursor: pointer;
 	text-align: center;
 
 	&:last-child {
@@ -65,4 +63,60 @@
 
 .menu__text {
 	font-size: .6875rem;
+}
+
+@media (max-width: 575px) {
+	.settings__text {
+		display: none;
+	}
+
+	.settings__container {
+		justify-content: flex-end;
+	}
+}
+
+@media (max-width: 495px) {
+	.settings__container {
+		max-width: 4.9375rem;
+	}
+
+	.menu {
+		padding: 0.5rem;
+	}
+
+	.menu__button {
+		margin-bottom: 0.375rem;
+	}
+}
+
+@media (max-width: 460px) {
+	.settings__container {
+		max-width: 3.875rem;
+	}
+}
+
+@media (max-width: 396px) {
+	.settings__container {
+		max-width: 1.875rem;
+	}
+
+	.menu {
+		padding: .3125rem;
+	}
+
+	.menu__button {
+		padding: 0.5rem 0.75rem;
+	}
+}
+
+@media (max-width: 347px) {
+	.menu__button {
+		padding: 0.375rem 0.675rem;
+	}
+}
+
+@media (max-width: 331px) {
+	.settings__container {
+		max-width: 1.5rem;
+	}
 }

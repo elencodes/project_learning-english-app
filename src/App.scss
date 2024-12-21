@@ -29,9 +29,18 @@ body {
 	overflow: hidden;
 }
 
+.container {
+	max-width: 80.125rem;
+	margin: 0 auto;
+}
+
 @media (max-width: 1300px) {
 	.app {
 		max-width: 82.5rem;
+	}
+
+	.container {
+		max-width: 75.125rem;
 	}
 }
 
@@ -39,11 +48,19 @@ body {
 	.app {
 		max-width: 77.5rem;
 	}
+
+	.container {
+		max-width: 72.125rem;
+	}
 }
 
 @media (max-width: 1125px) {
 	.app {
 		max-width: 72.5rem;
+	}
+
+	.container {
+		max-width: 66.125rem;
 	}
 }
 
@@ -51,11 +68,19 @@ body {
 	.app {
 		max-width: 67.5rem;
 	}
+
+	.container {
+		max-width: 62.125rem;
+	}
 }
 
 @media (max-width: 970px) {
 	.app {
 		max-width: 62.5rem;
+	}
+
+	.container {
+		max-width: 57.125rem;
 	}
 }
 
@@ -63,11 +88,19 @@ body {
 	.app {
 		max-width: 57.5rem;
 	}
+
+	.container {
+		max-width: 52.125rem;
+	}
 }
 
 @media (max-width: 835px) {
 	.app {
 		max-width: 52.5rem;
+	}
+
+	.container {
+		max-width: 47.125rem;
 	}
 }
 
@@ -75,11 +108,19 @@ body {
 	.app {
 		max-width: 47.5rem;
 	}
+
+	.container {
+		max-width: 42.125rem;
+	}
 }
 
 @media (max-width: 695px) {
 	.app {
 		max-width: 42.5rem;
+	}
+
+	.container {
+		max-width: 37.125rem;
 	}
 }
 
@@ -87,11 +128,19 @@ body {
 	.app {
 		max-width: 38.5rem;
 	}
+
+	.container {
+		max-width: 34.125rem;
+	}
 }
 
 @media (max-width: 575px) {
 	.app {
 		max-width: 35.5rem;
+	}
+
+	.container {
+		max-width: 32.125rem;
 	}
 }
 
@@ -99,11 +148,19 @@ body {
 	.app {
 		max-width: 33.5rem;
 	}
+
+	.container {
+		max-width: 30.125rem;
+	}
 }
 
 @media (max-width: 495px) {
 	.app {
 		max-width: 31.5rem;
+	}
+
+	.container {
+		max-width: 28.125rem;
 	}
 }
 
@@ -111,11 +168,19 @@ body {
 	.app {
 		max-width: 29.5rem;
 	}
+
+	.container {
+		max-width: 26.125rem;
+	}
 }
 
 @media (max-width: 436px) {
 	.app {
 		max-width: 28rem;
+	}
+
+	.container {
+		max-width: 25rem;
 	}
 }
 
@@ -123,11 +188,19 @@ body {
 	.app {
 		max-width: 26.5rem;
 	}
+
+	.container {
+		max-width: 24rem;
+	}
 }
 
 @media (max-width: 396px) {
 	.app {
 		max-width: 25.5rem;
+	}
+
+	.container {
+		max-width: 23rem;
 	}
 }
 
@@ -135,11 +208,19 @@ body {
 	.app {
 		max-width: 24.5rem;
 	}
+
+	.container {
+		max-width: 22rem;
+	}
 }
 
 @media (max-width: 362px) {
 	.app {
 		max-width: 23.5rem;
+	}
+
+	.container {
+		max-width: 21rem;
 	}
 }
 
@@ -147,11 +228,19 @@ body {
 	.app {
 		max-width: 22.5rem;
 	}
+
+	.container {
+		max-width: 20rem;
+	}
 }
 
 @media (max-width: 331px) {
 	.app {
 		max-width: 21.5rem;
+	}
+
+	.container {
+		max-width: 19rem;
 	}
 }
 
@@ -165,153 +254,17 @@ body {
 	.app {
 		max-width: 19.5rem;
 	}
-}
 
-@media (max-width: 281px) {
-	.app {
-		max-width: 18.5rem;
-	}
-}
-
-
-.container {
-	max-width: 80.125rem;
-	margin: 0 auto;
-}
-
-@media (max-width: 1300px) {
-	.container {
-		max-width: 75.125rem;
-	}
-}
-
-@media (max-width: 1200px) {
-	.container {
-		max-width: 72.125rem;
-	}
-}
-
-@media (max-width: 1125px) {
-	.container {
-		max-width: 66.125rem;
-	}
-}
-
-@media (max-width: 1040px) {
-	.container {
-		max-width: 62.125rem;
-	}
-}
-
-@media (max-width: 970px) {
-	.container {
-		max-width: 57.125rem;
-	}
-}
-
-@media (max-width: 925px) {
-	.container {
-		max-width: 52.125rem;
-	}
-}
-
-@media (max-width: 835px) {
-	.container {
-		max-width: 47.125rem;
-	}
-}
-
-@media (max-width: 770px) {
-	.container {
-		max-width: 42.125rem;
-	}
-}
-
-@media (max-width: 695px) {
-	.container {
-		max-width: 37.125rem;
-	}
-}
-
-@media (max-width: 615px) {
-	.container {
-		max-width: 34.125rem;
-	}
-}
-
-@media (max-width: 575px) {
-	.container {
-		max-width: 32.125rem;
-	}
-}
-
-@media (max-width: 530px) {
-	.container {
-		max-width: 30.125rem;
-	}
-}
-
-@media (max-width: 495px) {
-	.container {
-		max-width: 28.125rem;
-	}
-}
-
-@media (max-width: 460px) {
-	.container {
-		max-width: 26.125rem;
-	}
-}
-
-@media (max-width: 436px) {
-	.container {
-		max-width: 25rem;
-	}
-}
-
-@media (max-width: 418px) {
-	.container {
-		max-width: 24rem;
-	}
-}
-
-@media (max-width: 396px) {
-	.container {
-		max-width: 23rem;
-	}
-}
-
-@media (max-width: 377px) {
-	.container {
-		max-width: 22rem;
-	}
-}
-
-@media (max-width: 362px) {
-	.container {
-		max-width: 21rem;
-	}
-}
-
-@media (max-width: 347px) {
-	.container {
-		max-width: 20rem;
-	}
-}
-
-@media (max-width: 331px) {
-	.container {
-		max-width: 19rem;
-	}
-}
-
-@media (max-width: 301px) {
 	.container {
 		max-width: 17rem;
 	}
 }
 
 @media (max-width: 281px) {
+	.app {
+		max-width: 18.5rem;
+	}
+
 	.container {
 		max-width: 16rem;
 	}
