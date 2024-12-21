@@ -119,7 +119,7 @@ const Form = observer(() => {
 		<>
 			<form className={styles.form__container}>
 				<div className={styles.input__container}>
-					<label>Theme</label>
+					<label className={styles.input__label}>Theme</label>
 					<input
 						className={`${styles.input__item} ${
 							formErrors.tags ? styles.invalid : ""
@@ -134,7 +134,7 @@ const Form = observer(() => {
 					)}
 				</div>
 				<div className={styles.input__container}>
-					<label>Word</label>
+					<label className={styles.input__label}>Word</label>
 					<input
 						className={`${styles.input__item} ${
 							formErrors.english ? styles.invalid : ""
@@ -149,7 +149,7 @@ const Form = observer(() => {
 					)}
 				</div>
 				<div className={styles.input__container}>
-					<label>Transcription</label>
+					<label className={styles.input__label}>Transcription</label>
 					<input
 						className={`${styles.input__item} ${
 							formErrors.transcription ? styles.invalid : ""
@@ -164,7 +164,7 @@ const Form = observer(() => {
 					)}
 				</div>
 				<div className={styles.input__container}>
-					<label>Translation</label>
+					<label className={styles.input__label}>Translation</label>
 					<input
 						className={`${styles.input__item} ${
 							formErrors.russian ? styles.invalid : ""
@@ -179,7 +179,7 @@ const Form = observer(() => {
 					)}
 				</div>
 				<button
-					className={styles.form__button}
+					className={`${styles.form__button} ${styles.button__desktop}`}
 					type="submit"
 					onClick={addNewWord}
 					disabled={isDisabled}
@@ -187,6 +187,14 @@ const Form = observer(() => {
 					<p className={styles.button__text}>+ Add</p>
 				</button>
 			</form>
+			<button
+				className={`${styles.form__button} ${styles.button__mobile}`}
+				type="submit"
+				onClick={addNewWord}
+				disabled={isDisabled}
+			>
+				<p className={styles.button__text}>+ Add</p>
+			</button>
 		</>
 	);
 });
