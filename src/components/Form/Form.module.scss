@@ -120,13 +120,22 @@
 
 @media (max-width: 970px) {
 	.form__container {
-		width: 28rem;
+		width: 45rem;
 		margin: 2rem auto 0 auto;
+	}
+
+	.input__container {
+		width: 21rem;
 	}
 
 	.input__label {
 		display: inline-block;
-		margin-top: 1rem;
+		margin-top: 1.5rem;
+	}
+
+	.input__item {
+		padding: 0.5rem;
+		width: 19rem;
 	}
 
 	.button__desktop {
@@ -139,9 +148,86 @@
 	}
 }
 
+@media (max-width: 770px) {
+	.form__container {
+		width: 42rem;
+	}
+}
+
+@media (max-width: 695px) {
+	.form__container {
+		width: 37rem;
+	}
+
+	.input__container {
+		width: 18rem;
+	}
+
+	.input__item {
+		width: 18rem;
+	}
+}
+
+@media (max-width: 615px) {
+	.form__container {
+		width: 34rem;
+	}
+
+	.input__container {
+		width: 17rem;
+	}
+
+	.input__item {
+		width: 16rem;
+	}
+}
+
+@media (max-width: 575px) {
+	.form__container {
+		width: 32rem;
+	}
+
+	.input__container {
+		width: 16rem;
+	}
+
+	.input__item {
+		width: 15rem;
+	}
+}
+
 @media (max-width: 530px) {
 	.form__container {
-		margin-top: 1.5rem;
+		margin: 2.5rem auto 0 auto;
+		width: 30rem;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.label__mobile {
+		margin-top: 0;
+	}
+
+	.input__container {
+		width: 28rem;
+	}
+
+	.input__item {
+		width: 27rem;
+	}
+}
+
+@media (max-width: 495px) {
+	.form__container {
+		width: 28rem;
+	}
+
+	.input__container {
+		width: 27rem;
+	}
+
+	.input__item {
+		width: 26rem;
 	}
 }
 
@@ -151,21 +237,53 @@
 	}
 
 	.input__container {
-		width: 13rem;
+		width: 25rem;
+	}
+
+	.input__item {
+		width: 24rem;
 	}
 }
 
 @media (max-width: 436px) {
 	.form__container {
+		width: 25rem;
+	}
+
+	.input__container {
+		width: 24rem;
+	}
+
+	.input__item {
+		width: 24rem;
+	}
+}
+
+@media (max-width: 418px) {
+	.form__container {
 		width: 23rem;
 	}
 
 	.input__container {
-		width: 11rem;
+		width: 22rem;
 	}
 
 	.input__item {
-		width: 11rem;
+		width: 22rem;
+	}
+}
+
+@media (max-width: 396px) {
+	.form__container {
+		width: 22rem;
+	}
+
+	.input__container {
+		width: 21rem;
+	}
+
+	.input__item {
+		width: 21rem;
 	}
 }
 
@@ -175,29 +293,52 @@
 	}
 
 	.input__container {
-		width: 10rem;
+		width: 20rem;
 	}
 
 	.input__item {
-		width: 10rem;
+		width: 20rem;
 	}
 }
 
 @media (max-width: 347px) {
 	.form__container {
-		width: 13rem;
-		margin: 2rem auto 0 auto;
-	}
-
-	.label__mobile {
-		margin-top: 0;
+		width: 19rem;
 	}
 
 	.input__container {
-		width: 13rem;
+		width: 18rem;
 	}
 
 	.input__item {
-		width: 13rem;
+		width: 18rem;
+	}
+}
+
+@media (max-width: 301px) {
+	.form__container {
+		width: 16rem;
+	}
+
+	.input__container {
+		width: 16rem;
+	}
+
+	.input__item {
+		width: 16rem;
+	}
+}
+
+@media (max-width: 281px) {
+	.form__container {
+		width: 15rem;
+	}
+
+	.input__container {
+		width: 15rem;
+	}
+
+	.input__item {
+		width: 15rem;
 	}
 }
