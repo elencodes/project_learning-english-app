@@ -53,9 +53,21 @@
 	}
 }
 
-
 .delete__icon {
 	margin: 0 auto;
 	width: 1.25rem;
 	height: 1.25rem;
+}
+
+@media (max-width: 770px) {
+	.edit__button {
+		width: 5rem;
+		height: 2.175rem;
+		justify-content: space-around;
+	}
+
+	.delete__button {
+		width: 2.175rem;
+		height: 2.175rem;
+	}
 }

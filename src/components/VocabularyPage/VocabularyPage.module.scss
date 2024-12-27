@@ -236,6 +236,11 @@ td {
 		margin: 0.5rem 0 1rem 0;
 	}
 
+	.footer__text,
+	.pageInfo {
+		font-size: 1rem;
+	}
+
 	.pagination {
 		display: flex;
 		gap: 0.5rem;
@@ -245,18 +250,13 @@ td {
 		margin-left: 0;
 	}
 
-	.pagination__next {
-		margin-right: 0;
-	}
-
 	.pageInfo__cards {
 		margin: 0;
 	}
-}
 
-@media (max-width: 377px) {
-	.title {
-		margin-top: 2.375rem;
+	.paginationButton {
+		width: 5rem;
+		height: 2rem;
 	}
 
 	.pagination__prev {
@@ -268,14 +268,87 @@ td {
 	}
 }
 
+@media (max-width: 418px) {
+	.pagination__prev {
+		margin-right: .25rem;
+	}
+
+	.pagination__next {
+		margin-left: .25rem;
+	}
+
+	.paginationButton {
+		width: 4.5rem;
+		height: 2rem;
+	}
+}
+
+@media (max-width: 396px) {
+	.paginationButton {
+		width: 4.25rem;
+		height: 2rem;
+	}
+}
+
+@media (max-width: 377px) {
+	.title {
+		margin-top: 2.375rem;
+	}
+
+	.footer__text,
+	.pageInfo {
+		font-size: .875rem;
+	}
+}
+
 @media (max-width: 362px) {
 	.title {
 		font-size: 1.75rem;
+	}
+
+	.paginationButton {
+		width: 4rem;
+		height: 2rem;
+	}
+}
+
+@media (max-width: 347px) {
+	.paginationButton {
+		width: 3.5rem;
+		height: 2rem;
+	}
+}
+
+@media (max-width: 331px) {
+	.paginationButton {
+		width: 3.125rem;
+		height: 2rem;
+	}
+
+	.pagination__prev {
+		margin-right: 0;
+	}
+
+	.pagination__next {
+		margin-left: 0;
 	}
 }
 
 @media (max-width: 301px) {
 	.subtitle {
 		font-size: 1rem;
+	}
+
+	.paginationButton {
+		width: 2.125rem;
+		height: 2rem;
+	}
+
+	.pagination__prev {
+		margin-right: 0.175rem;
+	}
+
+	.pagination__next {
+		margin-left: 0.175rem;
 	}
 }

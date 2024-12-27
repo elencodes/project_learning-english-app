@@ -65,3 +65,16 @@
 .save__text {
 	color: var(--light-font-color);
 }
+
+@media (max-width: 770px) {
+	.save__button {
+		width: 5rem;
+		height: 2.175rem;
+		justify-content: space-around;
+	}
+
+	.cancel__button {
+		width: 2.175rem;
+		height: 2.175rem;
+	}
+}

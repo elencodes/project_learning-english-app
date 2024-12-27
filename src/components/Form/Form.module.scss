@@ -105,7 +105,7 @@
 	}
 
 	.input__label {
-		font-size: .875rem;
+		font-size: 1rem;
 	}
 
 	.input__item {
@@ -312,6 +312,13 @@
 
 	.input__item {
 		width: 18rem;
+	}
+}
+
+@media (max-width: 321px) {
+
+	.input__label {
+		font-size: 0.875rem;
 	}
 }
 

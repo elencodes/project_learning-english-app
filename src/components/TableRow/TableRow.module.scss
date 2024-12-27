@@ -73,6 +73,7 @@
 
 	.card__info_title {
 		font-weight: 400;
+		font-size: 1rem;
 	}
 
 	.card__info_text {
@@ -81,12 +82,17 @@
 
 	.input__item {
 		margin-top: 0.375rem;
+		width: 100%;
+	}
+}
+
+@media (max-width: 331px) {
+	.card__info_title {
+		font-size: .8125rem;
 	}
 }
 
 @media (max-width: 301px) {
-
-	.card__info_title,
 	.card__info_text {
 		font-size: .8125rem;
 	}
