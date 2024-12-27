@@ -30,7 +30,7 @@ const VocabularyPage = observer(() => {
 
 	// Локальное состояние для текущей страницы и количества строк на странице
 	const [currentPage, setCurrentPage] = useState(1);
-	const rowsPerPage = 5; // Количество строк на одной странице
+	const rowsPerPage = window.innerWidth < 770 ? 3 : 5; // Изменяем количество строк на одной странице в зависимости от ширины экрана
 
 	// Рассчитываем общее количество страниц на основе длины массива слов
 	const totalPages = Math.ceil(
@@ -142,134 +142,216 @@ const VocabularyPage = observer(() => {
 		return () => disposer(); // Чистим реакцию при размонтировании
 	}, [wordsStore, rowsPerPage]);
 
+	useEffect(() => {
+		const handleResize = () => window.innerWidth < 770;
+		window.addEventListener("resize", handleResize);
+		return () => window.removeEventListener("resize", handleResize);
+	}, []);
+
 	return (
 		<>
 			<Loader isLoading={wordsStore.isLoading} error={wordsStore.error}>
 				{wordsStore.error && (
 					<p className="error__text">{wordsStore.error}</p>
 				)}
-				<main className="container">
-					<h1 className={styles.title}>Vocabulary</h1>
-					<Form handleAdd={handleAdd} />
-					<div className={styles.search__container}>
-						<h2 className={styles.subtitle}>Words List</h2>
-						<Search onSearch={handleSearch} />
-					</div>
-					<table className={styles.table} cellSpacing="0">
-						<thead className={styles.table__header}>
-							<tr>
-								<th>№</th>
-								<th>
-									Theme{" "}
-									{isFilterOpen ? (
-										<>
-											<button
-												className={`${styles.filter__button} ${styles.active}`}
-												onClick={() => setFilterOpen(!isFilterOpen)}
-											>
-												<img
-													className={styles.filter__icon}
-													src={
-														currentTheme === "dark"
-															? filterActiveIconDarkTheme
-															: filterActiveIcon
+				<div className="container">
+					<main>
+						<h1 className={styles.title}>Vocabulary</h1>
+						<Form handleAdd={handleAdd} />
+						<div className={styles.search__container}>
+							<h2 className={styles.subtitle}>Words List</h2>
+							<Search onSearch={handleSearch} />
+						</div>
+						{window.innerWidth >= 770 ? (
+							<>
+								<table className={styles.table} cellSpacing="0">
+									<thead className={styles.table__header}>
+										<tr>
+											<th>№</th>
+											<th>
+												Theme{" "}
+												{isFilterOpen ? (
+													<>
+														<button
+															className={`${styles.filter__button} ${styles.active}`}
+															onClick={() =>
+																setFilterOpen(!isFilterOpen)
+															}
+														>
+															<img
+																className={styles.filter__icon}
+																src={
+																	currentTheme === "dark"
+																		? filterActiveIconDarkTheme
+																		: filterActiveIcon
+																}
+																alt="filterActiveIcon"
+															/>
+														</button>
+													</>
+												) : (
+													<>
+														<button
+															className={styles.filter__button}
+															onClick={() =>
+																setFilterOpen(!isFilterOpen)
+															}
+														>
+															<img
+																className={styles.filter__icon}
+																src={
+																	currentTheme === "dark"
+																		? filterIconDarkTheme
+																		: filterIcon
+																}
+																alt="filterIcon"
+															/>
+														</button>
+													</>
+												)}
+												{isFilterOpen && (
+													<ColumnFilter
+														options={uniqueThemes}
+														selectedOptions={
+															wordsStore.selectedThemes
+														}
+														onChange={handleThemeChange}
+														onClear={clearFilter}
+													/>
+												)}
+											</th>
+											<th>Word</th>
+											<th>Transcription</th>
+											<th>Translation</th>
+											<th>Actions</th>
+										</tr>
+									</thead>
+									<tbody className={styles.table__body}>
+										{currentRows.map((props) => (
+											<TableRow
+												key={props.id}
+												id={props.id} // Отображаем номер строки с учетом страницы
+												tags={props.tags}
+												english={props.english}
+												transcription={props.transcription}
+												russian={props.russian}
+												onDelete={() => handleDelete(props.id)}
+												isCardView={window.innerWidth < 770}
+											/>
+										))}
+									</tbody>
+									<tfoot className={styles.table__footer}>
+										<tr>
+											<th className={styles.table__footer_text}>
+												Total items:{" "}
+												<span
+													className={styles.table__footer_counter}
+												>
+													{
+														wordsStore.selectedThemes.length >
+															0 || wordsStore.searchQuery
+															? wordsStore.filteredWords.length // Если фильтр активен или у поискового запроса есть значения, берём длину filteredWords
+															: wordsStore.words.length // Если фильтр неактивен или запрос пустой, берём длину words
 													}
-													alt="filterActiveIcon"
-												/>
-											</button>
-										</>
-									) : (
-										<>
-											<button
-												className={styles.filter__button}
-												onClick={() => setFilterOpen(!isFilterOpen)}
-											>
-												<img
-													className={styles.filter__icon}
-													src={
-														currentTheme === "dark"
-															? filterIconDarkTheme
-															: filterIcon
-													}
-													alt="filterIcon"
-												/>
-											</button>
-										</>
-									)}
-									{isFilterOpen && (
-										<ColumnFilter
-											options={uniqueThemes}
-											selectedOptions={wordsStore.selectedThemes}
-											onChange={handleThemeChange}
-											onClear={clearFilter}
+												</span>
+											</th>
+											<th></th>
+											<th></th>
+											<th></th>
+											<th></th>
+											<th>
+												<div className={styles.pagination}>
+													<button
+														className={styles.paginationButton}
+														onClick={handlePrevPage}
+														disabled={currentPage === 1}
+													>
+														⮜
+													</button>
+													<span className={styles.pageInfo}>
+														<span
+															className={
+																styles.pageInfo_currentPage
+															}
+														>
+															{currentPage}
+														</span>{" "}
+														of {totalPages}
+													</span>
+													<button
+														className={styles.paginationButton}
+														onClick={handleNextPage}
+														disabled={currentPage === totalPages}
+													>
+														⮞
+													</button>
+												</div>
+											</th>
+										</tr>
+									</tfoot>
+								</table>
+							</>
+						) : (
+							<>
+								<div className={styles.card__container}>
+									{currentRows.map((props) => (
+										<TableRow
+											key={props.id}
+											id={props.id} // Отображаем номер строки с учетом страницы
+											tags={props.tags}
+											english={props.english}
+											transcription={props.transcription}
+											russian={props.russian}
+											onDelete={() => handleDelete(props.id)}
+											isCardView={window.innerWidth < 770}
 										/>
-									)}
-								</th>
-								<th>Word</th>
-								<th>Transcription</th>
-								<th>Translation</th>
-								<th>Actions</th>
-							</tr>
-						</thead>
-
-						<tbody className={styles.table__body}>
-							{currentRows.map((props) => (
-								<TableRow
-									key={props.id}
-									id={props.id} // Отображаем номер строки с учетом страницы
-									tags={props.tags}
-									english={props.english}
-									transcription={props.transcription}
-									russian={props.russian}
-									onDelete={() => handleDelete(props.id)}
-								/>
-							))}
-						</tbody>
-						<tfoot className={styles.table__footer}>
-							<tr>
-								<th className={styles.table__footer_text}>
-									Total items:{" "}
-									<span className={styles.table__footer_counter}>
-										{
-											wordsStore.selectedThemes.length > 0 ||
-											wordsStore.searchQuery
-												? wordsStore.filteredWords.length // Если фильтр активен или у поискового запроса есть значения, берём длину filteredWords
-												: wordsStore.words.length // Если фильтр неактивен или запрос пустой, берём длину words
-										}
-									</span>
-								</th>
-								<th></th>
-								<th></th>
-								<th></th>
-								<th></th>
-								<th>
-									<div className={styles.pagination}>
-										<button
-											className={styles.paginationButton}
-											onClick={handlePrevPage}
-											disabled={currentPage === 1}
-										>
-											⮜
-										</button>
-										<span className={styles.pageInfo}>
-											<span className={styles.pageInfo_currentPage}>
-												{currentPage}
-											</span>{" "}
-											of {totalPages}
-										</span>
-										<button
-											className={styles.paginationButton}
-											onClick={handleNextPage}
-											disabled={currentPage === totalPages}
-										>
-											⮞
-										</button>
-									</div>
-								</th>
-							</tr>
-						</tfoot>
-					</table>
-				</main>
+									))}
+								</div>
+							</>
+						)}
+					</main>
+					<footer className={`${styles.footer} ${styles.footer__card}`}>
+						<div className={styles.footer__text}>
+							<span
+								className={`${styles.footer__text_total} ${styles.total}`}
+							>
+								Total items:{" "}
+							</span>
+							<span className={styles.table__footer_counter}>
+								{
+									wordsStore.selectedThemes.length > 0 ||
+									wordsStore.searchQuery
+										? wordsStore.filteredWords.length // Если фильтр активен или у поискового запроса есть значения, берём длину filteredWords
+										: wordsStore.words.length // Если фильтр неактивен или запрос пустой, берём длину words
+								}
+							</span>
+						</div>
+						<div className={styles.pagination}>
+							<button
+								className={`${styles.paginationButton} ${styles.pagination__prev}`}
+								onClick={handlePrevPage}
+								disabled={currentPage === 1}
+							>
+								⮜
+							</button>
+							<span
+								className={`${styles.pageInfo} ${styles.pageInfo__cards}`}
+							>
+								<span className={styles.pageInfo_currentPage}>
+									{currentPage}
+								</span>{" "}
+								of {totalPages}
+							</span>
+							<button
+								className={`${styles.paginationButton} ${styles.pagination__next}`}
+								onClick={handleNextPage}
+								disabled={currentPage === totalPages}
+							>
+								⮞
+							</button>
+						</div>
+					</footer>
+				</div>
 			</Loader>
 		</>
 	);

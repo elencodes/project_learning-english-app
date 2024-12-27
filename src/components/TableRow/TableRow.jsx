@@ -7,7 +7,7 @@ import { useStore } from "../WordsStoreContext/WordsStoreContext";
 import styles from "./TableRow.module.scss";
 
 const TableRow = observer(
-	({ id, tags, english, transcription, russian, onDelete }) => {
+	({ id, tags, english, transcription, russian, isCardView }) => {
 		const {
 			formErrors,
 			setFormErrors,
@@ -136,7 +136,136 @@ const TableRow = observer(
 			wordsStore.handleDelete(id);
 		};
 
-		return (
+		return isCardView ? (
+			<>
+				<div className={styles.card} key={id}>
+					<p className={styles.card__info_title}>
+						№: <span className={styles.card__info_text}>{id}</span>
+					</p>
+					{isEditing ? (
+						<>
+							<div>
+								<p className={styles.card__info_title}>
+									Theme:{" "}
+									<input
+										className={`${styles.input__item} ${
+											formErrors.tags ? styles.invalid : ""
+										}`}
+										type="text"
+										name="tags"
+										value={fields.tags}
+										onChange={handleChange}
+									/>
+									{formValid.tags && formErrors.tags && (
+										<div className={styles.error}>
+											{formErrors.tags}
+										</div>
+									)}
+								</p>
+							</div>
+							<div>
+								<p className={styles.card__info_title}>
+									Word:{" "}
+									<input
+										className={`${styles.input__item} ${
+											formErrors.english ? styles.invalid : ""
+										}`}
+										type="text"
+										name="english"
+										value={fields.english}
+										onChange={handleChange}
+									/>
+									{formValid.english && formErrors.english && (
+										<div className={styles.error}>
+											{formErrors.english}
+										</div>
+									)}
+								</p>
+							</div>
+							<div>
+								<p className={styles.card__info_title}>
+									Transcription:{" "}
+									<input
+										className={`${styles.input__item} ${
+											formErrors.transcription ? styles.invalid : ""
+										}`}
+										type="text"
+										name="transcription"
+										value={fields.transcription}
+										onChange={handleChange}
+									/>
+									{formValid.transcription &&
+										formErrors.transcription && (
+											<div className={styles.error}>
+												{formErrors.transcription}
+											</div>
+										)}
+								</p>
+							</div>
+							<div>
+								<p className={styles.card__info_title}>
+									Translation:{" "}
+									<input
+										className={`${styles.input__item} ${
+											formErrors.russian ? styles.invalid : ""
+										}`}
+										type="text"
+										name="russian"
+										value={fields.russian}
+										onChange={handleChange}
+									/>
+									{formValid.russian && formErrors.russian && (
+										<div className={styles.error}>
+											{formErrors.russian}
+										</div>
+									)}
+								</p>
+							</div>
+							<div className={styles.table__actions}>
+								<div className={styles.button__container}>
+									<EditMode
+										onCancel={handleCancelClick}
+										onSave={handleSaveClick}
+										isDisabled={isDisabled}
+									/>
+								</div>
+							</div>
+						</>
+					) : (
+						<>
+							<p className={styles.card__info_title}>
+								Theme:{" "}
+								<span className={styles.card__info_text}>{tags}</span>
+							</p>
+							<p className={styles.card__info_title}>
+								Word:{" "}
+								<span className={styles.card__info_text}>
+									{english}
+								</span>
+							</p>
+							<p className={styles.card__info_title}>
+								Transcription:{" "}
+								<span className={styles.card__info_text}>
+									{transcription}
+								</span>
+							</p>
+							<p className={styles.card__info_title}>
+								Translation:{" "}
+								<span className={styles.card__info_text}>
+									{russian}
+								</span>
+							</p>
+							<div className={styles.button__container}>
+								<ReadMode
+									onEdit={handleEditClick}
+									onDelete={handleDeleteClick}
+								/>
+							</div>
+						</>
+					)}
+				</div>
+			</>
+		) : (
 			<tr>
 				<td>{id}</td>
 				{isEditing ? (
