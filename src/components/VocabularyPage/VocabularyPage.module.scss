@@ -238,7 +238,7 @@ td {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		margin-top: 0.5rem;
+		margin: 0.5rem 0 0.5rem 0;
 	}
 
 	.footer__text,
@@ -298,10 +298,6 @@ td {
 @media (max-width: 377px) {
 	.title {
 		margin-top: 2.375rem;
-	}
-
-	.footer {
-		margin: 0.5rem 0 0 0;
 	}
 
 	.footer__text,
