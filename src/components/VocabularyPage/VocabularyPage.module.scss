@@ -97,6 +97,7 @@ td {
 	margin: 0.625rem;
 	width: 1.75rem;
 	height: 1.75rem;
+	font-family: $symbolsFont, $mainFont;
 	color: var(--primary-text-color);
 	background-color: var(--pagination-background-color);
 	border-radius: 1.25rem;
