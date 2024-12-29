@@ -1,8 +1,9 @@
 {
   "files": {
-    "main.css": "/project_learning-english-app/static/css/main.0cde7a87.css",
+    "main.css": "/project_learning-english-app/static/css/main.de86a178.css",
     "main.js": "/project_learning-english-app/static/js/main.d9f15c43.js",
     "static/media/logo.svg": "/project_learning-english-app/static/media/logo.a3d5903579a933bf317d1b63577ee2eb.svg",
+    "static/media/NotoSansSymbols-Regular.ttf": "/project_learning-english-app/static/media/NotoSansSymbols-Regular.3bbc9e59cdc6db7c7ca3.ttf",
     "static/media/NotoSansSymbols-Regular.woff": "/project_learning-english-app/static/media/NotoSansSymbols-Regular.f85ee6542a3253ae2e50.woff",
     "static/media/Poppins-Regular.woff": "/project_learning-english-app/static/media/Poppins-Regular.9b9d9585fc27c8fff554.woff",
     "static/media/Poppins-Medium.woff": "/project_learning-english-app/static/media/Poppins-Medium.26c20b0f1f2b2d0d7f4e.woff",
@@ -26,11 +27,11 @@
     "static/media/filter-active.svg": "/project_learning-english-app/static/media/filter-active.2b2ca965897f0b1c6d2b1eb818535f04.svg",
     "static/media/filter.svg": "/project_learning-english-app/static/media/filter.80ce7b51983f7d66b9658ae3c58fa4f6.svg",
     "static/media/filter-dark-theme.svg": "/project_learning-english-app/static/media/filter-dark-theme.d9081755b84980e9e52039e114c5821b.svg",
-    "main.0cde7a87.css.map": "/project_learning-english-app/static/css/main.0cde7a87.css.map",
+    "main.de86a178.css.map": "/project_learning-english-app/static/css/main.de86a178.css.map",
     "main.d9f15c43.js.map": "/project_learning-english-app/static/js/main.d9f15c43.js.map"
   },
   "entrypoints": [
-    "static/css/main.0cde7a87.css",
+    "static/css/main.de86a178.css",
     "static/js/main.d9f15c43.js"
   ]
 }
