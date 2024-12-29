@@ -93,14 +93,14 @@ td {
 }
 
 .paginationButton {
-	cursor: pointer;
 	margin: 0.625rem;
 	width: 1.75rem;
 	height: 1.75rem;
-	font-family: $symbolsFont, $mainFont;
+	font-family: $symbolsFont;
 	color: var(--primary-text-color);
 	background-color: var(--pagination-background-color);
 	border-radius: 1.25rem;
+	cursor: pointer;
 
 	&:hover {
 		color: var(--success-color);
