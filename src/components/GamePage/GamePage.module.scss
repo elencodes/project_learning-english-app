@@ -272,7 +272,6 @@
 	.section__card_container {
 		max-width: 23.375rem;
 		width: 23.375rem;
-		height: 23rem;
 	}
 }
 
@@ -280,7 +279,6 @@
 	.section__card_container {
 		max-width: 22.375rem;
 		width: 22.375rem;
-		height: 22rem;
 	}
 }
 
@@ -319,6 +317,7 @@
 	.section__card_container {
 		max-width: 18.375rem;
 		width: 18.375rem;
+		height: 23rem;
 	}
 
 	.prev,
@@ -330,15 +329,16 @@
 
 @media (max-width: 301px) {
 	.section__card_container {
-		max-width: 17.375rem;
-		width: 17.375rem;
+		max-width: 16.375rem;
+		width: 16.375rem;
+		height: 21rem;
 	}
 }
 
 @media (max-width: 281px) {
 	.section__card_container {
-		max-width: 16.375rem;
-		width: 16.375rem;
-		height: 20rem;
+		max-width: 15.375rem;
+		width: 15.375rem;
+		height: 19rem;
 	}
 }

@@ -147,7 +147,6 @@
 @media (max-width: 418px) {
 	.card {
 		width: 14rem;
-		height: 17.5rem;
 	}
 }
 
@@ -166,7 +165,7 @@
 @media (max-width: 347px) {
 	.card {
 		width: 12rem;
-		height: 16.5rem;
+		height: 17.5rem;
 	}
 
 	.card__button {
@@ -177,6 +176,7 @@
 @media (max-width: 331px) {
 	.card {
 		width: 11rem;
+		height: 16.5rem;
 	}
 
 	.card__button {
@@ -198,9 +198,9 @@
 
 @media (max-width: 301px) {
 	.card {
-		width: 10rem;
-		height: 16rem;
-		padding: 2.25rem;
+		width: 9rem;
+		height: 15rem;
+		padding: 2rem;
 	}
 
 	.card__button {
@@ -215,8 +215,20 @@
 
 @media (max-width: 281px) {
 	.card {
-		width: 9rem;
-		height: 15rem;
+		width: 8rem;
+		height: 14rem;
 		padding: 1.5rem;
+	}
+
+	.card__title {
+		font-size: .875rem;
+	}
+
+	.card__subtitle {
+		font-size: .75rem;
+	}
+
+	.card__text {
+		font-size: .75rem;
 	}
 }
