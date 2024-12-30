@@ -266,7 +266,7 @@ const VocabularyPage = observer(() => {
 														onClick={handlePrevPage}
 														disabled={currentPage === 1}
 													>
-														&#11164;
+														«
 													</button>
 													<span className={styles.pageInfo}>
 														<span
@@ -283,7 +283,7 @@ const VocabularyPage = observer(() => {
 														onClick={handleNextPage}
 														disabled={currentPage === totalPages}
 													>
-														&#11166;
+														»
 													</button>
 												</div>
 											</th>

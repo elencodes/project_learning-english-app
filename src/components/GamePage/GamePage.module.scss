@@ -83,11 +83,11 @@
 	position: absolute;
 	width: 3.125rem;
 	height: 3.125rem;
+	font-size: 1.25rem;
+	color: var(--card-arrow-color);
 	background-color: var(--card-arrow-background-color);
 	border-radius: 3.125rem;
 	border: .0625rem solid var(--card-arrow-border-color);
-	font-size: 1.25rem;
-	color: var(--card-arrow-color);
 
 	&:hover {
 		background-color: var(--card-arrow-hover-background-color);
