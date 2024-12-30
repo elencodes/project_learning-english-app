@@ -183,3 +183,162 @@
 		transition: color .1s linear;
 	}
 }
+
+@media (max-width: 970px) {
+
+	.section {
+		margin: 0 auto 0.75rem 0;
+	}
+
+	.title {
+		margin-top: 3rem;
+	}
+
+	.subtitle {
+		margin-top: 3rem;
+	}
+
+	.counter__text {
+		font-size: 1.125rem;
+	}
+
+	.section__card_container {
+		margin: 1rem auto 0 auto;
+	}
+}
+
+@media (max-width: 770px) {
+	.section {
+		margin: 0 auto 2.75rem 0;
+	}
+
+	.section__card_container {
+		max-width: 33.375rem;
+		width: 33.375rem;
+	}
+}
+
+@media (max-width: 575px) {
+	.section__card_container {
+		max-width: 30.375rem;
+		width: 30.375rem;
+	}
+}
+
+@media (max-width: 530px) {
+	.subtitle {
+		margin-top: 2.5rem;
+	}
+
+	.section__card_container {
+		margin: 0.5rem auto 0 auto;
+	}
+
+	.counter__container {
+		margin-top: 0.5rem;
+	}
+}
+
+
+@media (max-width: 495px) {
+	.section__card_container {
+		max-width: 27.375rem;
+		width: 27.375rem;
+	}
+}
+
+@media (max-width: 460px) {
+	.section__card_container {
+		max-width: 25.375rem;
+		width: 25.375rem;
+		height: 24rem;
+	}
+
+	.prev,
+	.next {
+		width: 3rem;
+		height: 3rem;
+	}
+}
+
+@media (max-width: 436px) {
+	.section__card_container {
+		max-width: 24.375rem;
+		width: 24.375rem;
+	}
+}
+
+@media (max-width: 418px) {
+	.section__card_container {
+		max-width: 23.375rem;
+		width: 23.375rem;
+		height: 23rem;
+	}
+}
+
+@media (max-width: 396px) {
+	.section__card_container {
+		max-width: 22.375rem;
+		width: 22.375rem;
+		height: 22rem;
+	}
+}
+
+@media (max-width: 377px) {
+	.section__card_container {
+		max-width: 21.375rem;
+		width: 21.375rem;
+	}
+}
+
+@media (max-width: 362px) {
+	.section__card_container {
+		max-width: 20.375rem;
+		width: 20.375rem;
+	}
+
+	.prev,
+	.next {
+		width: 2.875rem;
+		height: 2.875rem;
+	}
+}
+
+@media (max-width: 347px) {
+	.section__card_container {
+		max-width: 19.375rem;
+		width: 19.375rem;
+	}
+
+	.counter__card_text {
+		font-size: 1rem;
+	}
+}
+
+@media (max-width: 331px) {
+	.section__card_container {
+		max-width: 18.375rem;
+		width: 18.375rem;
+	}
+
+	.prev,
+	.next {
+		width: 2.675rem;
+		height: 2.675rem;
+	}
+}
+
+@media (max-width: 301px) {
+	.section__card_container {
+		max-width: 17.375rem;
+		width: 17.375rem;
+	}
+}
+
+@media (max-width: 281px) {
+	.section__card_container {
+		max-width: 16.375rem;
+		width: 16.375rem;
+		height: 20rem;
+	}
+}
