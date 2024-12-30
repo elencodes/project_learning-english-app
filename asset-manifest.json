@@ -1,14 +1,11 @@
 {
   "files": {
-    "main.css": "/project_learning-english-app/static/css/main.b5bb6fb9.css",
-    "main.js": "/project_learning-english-app/static/js/main.d9f15c43.js",
+    "main.css": "/project_learning-english-app/static/css/main.a4835ef4.css",
+    "main.js": "/project_learning-english-app/static/js/main.25d7502f.js",
     "static/media/logo.svg": "/project_learning-english-app/static/media/logo.a3d5903579a933bf317d1b63577ee2eb.svg",
-    "static/media/NotoSansSymbols-Regular.ttf": "/project_learning-english-app/static/media/NotoSansSymbols-Regular.3bbc9e59cdc6db7c7ca3.ttf",
-    "static/media/NotoSansSymbols-Regular.woff": "/project_learning-english-app/static/media/NotoSansSymbols-Regular.f85ee6542a3253ae2e50.woff",
     "static/media/Poppins-Regular.woff": "/project_learning-english-app/static/media/Poppins-Regular.9b9d9585fc27c8fff554.woff",
     "static/media/Poppins-Medium.woff": "/project_learning-english-app/static/media/Poppins-Medium.26c20b0f1f2b2d0d7f4e.woff",
     "static/media/Poppins-Bold.woff": "/project_learning-english-app/static/media/Poppins-Bold.c4e77e991e26d17e68c5.woff",
-    "static/media/NotoSansSymbols-Regular.woff2": "/project_learning-english-app/static/media/NotoSansSymbols-Regular.e206174397478c58675c.woff2",
     "static/media/Poppins-Regular.woff2": "/project_learning-english-app/static/media/Poppins-Regular.5a6c15af2151cfa27e76.woff2",
     "static/media/Poppins-Medium.woff2": "/project_learning-english-app/static/media/Poppins-Medium.a19883c1cd77faacd63d.woff2",
     "static/media/Poppins-Bold.woff2": "/project_learning-english-app/static/media/Poppins-Bold.b138d0279be06a607215.woff2",
@@ -27,11 +24,11 @@
     "static/media/filter-active.svg": "/project_learning-english-app/static/media/filter-active.2b2ca965897f0b1c6d2b1eb818535f04.svg",
     "static/media/filter.svg": "/project_learning-english-app/static/media/filter.80ce7b51983f7d66b9658ae3c58fa4f6.svg",
     "static/media/filter-dark-theme.svg": "/project_learning-english-app/static/media/filter-dark-theme.d9081755b84980e9e52039e114c5821b.svg",
-    "main.b5bb6fb9.css.map": "/project_learning-english-app/static/css/main.b5bb6fb9.css.map",
-    "main.d9f15c43.js.map": "/project_learning-english-app/static/js/main.d9f15c43.js.map"
+    "main.a4835ef4.css.map": "/project_learning-english-app/static/css/main.a4835ef4.css.map",
+    "main.25d7502f.js.map": "/project_learning-english-app/static/js/main.25d7502f.js.map"
   },
   "entrypoints": [
-    "static/css/main.b5bb6fb9.css",
-    "static/js/main.d9f15c43.js"
+    "static/css/main.a4835ef4.css",
+    "static/js/main.25d7502f.js"
   ]
 }
