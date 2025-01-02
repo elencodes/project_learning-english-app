@@ -209,6 +209,7 @@ td {
 
 	.table {
 		width: 57rem;
+		margin-bottom: 2rem;
 	}
 }
 
@@ -229,6 +230,10 @@ td {
 }
 
 @media (max-width: 770px) {
+
+	.table {
+		margin-bottom: 0;
+	}
 
 	.card__container {
 		margin-top: 1rem;
@@ -355,5 +360,11 @@ td {
 
 	.pagination__next {
 		margin-left: 0.175rem;
+	}
+}
+
+@media (max-width: 281px) {
+	.footer__text {
+		font-size: 0.75rem;
 	}
 }
