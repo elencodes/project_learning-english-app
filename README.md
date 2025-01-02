@@ -26,7 +26,7 @@ The training mode (Game Page) is necessary for better memorization of new words 
   <li>A convenient form of adding a new word to the table has been implemented (with validation hints for correct data entry).</li>
   <li>The word can be found by its English meaning or Russian translation.</li>
   <li>For more in-depth language learning, the table implements a filter of words on specific topics.</li>
-  <li>🔥<b> For convenience and increased user satisfaction:</b> <br>
+  <li>🔥<b> FOR CONVENIENCE AND INCREASED USER SATISFACTION:</b> <br>
   ✔ a dynamic theme changer feature has been added, allowing you to switch between light and dark themes; <br>
   ✔ while waiting for the server response, an animated data loading indicator appears, as well as error messages; <br>
   ✔ starting with the iPhone 5/SE (max-width screen of 320 pixels) and up to the iPad Mini (max-width screen of 768 pixels), each row of the table is converted into a card block - the table from the desktop version of the interface adapts to mobile devices. <br>
@@ -37,7 +37,7 @@ The training mode (Game Page) is necessary for better memorization of new words 
 <img src="https://github.com/elencodes/project_learning-english-app/blob/main/public/github/mobile-vocabulary-page-1.png" height="380">
 <img src="https://github.com/elencodes/project_learning-english-app/blob/main/public/github/mobile-vocabulary-page-2.png" height="380">
 <img src="https://github.com/elencodes/project_learning-english-app/blob/main/public/github/mobile-game-page.png" height="380">
-<h2>Development by:</h2> 
+<h2>Developed by:</h2> 
 <div id=bages>
 	<p><a href="https://github.com/elencodes"><img src="https://img.shields.io/badge/ELENA-2E2844?style=for-the-badge&logo=github"></a></p>
   <p>Contacts: <a href="https://t.me/elencodes">Telegram</a> | <a href="mailto:esadikova.codes@gmail.com">E-mail</a></p>
