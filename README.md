@@ -1,5 +1,5 @@
 <div id="header">
-<h1>A Single-page English Language Learning App (SPA)</h1>
+<h1>A Single-page App (SPA) for Learning English Language</h1>
 <p>The application, which offers interactive tools for learning English using flashcards, was created on React & MobX and API.</p>
 <p>The main language for studying is English, with Russian as the translation.
 The received data from the server (API) is transferred to a table (Vocabulary Page) and to a page with word cards (Game Page).
