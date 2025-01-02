@@ -7,7 +7,7 @@ On the Vocabulary Page, each word in the table has its main meaning, transcripti
 The Game Page shows cards with the entire list of words from the database (API), but by default the translation of the word is always hidden.
 The training mode (Game Page) is necessary for better memorization of new words and successful learning of a foreign language.</p>
 <img src="https://github.com/elencodes/project_learning-english-app/blob/main/public/gif/promo.gif">
-<h2>Website link:</h2>
+<h2>Application link:</h2>
 <a href="https://elencodes.github.io/project_learning-english-app/">Learning Languages App</a>
 <h2>Used technologies:</h2> 
 	<div id=technologies>
